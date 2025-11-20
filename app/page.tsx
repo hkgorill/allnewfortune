@@ -1,65 +1,86 @@
-import Image from "next/image";
+"use client";
+
+import { useState } from "react";
+import FortuneInput, { FortuneInputData } from "./components/FortuneInput";
+import FortuneLoading from "./components/FortuneLoading";
+import FortuneResult, { FortuneResultData } from "./components/FortuneResult";
+import KakaoAdFit from "./components/KakaoAdFit";
 
 export default function Home() {
+  const [step, setStep] = useState<"input" | "loading" | "result">("input");
+  const [resultData, setResultData] = useState<FortuneResultData | null>(null);
+
+  const handleInputSubmit = async (data: FortuneInputData) => {
+    setStep("loading");
+
+    try {
+      const response = await fetch("/api/fortune", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to fetch fortune");
+      }
+
+      const result = await response.json();
+      setResultData(result);
+      setStep("result");
+    } catch (error) {
+      console.error(error);
+      alert("운세를 불러오는데 실패했습니다. 다시 시도해주세요.");
+      setStep("input");
+    }
+  };
+
+  const handleReset = () => {
+    setResultData(null);
+    setStep("input");
+  };
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
+    <main className="min-h-screen bg-[var(--color-background)] flex flex-col items-center justify-center p-4 relative overflow-hidden">
+      {/* Background Decor elements */}
+      <div className="absolute top-[-10%] right-[-10%] w-[300px] h-[300px] bg-[var(--color-main)] rounded-full opacity-20 blur-3xl pointer-events-none" />
+      <div className="absolute bottom-[-10%] left-[-10%] w-[300px] h-[300px] bg-[var(--color-highlight)] rounded-full opacity-20 blur-3xl pointer-events-none" />
+
+      {/* Header (Only show on Input step) */}
+      {step === "input" && (
+        <header className="mb-8 text-center z-10">
+          <h1 className="text-3xl font-bold text-[var(--color-text-primary)] mb-2 tracking-tight">
+            ALL NEW FORTUNE
           </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+          <p className="text-[var(--color-text-secondary)]">
+            모두의 신년운세 2026
           </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+        </header>
+      )}
+
+      {/* Content Area */}
+      <div className="w-full max-w-md z-10 transition-all duration-500">
+        {step === "input" && (
+          <FortuneInput onSubmit={handleInputSubmit} isLoading={false} />
+        )}
+
+        {step === "loading" && <FortuneLoading />}
+
+        {step === "result" && resultData && (
+          <FortuneResult data={resultData} onReset={handleReset} />
+        )}
+
+        {/* AdFit Advertisement (Footer - Input/Result only) */}
+        {/* {step !== "loading" && (
+          <div className="mt-8 mb-4">
+            <KakaoAdFit unit="DAN-zgZw9Q6wvZuU1nIl" width="250" height="250" />
+          </div>
+        )} */}
+      </div>
+
+      {/* Footer */}
+      <footer className="mt-4 text-center text-xs text-[var(--color-text-secondary)] opacity-50 z-10 pb-4">
+        © 2026 ALL NEW FORTUNE. All rights reserved.
+      </footer>
+    </main>
   );
 }
