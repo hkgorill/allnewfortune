@@ -614,503 +614,504 @@ export const fortuneData = {
   lucky_item: [
     {
       name: "다이어리",
-      image: "https://loremflickr.com/300/300/diary,planner?lock=2037739125",
+      image: "https://api.dicebear.com/9.x/glass/svg?seed=%EB%8B%A4%EC%9D%B4%EC%96%B4%EB%A6%AC",
       link: "https://link.coupang.com/a/c6b54X"
     },
     {
       name: "손목시계",
-      image: "https://loremflickr.com/300/300/wristwatch?lock=1072564640",
+      image: "https://api.dicebear.com/9.x/glass/svg?seed=%EC%86%90%EB%AA%A9%EC%8B%9C%EA%B3%84",
       link: "https://link.coupang.com/a/c6b8bQ"
     },
     {
       name: "향수",
-      image: "https://loremflickr.com/300/300/perfume,bottle?lock=1210822622",
+      image: "https://api.dicebear.com/9.x/glass/svg?seed=%ED%96%A5%EC%88%98",
       link: "https://link.coupang.com/a/c6b8Cu"
     },
     {
       name: "작은 거울",
-      image: "https://loremflickr.com/300/300/hand,mirror?lock=1294038896",
+      image: "https://api.dicebear.com/9.x/glass/svg?seed=%EC%9E%91%EC%9D%80%20%EA%B1%B0%EC%9A%B8",
       link: "https://link.coupang.com/a/c6cIxk"
     },
     {
       name: "운동화",
-      image: "https://loremflickr.com/300/300/sneakers,shoes?lock=1127324442",
+      image: "https://api.dicebear.com/9.x/glass/svg?seed=%EC%9A%B4%EB%8F%99%ED%99%94",
       link: "https://link.coupang.com/a/c6b9EJ"
     },
     {
       name: "이어폰",
-      image: "https://loremflickr.com/300/300/earphones,headphones?lock=2107297866",
+      image: "https://api.dicebear.com/9.x/glass/svg?seed=%EC%9D%B4%EC%96%B4%ED%8F%B0",
       link: "https://link.coupang.com/a/c6cITe"
     },
     {
       name: "텀블러",
-      image: "https://loremflickr.com/300/300/tumbler,water,bottle?lock=1152702316",
+      image: "https://api.dicebear.com/9.x/glass/svg?seed=%ED%85%80%EB%B8%94%EB%9F%AC",
       link: "https://link.coupang.com/a/c6b9EJ"
     },
     {
       name: "반지",
-      image: "https://loremflickr.com/300/300/ring,jewelry?lock=1265610790",
+      image: "https://api.dicebear.com/9.x/glass/svg?seed=%EB%B0%98%EC%A7%80",
       link: "https://link.coupang.com/a/c6caRI"
     },
     {
       name: "모자",
-      image: "https://loremflickr.com/300/300/hat,cap?lock=696309965",
+      image: "https://api.dicebear.com/9.x/glass/svg?seed=%EB%AA%A8%EC%9E%90",
       link: "https://link.coupang.com/a/c6ca8i"
     },
     {
       name: "책",
-      image: "https://loremflickr.com/300/300/book,reading?lock=1574392747",
+      image: "https://api.dicebear.com/9.x/glass/svg?seed=%EC%B1%85",
       link: "https://link.coupang.com/a/c6cbCQ"
     },
     {
       name: "목걸이",
-      image: "https://loremflickr.com/300/300/necklace?lock=815583606",
+      image: "https://api.dicebear.com/9.x/glass/svg?seed=%EB%AA%A9%EA%B1%B8%EC%9D%B4",
       link: "https://link.coupang.com/a/c6cbXk"
     },
     {
       name: "스카프",
-      image: "https://loremflickr.com/300/300/scarf,fashion?lock=555478685",
+      image: "https://api.dicebear.com/9.x/glass/svg?seed=%EC%8A%A4%EC%B9%B4%ED%94%84",
       link: "https://link.coupang.com/a/c6cJtI"
     },
     {
       name: "안경",
-      image: "https://loremflickr.com/300/300/glasses,spectacles?lock=1831724789",
+      image: "https://api.dicebear.com/9.x/glass/svg?seed=%EC%95%88%EA%B2%BD",
       link: "https://link.coupang.com/a/c6ccI2"
     },
     {
       name: "지갑",
-      image: "https://loremflickr.com/300/300/wallet,purse?lock=885261512",
+      image: "https://api.dicebear.com/9.x/glass/svg?seed=%EC%A7%80%EA%B0%91",
       link: "https://link.coupang.com/a/c6cc6O"
     },
     {
       name: "가방",
-      image: "https://loremflickr.com/300/300/bag,handbag,backpack?lock=1519153055",
+      image: "https://api.dicebear.com/9.x/glass/svg?seed=%EA%B0%80%EB%B0%A9",
       link: "https://link.coupang.com/a/c6cdxP"
     },
     {
       name: "우산",
-      image: "https://loremflickr.com/300/300/umbrella,rain?lock=1533294832",
+      image: "https://api.dicebear.com/9.x/glass/svg?seed=%EC%9A%B0%EC%82%B0",
       link: "https://link.coupang.com/a/c6cdUx"
     },
     {
       name: "양말",
-      image: "https://loremflickr.com/300/300/socks?lock=109610287",
+      image: "https://api.dicebear.com/9.x/glass/svg?seed=%EC%96%91%EB%A7%90",
       link: "https://link.coupang.com/a/c6cehq"
     },
     {
       name: "장갑",
-      image: "https://loremflickr.com/300/300/gloves?lock=1243001030",
+      image: "https://api.dicebear.com/9.x/glass/svg?seed=%EC%9E%A5%EA%B0%91",
       link: "https://link.coupang.com/a/c6cehq"
     },
     {
       name: "팔찌",
-      image: "https://loremflickr.com/300/300/bracelet?lock=35502328",
+      image: "https://api.dicebear.com/9.x/glass/svg?seed=%ED%8C%94%EC%B0%8C",
       link: "https://link.coupang.com/a/c6cfcP"
     },
     {
       name: "선글라스",
-      image: "https://loremflickr.com/300/300/sunglasses?lock=696252766",
+      image: "https://api.dicebear.com/9.x/glass/svg?seed=%EC%84%A0%EA%B8%80%EB%9D%BC%EC%8A%A4",
       link: "https://link.coupang.com/a/c6cfyQ"
     },
     {
       name: "손수건",
-      image: "https://loremflickr.com/300/300/handkerchief?lock=2134666844",
+      image: "https://api.dicebear.com/9.x/glass/svg?seed=%EC%86%90%EC%88%98%EA%B1%B4",
       link: "https://link.coupang.com/a/c6cf3F"
     },
     {
       name: "열쇠고리",
-      image: "https://loremflickr.com/300/300/keychain?lock=504454082",
+      image: "https://api.dicebear.com/9.x/glass/svg?seed=%EC%97%B4%EC%87%A0%EA%B3%A0%EB%A6%AC",
       link: "https://link.coupang.com/a/c6cgmu"
     },
     {
       name: "립밤",
-      image: "https://loremflickr.com/300/300/lip,balm?lock=1182594925",
+      image: "https://api.dicebear.com/9.x/glass/svg?seed=%EB%A6%BD%EB%B0%A4",
       link: "https://link.coupang.com/a/c6cgIT"
     },
     {
       name: "핸드크림",
-      image: "https://loremflickr.com/300/300/hand,cream,tube?lock=1918978995",
+      image: "https://api.dicebear.com/9.x/glass/svg?seed=%ED%95%B8%EB%93%9C%ED%81%AC%EB%A6%BC",
       link: "https://link.coupang.com/a/c6cg3A"
     },
     {
       name: "볼펜",
-      image: "https://loremflickr.com/300/300/pen,writing?lock=1776214827",
+      image: "https://api.dicebear.com/9.x/glass/svg?seed=%EB%B3%BC%ED%8E%9C",
       link: "https://link.coupang.com/a/c6chyZ"
     },
     {
       name: "노트",
-      image: "https://loremflickr.com/300/300/notebook,paper?lock=462440697",
+      image: "https://api.dicebear.com/9.x/glass/svg?seed=%EB%85%B8%ED%8A%B8",
       link: "https://link.coupang.com/a/c6chPZ"
     },
     {
       name: "마우스",
-      image: "https://loremflickr.com/300/300/computer,mouse?lock=905588896",
+      image: "https://api.dicebear.com/9.x/glass/svg?seed=%EB%A7%88%EC%9A%B0%EC%8A%A4",
       link: "https://link.coupang.com/a/c6cidS"
     },
     {
       name: "키보드",
-      image: "https://loremflickr.com/300/300/keyboard,computer?lock=430399284",
+      image: "https://api.dicebear.com/9.x/glass/svg?seed=%ED%82%A4%EB%B3%B4%EB%93%9C",
       link: "https://link.coupang.com/a/c6ciCz"
     },
     {
       name: "충전기",
-      image: "https://loremflickr.com/300/300/phone,charger,cable?lock=1774298793",
+      image: "https://api.dicebear.com/9.x/glass/svg?seed=%EC%B6%A9%EC%A0%84%EA%B8%B0",
       link: "https://link.coupang.com/a/c6ciZX"
     },
     {
       name: "보조배터리",
-      image: "https://loremflickr.com/300/300/power,bank,portable,charger?lock=1124212990",
+      image: "https://api.dicebear.com/9.x/glass/svg?seed=%EB%B3%B4%EC%A1%B0%EB%B0%B0%ED%84%B0%EB%A6%AC",
       link: "https://link.coupang.com/a/c6cjsM"
     },
     {
       name: "마스크",
-      image: "https://loremflickr.com/300/300/face,mask,medical?lock=473232832",
+      image: "https://api.dicebear.com/9.x/glass/svg?seed=%EB%A7%88%EC%8A%A4%ED%81%AC",
       link: "https://link.coupang.com/a/c6cjGH"
     },
     {
       name: "머리핀",
-      image: "https://loremflickr.com/300/300/hair,clip,pin?lock=1765185347",
+      image: "https://api.dicebear.com/9.x/glass/svg?seed=%EB%A8%B8%EB%A6%AC%ED%95%80",
       link: "https://link.coupang.com/a/c6cjYI"
     },
     {
       name: "귀걸이",
-      image: "https://loremflickr.com/300/300/earrings?lock=804029779",
+      image: "https://api.dicebear.com/9.x/glass/svg?seed=%EA%B7%80%EA%B1%B8%EC%9D%B4",
       link: "https://link.coupang.com/a/c6cknX"
     },
     {
       name: "초콜릿",
-      image: "https://loremflickr.com/300/300/chocolate,bar?lock=1474292783",
+      image: "https://api.dicebear.com/9.x/glass/svg?seed=%EC%B4%88%EC%BD%9C%EB%A6%BF",
       link: "https://link.coupang.com/a/c6ckGP"
     },
     {
       name: "사탕",
-      image: "https://loremflickr.com/300/300/candy,sweets?lock=942410850",
+      image: "https://api.dicebear.com/9.x/glass/svg?seed=%EC%82%AC%ED%83%95",
       link: "https://link.coupang.com/a/c6ck4o"
     },
     {
       name: "껌",
-      image: "https://loremflickr.com/300/300/chewing,gum?lock=248623178",
+      image: "https://api.dicebear.com/9.x/glass/svg?seed=%EA%BB%8C",
       link: "https://link.coupang.com/a/c6clj4"
     },
     {
       name: "커피",
-      image: "https://loremflickr.com/300/300/coffee,cup?lock=343988246",
+      image: "https://api.dicebear.com/9.x/glass/svg?seed=%EC%BB%A4%ED%94%BC",
       link: "https://link.coupang.com/a/c6clL7"
     },
     {
       name: "녹차",
-      image: "https://loremflickr.com/300/300/green,tea,cup?lock=559415791",
+      image: "https://api.dicebear.com/9.x/glass/svg?seed=%EB%85%B9%EC%B0%A8",
       link: "https://link.coupang.com/a/c6cl3p"
     },
     {
       name: "물병",
-      image: "https://loremflickr.com/300/300/water,bottle?lock=1155685137",
+      image: "https://api.dicebear.com/9.x/glass/svg?seed=%EB%AC%BC%EB%B3%91",
       link: "https://link.coupang.com/a/c6cmix"
     },
     {
       name: "도시락",
-      image: "https://loremflickr.com/300/300/lunch,box,bento?lock=1945427003",
+      image: "https://api.dicebear.com/9.x/glass/svg?seed=%EB%8F%84%EC%8B%9C%EB%9D%BD",
       link: "https://link.coupang.com/a/c6cmx2"
     },
     {
       name: "스마트폰 케이스",
-      image: "https://loremflickr.com/300/300/phone,case?lock=1882627422",
+      image: "https://api.dicebear.com/9.x/glass/svg?seed=%EC%8A%A4%EB%A7%88%ED%8A%B8%ED%8F%B0%20%EC%BC%80%EC%9D%B4%EC%8A%A4",
       link: "https://link.coupang.com/a/c6cnfo"
     },
     {
       name: "파우치",
-      image: "https://loremflickr.com/300/300/cosmetic,pouch,bag?lock=823810158",
+      image: "https://api.dicebear.com/9.x/glass/svg?seed=%ED%8C%8C%EC%9A%B0%EC%B9%98",
       link: "https://link.coupang.com/a/c6cnBZ"
     },
     {
       name: "머그컵",
-      image: "https://loremflickr.com/300/300/mug,cup?lock=1399438941",
+      image: "https://api.dicebear.com/9.x/glass/svg?seed=%EB%A8%B8%EA%B7%B8%EC%BB%B5",
       link: "https://link.coupang.com/a/c6cnWm"
     },
     {
       name: "담요",
-      image: "https://loremflickr.com/300/300/blanket,cozy?lock=428814760",
+      image: "https://api.dicebear.com/9.x/glass/svg?seed=%EB%8B%B4%EC%9A%94",
       link: "https://link.coupang.com/a/c6coev"
     },
     {
       name: "쿠션",
-      image: "https://loremflickr.com/300/300/cushion,pillow?lock=859163264",
+      image: "https://api.dicebear.com/9.x/glass/svg?seed=%EC%BF%A0%EC%85%98",
       link: "https://link.coupang.com/a/c6coGP"
     },
     {
       name: "슬리퍼",
-      image: "https://loremflickr.com/300/300/slippers,home?lock=2076484983",
+      image: "https://api.dicebear.com/9.x/glass/svg?seed=%EC%8A%AC%EB%A6%AC%ED%8D%BC",
       link: "https://link.coupang.com/a/c6coWl"
     },
     {
       name: "헤어밴드",
-      image: "https://loremflickr.com/300/300/hair,band,headband?lock=358836706",
+      image: "https://api.dicebear.com/9.x/glass/svg?seed=%ED%97%A4%EC%96%B4%EB%B0%B4%EB%93%9C",
       link: "https://link.coupang.com/a/c6cpcI"
     },
     {
       name: "빗",
-      image: "https://loremflickr.com/300/300/hair,comb,brush?lock=1827114073",
+      image: "https://api.dicebear.com/9.x/glass/svg?seed=%EB%B9%97",
       link: "https://link.coupang.com/a/c6cput"
     },
     {
       name: "손거울",
-      image: "https://loremflickr.com/300/300/small,mirror?lock=648272120",
+      image: "https://api.dicebear.com/9.x/glass/svg?seed=%EC%86%90%EA%B1%B0%EC%9A%B8",
       link: "https://link.coupang.com/a/c6cpKA"
     },
     {
       name: "필통",
-      image: "https://loremflickr.com/300/300/pencil,case?lock=751894941",
+      image: "https://api.dicebear.com/9.x/glass/svg?seed=%ED%95%84%ED%86%B5",
       link: "https://link.coupang.com/a/c6cp4C"
     },
     {
       name: "캘린더",
-      image: "https://loremflickr.com/300/300/calendar,desk?lock=1904495163",
+      image: "https://api.dicebear.com/9.x/glass/svg?seed=%EC%BA%98%EB%A6%B0%EB%8D%94",
       link: "https://link.coupang.com/a/c6cqjD"
     },
     {
       name: "탁상시계",
-      image: "https://loremflickr.com/300/300/desk,clock,alarm?lock=531772600",
+      image: "https://api.dicebear.com/9.x/glass/svg?seed=%ED%83%81%EC%83%81%EC%8B%9C%EA%B3%84",
       link: "https://link.coupang.com/a/c6cqCA"
     },
     {
       name: "화분",
-      image: "https://loremflickr.com/300/300/potted,plant,small?lock=1578198928",
+      image: "https://api.dicebear.com/9.x/glass/svg?seed=%ED%99%94%EB%B6%84",
       link: "https://link.coupang.com/a/c6cqVm"
     },
     {
       name: "디퓨저",
-      image: "https://loremflickr.com/300/300/reed,diffuser,fragrance?lock=675014669",
+      image: "https://api.dicebear.com/9.x/glass/svg?seed=%EB%94%94%ED%93%A8%EC%A0%80",
       link: "https://link.coupang.com/a/c6crcT"
     },
     {
       name: "캔들",
-      image: "https://loremflickr.com/300/300/scented,candle?lock=970566797",
+      image: "https://api.dicebear.com/9.x/glass/svg?seed=%EC%BA%94%EB%93%A4",
       link: "https://link.coupang.com/a/c6crsK"
     },
     {
       name: "무드등",
-      image: "https://loremflickr.com/300/300/mood,lamp,night,light?lock=998218033",
+      image: "https://api.dicebear.com/9.x/glass/svg?seed=%EB%AC%B4%EB%93%9C%EB%93%B1",
       link: "https://link.coupang.com/a/c6crNG"
     },
     {
       name: "액자",
-      image: "https://loremflickr.com/300/300/photo,frame?lock=371585537",
+      image: "https://api.dicebear.com/9.x/glass/svg?seed=%EC%95%A1%EC%9E%90",
       link: "https://link.coupang.com/a/c6cr4j"
     },
     {
       name: "인형",
-      image: "https://loremflickr.com/300/300/plush,toy,doll?lock=1877485215",
+      image: "https://api.dicebear.com/9.x/glass/svg?seed=%EC%9D%B8%ED%98%95",
       link: "https://link.coupang.com/a/c6cssS"
     },
     {
       name: "스티커",
-      image: "https://loremflickr.com/300/300/stickers,stationery?lock=1278393534",
+      image: "https://api.dicebear.com/9.x/glass/svg?seed=%EC%8A%A4%ED%8B%B0%EC%BB%A4",
       link: "https://link.coupang.com/a/c6csJk"
     },
     {
       name: "마스킹테이프",
-      image: "https://loremflickr.com/300/300/washi,tape,masking,tape?lock=699156780",
+      image: "https://api.dicebear.com/9.x/glass/svg?seed=%EB%A7%88%EC%8A%A4%ED%82%B9%ED%85%8C%EC%9D%B4%ED%94%84",
       link: "https://link.coupang.com/a/c6cs8H"
     },
     {
       name: "편지지",
-      image: "https://loremflickr.com/300/300/letter,paper,stationery?lock=2000703366",
+      image: "https://api.dicebear.com/9.x/glass/svg?seed=%ED%8E%B8%EC%A7%80%EC%A7%80",
       link: "https://link.coupang.com/a/c6ctqr"
     },
     {
       name: "엽서",
-      image: "https://loremflickr.com/300/300/postcard,travel?lock=140877194",
+      image: "https://api.dicebear.com/9.x/glass/svg?seed=%EC%97%BD%EC%84%9C",
       link: "https://link.coupang.com/a/c6ctFs"
     },
     {
       name: "책갈피",
-      image: "https://loremflickr.com/300/300/bookmark,book?lock=311318419",
+      image: "https://api.dicebear.com/9.x/glass/svg?seed=%EC%B1%85%EA%B0%88%ED%94%BC",
       link: "https://link.coupang.com/a/c6b54X"
     },
     {
       name: "명함지갑",
-      image: "https://loremflickr.com/300/300/card,holder,business?lock=1697871196",
+      image: "https://api.dicebear.com/9.x/glass/svg?seed=%EB%AA%85%ED%95%A8%EC%A7%80%EA%B0%91",
       link: "https://link.coupang.com/a/c6ctYC"
     },
     {
       name: "여권케이스",
-      image: "https://loremflickr.com/300/300/passport,holder,cover?lock=1390332527",
+      image: "https://api.dicebear.com/9.x/glass/svg?seed=%EC%97%AC%EA%B6%8C%EC%BC%80%EC%9D%B4%EC%8A%A4",
       link: "https://link.coupang.com/a/c6cucC"
     },
     {
       name: "동전지갑",
-      image: "https://loremflickr.com/300/300/coin,purse?lock=1431831504",
+      image: "https://api.dicebear.com/9.x/glass/svg?seed=%EB%8F%99%EC%A0%84%EC%A7%80%EA%B0%91",
       link: "https://link.coupang.com/a/c6cuwo"
     },
     {
       name: "카드지갑",
-      image: "https://loremflickr.com/300/300/card,wallet?lock=739618569",
+      image: "https://api.dicebear.com/9.x/glass/svg?seed=%EC%B9%B4%EB%93%9C%EC%A7%80%EA%B0%91",
       link: "https://link.coupang.com/a/c6cuSa"
     },
     {
       name: "에코백",
-      image: "https://loremflickr.com/300/300/tote,bag,canvas?lock=680026852",
+      image: "https://api.dicebear.com/9.x/glass/svg?seed=%EC%97%90%EC%BD%94%EB%B0%B1",
       link: "https://link.coupang.com/a/c6cvil"
     },
     {
       name: "쇼핑백",
-      image: "https://loremflickr.com/300/300/shopping,bag,paper?lock=959377084",
+      image: "https://api.dicebear.com/9.x/glass/svg?seed=%EC%87%BC%ED%95%91%EB%B0%B1",
       link: "https://link.coupang.com/a/c6cwsM"
     },
     {
       name: "장바구니",
-      image: "https://loremflickr.com/300/300/grocery,bag,reusable?lock=412249546",
+      image: "https://api.dicebear.com/9.x/glass/svg?seed=%EC%9E%A5%EB%B0%94%EA%B5%AC%EB%8B%88",
       link: "https://link.coupang.com/a/c6cwLF"
     },
     {
       name: "손톱깎이",
-      image: "https://loremflickr.com/300/300/nail,clipper,manicure?lock=569789617",
+      image: "https://api.dicebear.com/9.x/glass/svg?seed=%EC%86%90%ED%86%B1%EA%B9%8E%EC%9D%B4",
       link: "https://link.coupang.com/a/c6cw3A"
     },
     {
       name: "반짇고리",
-      image: "https://loremflickr.com/300/300/sewing,kit,needle,thread?lock=685527314",
+      image: "https://api.dicebear.com/9.x/glass/svg?seed=%EB%B0%98%EC%A7%87%EA%B3%A0%EB%A6%AC",
       link: "https://www.coupang.com/np/search?component=&q=%EB%B0%98%EC%A7%87%EA%B3%A0%EB%A6%AC&channel=user"
     },
     {
       name: "줄자",
-      image: "https://loremflickr.com/300/300/measuring,tape?lock=969167993",
+      image: "https://api.dicebear.com/9.x/glass/svg?seed=%EC%A4%84%EC%9E%90",
       link: "https://www.coupang.com/np/search?component=&q=%EC%A4%84%EC%9E%90&channel=user"
     },
     {
       name: "계산기",
-      image: "https://loremflickr.com/300/300/calculator,office?lock=872363418",
+      image: "https://api.dicebear.com/9.x/glass/svg?seed=%EA%B3%84%EC%82%B0%EA%B8%B0",
       link: "https://www.coupang.com/np/search?component=&q=%EA%B3%84%EC%82%B0%EA%B8%B0&channel=user"
     },
     {
       name: "스테이플러",
-      image: "https://loremflickr.com/300/300/stapler,office?lock=929134349",
+      image: "https://api.dicebear.com/9.x/glass/svg?seed=%EC%8A%A4%ED%85%8C%EC%9D%B4%ED%94%8C%EB%9F%AC",
       link: "https://www.coupang.com/np/search?component=&q=%EC%8A%A4%ED%85%8C%EC%9D%B4%ED%94%8C%EB%9F%AC&channel=user"
     },
     {
       name: "가위",
-      image: "https://loremflickr.com/300/300/scissors,craft?lock=109459671",
+      image: "https://api.dicebear.com/9.x/glass/svg?seed=%EA%B0%80%EC%9C%84",
       link: "https://www.coupang.com/np/search?component=&q=%EA%B0%80%EC%9C%84&channel=user"
     },
     {
       name: "풀",
-      image: "https://loremflickr.com/300/300/glue,stick,craft?lock=584309467",
+      image: "https://api.dicebear.com/9.x/glass/svg?seed=%ED%92%80",
       link: "https://www.coupang.com/np/search?component=&q=%ED%92%80&channel=user"
     },
     {
       name: "테이프",
-      image: "https://loremflickr.com/300/300/adhesive,tape,roll?lock=1870744000",
+      image: "https://api.dicebear.com/9.x/glass/svg?seed=%ED%85%8C%EC%9D%B4%ED%94%84",
       link: "https://www.coupang.com/np/search?component=&q=%ED%85%8C%EC%9D%B4%ED%94%84&channel=user"
     },
     {
       name: "클립",
-      image: "https://loremflickr.com/300/300/paper,clips,office?lock=48577427",
+      image: "https://api.dicebear.com/9.x/glass/svg?seed=%ED%81%B4%EB%A6%BD",
       link: "https://www.coupang.com/np/search?component=&q=%ED%81%B4%EB%A6%BD&channel=user"
     },
     {
       name: "집게",
-      image: "https://loremflickr.com/300/300/binder,clips,office?lock=568270577",
+      image: "https://api.dicebear.com/9.x/glass/svg?seed=%EC%A7%91%EA%B2%8C",
       link: "https://www.coupang.com/np/search?component=&q=%EC%A7%91%EA%B2%8C&channel=user"
     },
     {
       name: "자",
-      image: "https://loremflickr.com/300/300/ruler,measuring?lock=1332800527",
+      image: "https://api.dicebear.com/9.x/glass/svg?seed=%EC%9E%90",
       link: "https://www.coupang.com/np/search?component=&q=%EC%9E%90&channel=user"
     },
     {
       name: "연필",
-      image: "https://loremflickr.com/300/300/pencil,wood?lock=751285792",
+      image: "https://api.dicebear.com/9.x/glass/svg?seed=%EC%97%B0%ED%95%84",
       link: "https://www.coupang.com/np/search?component=&q=%EC%97%B0%ED%95%84&channel=user"
     },
     {
       name: "지우개",
-      image: "https://loremflickr.com/300/300/eraser,rubber?lock=710464060",
+      image: "https://api.dicebear.com/9.x/glass/svg?seed=%EC%A7%80%EC%9A%B0%EA%B0%9C",
       link: "https://www.coupang.com/np/search?component=&q=%EC%A7%80%EC%9A%B0%EA%B0%9C&channel=user"
     },
     {
       name: "샤프",
-      image: "https://loremflickr.com/300/300/mechanical,pencil?lock=1939380126",
+      image: "https://api.dicebear.com/9.x/glass/svg?seed=%EC%83%A4%ED%94%84",
       link: "https://www.coupang.com/np/search?component=&q=%EC%83%A4%ED%94%84&channel=user"
     },
     {
       name: "만년필",
-      image: "https://loremflickr.com/300/300/fountain,pen,ink?lock=787507379",
+      image: "https://api.dicebear.com/9.x/glass/svg?seed=%EB%A7%8C%EB%85%84%ED%95%84",
       link: "https://www.coupang.com/np/search?component=&q=%EB%A7%8C%EB%85%84%ED%95%84&channel=user"
     },
     {
       name: "잉크",
-      image: "https://loremflickr.com/300/300/ink,bottle,pen?lock=1976928199",
+      image: "https://api.dicebear.com/9.x/glass/svg?seed=%EC%9E%89%ED%81%AC",
       link: "https://www.coupang.com/np/search?component=&q=%EC%9E%89%ED%81%AC&channel=user"
     },
     {
       name: "붓",
-      image: "https://loremflickr.com/300/300/paint,brush,art?lock=60960571",
+      image: "https://api.dicebear.com/9.x/glass/svg?seed=%EB%B6%93",
       link: "https://www.coupang.com/np/search?component=&q=%EB%B6%93&channel=user"
     },
     {
       name: "물감",
-      image: "https://loremflickr.com/300/300/watercolor,paint,set?lock=470687532",
+      image: "https://api.dicebear.com/9.x/glass/svg?seed=%EB%AC%BC%EA%B0%90",
       link: "https://www.coupang.com/np/search?component=&q=%EB%AC%BC%EA%B0%90&channel=user"
     },
     {
       name: "팔레트",
-      image: "https://loremflickr.com/300/300/paint,palette,art?lock=1259278724",
+      image: "https://api.dicebear.com/9.x/glass/svg?seed=%ED%8C%94%EB%A0%88%ED%8A%B8",
       link: "https://www.coupang.com/np/search?component=&q=%ED%8C%94%EB%A0%88%ED%8A%B8&channel=user"
     },
     {
       name: "스케치북",
-      image: "https://loremflickr.com/300/300/sketchbook,drawing?lock=867583085",
+      image: "https://api.dicebear.com/9.x/glass/svg?seed=%EC%8A%A4%EC%BC%80%EC%B9%98%EB%B6%81",
       link: "https://www.coupang.com/np/search?component=&q=%EC%8A%A4%EC%BC%80%EC%B9%98%EB%B6%81&channel=user"
     },
     {
       name: "크레파스",
-      image: "https://loremflickr.com/300/300/crayons,drawing?lock=421770453",
+      image: "https://api.dicebear.com/9.x/glass/svg?seed=%ED%81%AC%EB%A0%88%ED%8C%8C%EC%8A%A4",
       link: "https://www.coupang.com/np/search?component=&q=%ED%81%AC%EB%A0%88%ED%8C%8C%EC%8A%A4&channel=user"
     },
     {
       name: "색연필",
-      image: "https://loremflickr.com/300/300/colored,pencils?lock=290733608",
+      image: "https://api.dicebear.com/9.x/glass/svg?seed=%EC%83%89%EC%97%B0%ED%95%84",
       link: "https://www.coupang.com/np/search?component=&q=%EC%83%89%EC%97%B0%ED%95%84&channel=user"
     },
     {
       name: "사인펜",
-      image: "https://loremflickr.com/300/300/felt,tip,pen,marker?lock=2103634047",
+      image: "https://api.dicebear.com/9.x/glass/svg?seed=%EC%82%AC%EC%9D%B8%ED%8E%9C",
       link: "https://www.coupang.com/np/search?component=&q=%EC%82%AC%EC%9D%B8%ED%8E%9C&channel=user"
     },
     {
       name: "형광펜",
-      image: "https://loremflickr.com/300/300/highlighter,pen?lock=996253478",
+      image: "https://api.dicebear.com/9.x/glass/svg?seed=%ED%98%95%EA%B4%91%ED%8E%9C",
       link: "https://www.coupang.com/np/search?component=&q=%ED%98%95%EA%B4%91%ED%8E%9C&channel=user"
     },
     {
       name: "네임펜",
-      image: "https://loremflickr.com/300/300/permanent,marker,pen?lock=1696861925",
+      image: "https://api.dicebear.com/9.x/glass/svg?seed=%EB%84%A4%EC%9E%84%ED%8E%9C",
       link: "https://www.coupang.com/np/search?component=&q=%EB%84%A4%EC%9E%84%ED%8E%9C&channel=user"
     },
     {
       name: "매직",
-      image: "https://loremflickr.com/300/300/marker,pen,thick?lock=247826800",
+      image: "https://api.dicebear.com/9.x/glass/svg?seed=%EB%A7%A4%EC%A7%81",
       link: "https://www.coupang.com/np/search?component=&q=%EB%A7%A4%EC%A7%81&channel=user"
     },
     {
       name: "보드마카",
-      image: "https://loremflickr.com/300/300/whiteboard,marker?lock=1999205725",
+      image: "https://api.dicebear.com/9.x/glass/svg?seed=%EB%B3%B4%EB%93%9C%EB%A7%88%EC%B9%B4",
       link: "https://www.coupang.com/np/search?component=&q=%EB%B3%B4%EB%93%9C%EB%A7%88%EC%B9%B4&channel=user"
     },
     {
       name: "칠판지우개",
-      image: "https://loremflickr.com/300/300/blackboard,eraser?lock=457135749",
+      image: "https://api.dicebear.com/9.x/glass/svg?seed=%EC%B9%A0%ED%8C%90%EC%A7%80%EC%9A%B0%EA%B0%9C",
       link: "https://www.coupang.com/np/search?component=&q=%EC%B9%A0%ED%8C%90%EC%A7%80%EC%9A%B0%EA%B0%9C&channel=user"
     },
     {
       name: "분필",
-      image: "https://loremflickr.com/300/300/chalk,blackboard?lock=1664686188",
+      image: "https://api.dicebear.com/9.x/glass/svg?seed=%EB%B6%84%ED%95%84",
       link: "https://www.coupang.com/np/search?component=&q=%EB%B6%84%ED%95%84&channel=user"
     },
     {
       name: "자석",
-      image: "https://loremflickr.com/300/300/magnet,fridge?lock=973177723",
+      image: "https://api.dicebear.com/9.x/glass/svg?seed=%EC%9E%90%EC%84%9D",
       link: "https://www.coupang.com/np/search?component=&q=%EC%9E%90%EC%84%9D&channel=user"
     }
   ],
 };
+
