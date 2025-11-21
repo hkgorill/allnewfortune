@@ -967,151 +967,151 @@ export const fortuneData = {
       image: "https://api.dicebear.com/9.x/glass/svg?seed=%EC%86%90%ED%86%B1%EA%B9%8E%EC%9D%B4",
       link: "https://link.coupang.com/a/c6cw3A"
     },
-    {
-      name: "반짇고리",
-      image: "https://api.dicebear.com/9.x/glass/svg?seed=%EB%B0%98%EC%A7%87%EA%B3%A0%EB%A6%AC",
-      link: "https://www.coupang.com/np/search?component=&q=%EB%B0%98%EC%A7%87%EA%B3%A0%EB%A6%AC&channel=user"
-    },
-    {
-      name: "줄자",
-      image: "https://api.dicebear.com/9.x/glass/svg?seed=%EC%A4%84%EC%9E%90",
-      link: "https://www.coupang.com/np/search?component=&q=%EC%A4%84%EC%9E%90&channel=user"
-    },
-    {
-      name: "계산기",
-      image: "https://api.dicebear.com/9.x/glass/svg?seed=%EA%B3%84%EC%82%B0%EA%B8%B0",
-      link: "https://www.coupang.com/np/search?component=&q=%EA%B3%84%EC%82%B0%EA%B8%B0&channel=user"
-    },
-    {
-      name: "스테이플러",
-      image: "https://api.dicebear.com/9.x/glass/svg?seed=%EC%8A%A4%ED%85%8C%EC%9D%B4%ED%94%8C%EB%9F%AC",
-      link: "https://www.coupang.com/np/search?component=&q=%EC%8A%A4%ED%85%8C%EC%9D%B4%ED%94%8C%EB%9F%AC&channel=user"
-    },
-    {
-      name: "가위",
-      image: "https://api.dicebear.com/9.x/glass/svg?seed=%EA%B0%80%EC%9C%84",
-      link: "https://www.coupang.com/np/search?component=&q=%EA%B0%80%EC%9C%84&channel=user"
-    },
-    {
-      name: "풀",
-      image: "https://api.dicebear.com/9.x/glass/svg?seed=%ED%92%80",
-      link: "https://www.coupang.com/np/search?component=&q=%ED%92%80&channel=user"
-    },
-    {
-      name: "테이프",
-      image: "https://api.dicebear.com/9.x/glass/svg?seed=%ED%85%8C%EC%9D%B4%ED%94%84",
-      link: "https://www.coupang.com/np/search?component=&q=%ED%85%8C%EC%9D%B4%ED%94%84&channel=user"
-    },
-    {
-      name: "클립",
-      image: "https://api.dicebear.com/9.x/glass/svg?seed=%ED%81%B4%EB%A6%BD",
-      link: "https://www.coupang.com/np/search?component=&q=%ED%81%B4%EB%A6%BD&channel=user"
-    },
-    {
-      name: "집게",
-      image: "https://api.dicebear.com/9.x/glass/svg?seed=%EC%A7%91%EA%B2%8C",
-      link: "https://www.coupang.com/np/search?component=&q=%EC%A7%91%EA%B2%8C&channel=user"
-    },
-    {
-      name: "자",
-      image: "https://api.dicebear.com/9.x/glass/svg?seed=%EC%9E%90",
-      link: "https://www.coupang.com/np/search?component=&q=%EC%9E%90&channel=user"
-    },
-    {
-      name: "연필",
-      image: "https://api.dicebear.com/9.x/glass/svg?seed=%EC%97%B0%ED%95%84",
-      link: "https://www.coupang.com/np/search?component=&q=%EC%97%B0%ED%95%84&channel=user"
-    },
-    {
-      name: "지우개",
-      image: "https://api.dicebear.com/9.x/glass/svg?seed=%EC%A7%80%EC%9A%B0%EA%B0%9C",
-      link: "https://www.coupang.com/np/search?component=&q=%EC%A7%80%EC%9A%B0%EA%B0%9C&channel=user"
-    },
-    {
-      name: "샤프",
-      image: "https://api.dicebear.com/9.x/glass/svg?seed=%EC%83%A4%ED%94%84",
-      link: "https://www.coupang.com/np/search?component=&q=%EC%83%A4%ED%94%84&channel=user"
-    },
-    {
-      name: "만년필",
-      image: "https://api.dicebear.com/9.x/glass/svg?seed=%EB%A7%8C%EB%85%84%ED%95%84",
-      link: "https://www.coupang.com/np/search?component=&q=%EB%A7%8C%EB%85%84%ED%95%84&channel=user"
-    },
-    {
-      name: "잉크",
-      image: "https://api.dicebear.com/9.x/glass/svg?seed=%EC%9E%89%ED%81%AC",
-      link: "https://www.coupang.com/np/search?component=&q=%EC%9E%89%ED%81%AC&channel=user"
-    },
-    {
-      name: "붓",
-      image: "https://api.dicebear.com/9.x/glass/svg?seed=%EB%B6%93",
-      link: "https://www.coupang.com/np/search?component=&q=%EB%B6%93&channel=user"
-    },
-    {
-      name: "물감",
-      image: "https://api.dicebear.com/9.x/glass/svg?seed=%EB%AC%BC%EA%B0%90",
-      link: "https://www.coupang.com/np/search?component=&q=%EB%AC%BC%EA%B0%90&channel=user"
-    },
-    {
-      name: "팔레트",
-      image: "https://api.dicebear.com/9.x/glass/svg?seed=%ED%8C%94%EB%A0%88%ED%8A%B8",
-      link: "https://www.coupang.com/np/search?component=&q=%ED%8C%94%EB%A0%88%ED%8A%B8&channel=user"
-    },
-    {
-      name: "스케치북",
-      image: "https://api.dicebear.com/9.x/glass/svg?seed=%EC%8A%A4%EC%BC%80%EC%B9%98%EB%B6%81",
-      link: "https://www.coupang.com/np/search?component=&q=%EC%8A%A4%EC%BC%80%EC%B9%98%EB%B6%81&channel=user"
-    },
-    {
-      name: "크레파스",
-      image: "https://api.dicebear.com/9.x/glass/svg?seed=%ED%81%AC%EB%A0%88%ED%8C%8C%EC%8A%A4",
-      link: "https://www.coupang.com/np/search?component=&q=%ED%81%AC%EB%A0%88%ED%8C%8C%EC%8A%A4&channel=user"
-    },
-    {
-      name: "색연필",
-      image: "https://api.dicebear.com/9.x/glass/svg?seed=%EC%83%89%EC%97%B0%ED%95%84",
-      link: "https://www.coupang.com/np/search?component=&q=%EC%83%89%EC%97%B0%ED%95%84&channel=user"
-    },
-    {
-      name: "사인펜",
-      image: "https://api.dicebear.com/9.x/glass/svg?seed=%EC%82%AC%EC%9D%B8%ED%8E%9C",
-      link: "https://www.coupang.com/np/search?component=&q=%EC%82%AC%EC%9D%B8%ED%8E%9C&channel=user"
-    },
-    {
-      name: "형광펜",
-      image: "https://api.dicebear.com/9.x/glass/svg?seed=%ED%98%95%EA%B4%91%ED%8E%9C",
-      link: "https://www.coupang.com/np/search?component=&q=%ED%98%95%EA%B4%91%ED%8E%9C&channel=user"
-    },
-    {
-      name: "네임펜",
-      image: "https://api.dicebear.com/9.x/glass/svg?seed=%EB%84%A4%EC%9E%84%ED%8E%9C",
-      link: "https://www.coupang.com/np/search?component=&q=%EB%84%A4%EC%9E%84%ED%8E%9C&channel=user"
-    },
-    {
-      name: "매직",
-      image: "https://api.dicebear.com/9.x/glass/svg?seed=%EB%A7%A4%EC%A7%81",
-      link: "https://www.coupang.com/np/search?component=&q=%EB%A7%A4%EC%A7%81&channel=user"
-    },
-    {
-      name: "보드마카",
-      image: "https://api.dicebear.com/9.x/glass/svg?seed=%EB%B3%B4%EB%93%9C%EB%A7%88%EC%B9%B4",
-      link: "https://www.coupang.com/np/search?component=&q=%EB%B3%B4%EB%93%9C%EB%A7%88%EC%B9%B4&channel=user"
-    },
-    {
-      name: "칠판지우개",
-      image: "https://api.dicebear.com/9.x/glass/svg?seed=%EC%B9%A0%ED%8C%90%EC%A7%80%EC%9A%B0%EA%B0%9C",
-      link: "https://www.coupang.com/np/search?component=&q=%EC%B9%A0%ED%8C%90%EC%A7%80%EC%9A%B0%EA%B0%9C&channel=user"
-    },
-    {
-      name: "분필",
-      image: "https://api.dicebear.com/9.x/glass/svg?seed=%EB%B6%84%ED%95%84",
-      link: "https://www.coupang.com/np/search?component=&q=%EB%B6%84%ED%95%84&channel=user"
-    },
-    {
-      name: "자석",
-      image: "https://api.dicebear.com/9.x/glass/svg?seed=%EC%9E%90%EC%84%9D",
-      link: "https://www.coupang.com/np/search?component=&q=%EC%9E%90%EC%84%9D&channel=user"
-    }
+    // {
+    //   name: "반짇고리",
+    //   image: "https://api.dicebear.com/9.x/glass/svg?seed=%EB%B0%98%EC%A7%87%EA%B3%A0%EB%A6%AC",
+    //   link: "https://www.coupang.com/np/search?component=&q=%EB%B0%98%EC%A7%87%EA%B3%A0%EB%A6%AC&channel=user"
+    // },
+    // {
+    //   name: "줄자",
+    //   image: "https://api.dicebear.com/9.x/glass/svg?seed=%EC%A4%84%EC%9E%90",
+    //   link: "https://www.coupang.com/np/search?component=&q=%EC%A4%84%EC%9E%90&channel=user"
+    // },
+    // {
+    //   name: "계산기",
+    //   image: "https://api.dicebear.com/9.x/glass/svg?seed=%EA%B3%84%EC%82%B0%EA%B8%B0",
+    //   link: "https://www.coupang.com/np/search?component=&q=%EA%B3%84%EC%82%B0%EA%B8%B0&channel=user"
+    // },
+    // {
+    //   name: "스테이플러",
+    //   image: "https://api.dicebear.com/9.x/glass/svg?seed=%EC%8A%A4%ED%85%8C%EC%9D%B4%ED%94%8C%EB%9F%AC",
+    //   link: "https://www.coupang.com/np/search?component=&q=%EC%8A%A4%ED%85%8C%EC%9D%B4%ED%94%8C%EB%9F%AC&channel=user"
+    // },
+    // {
+    //   name: "가위",
+    //   image: "https://api.dicebear.com/9.x/glass/svg?seed=%EA%B0%80%EC%9C%84",
+    //   link: "https://www.coupang.com/np/search?component=&q=%EA%B0%80%EC%9C%84&channel=user"
+    // },
+    // {
+    //   name: "풀",
+    //   image: "https://api.dicebear.com/9.x/glass/svg?seed=%ED%92%80",
+    //   link: "https://www.coupang.com/np/search?component=&q=%ED%92%80&channel=user"
+    // },
+    // {
+    //   name: "테이프",
+    //   image: "https://api.dicebear.com/9.x/glass/svg?seed=%ED%85%8C%EC%9D%B4%ED%94%84",
+    //   link: "https://www.coupang.com/np/search?component=&q=%ED%85%8C%EC%9D%B4%ED%94%84&channel=user"
+    // },
+    // {
+    //   name: "클립",
+    //   image: "https://api.dicebear.com/9.x/glass/svg?seed=%ED%81%B4%EB%A6%BD",
+    //   link: "https://www.coupang.com/np/search?component=&q=%ED%81%B4%EB%A6%BD&channel=user"
+    // },
+    // {
+    //   name: "집게",
+    //   image: "https://api.dicebear.com/9.x/glass/svg?seed=%EC%A7%91%EA%B2%8C",
+    //   link: "https://www.coupang.com/np/search?component=&q=%EC%A7%91%EA%B2%8C&channel=user"
+    // },
+    // {
+    //   name: "자",
+    //   image: "https://api.dicebear.com/9.x/glass/svg?seed=%EC%9E%90",
+    //   link: "https://www.coupang.com/np/search?component=&q=%EC%9E%90&channel=user"
+    // },
+    // {
+    //   name: "연필",
+    //   image: "https://api.dicebear.com/9.x/glass/svg?seed=%EC%97%B0%ED%95%84",
+    //   link: "https://www.coupang.com/np/search?component=&q=%EC%97%B0%ED%95%84&channel=user"
+    // },
+    // {
+    //   name: "지우개",
+    //   image: "https://api.dicebear.com/9.x/glass/svg?seed=%EC%A7%80%EC%9A%B0%EA%B0%9C",
+    //   link: "https://www.coupang.com/np/search?component=&q=%EC%A7%80%EC%9A%B0%EA%B0%9C&channel=user"
+    // },
+    // {
+    //   name: "샤프",
+    //   image: "https://api.dicebear.com/9.x/glass/svg?seed=%EC%83%A4%ED%94%84",
+    //   link: "https://www.coupang.com/np/search?component=&q=%EC%83%A4%ED%94%84&channel=user"
+    // },
+    // {
+    //   name: "만년필",
+    //   image: "https://api.dicebear.com/9.x/glass/svg?seed=%EB%A7%8C%EB%85%84%ED%95%84",
+    //   link: "https://www.coupang.com/np/search?component=&q=%EB%A7%8C%EB%85%84%ED%95%84&channel=user"
+    // },
+    // {
+    //   name: "잉크",
+    //   image: "https://api.dicebear.com/9.x/glass/svg?seed=%EC%9E%89%ED%81%AC",
+    //   link: "https://www.coupang.com/np/search?component=&q=%EC%9E%89%ED%81%AC&channel=user"
+    // },
+    // {
+    //   name: "붓",
+    //   image: "https://api.dicebear.com/9.x/glass/svg?seed=%EB%B6%93",
+    //   link: "https://www.coupang.com/np/search?component=&q=%EB%B6%93&channel=user"
+    // },
+    // {
+    //   name: "물감",
+    //   image: "https://api.dicebear.com/9.x/glass/svg?seed=%EB%AC%BC%EA%B0%90",
+    //   link: "https://www.coupang.com/np/search?component=&q=%EB%AC%BC%EA%B0%90&channel=user"
+    // },
+    // {
+    //   name: "팔레트",
+    //   image: "https://api.dicebear.com/9.x/glass/svg?seed=%ED%8C%94%EB%A0%88%ED%8A%B8",
+    //   link: "https://www.coupang.com/np/search?component=&q=%ED%8C%94%EB%A0%88%ED%8A%B8&channel=user"
+    // },
+    // {
+    //   name: "스케치북",
+    //   image: "https://api.dicebear.com/9.x/glass/svg?seed=%EC%8A%A4%EC%BC%80%EC%B9%98%EB%B6%81",
+    //   link: "https://www.coupang.com/np/search?component=&q=%EC%8A%A4%EC%BC%80%EC%B9%98%EB%B6%81&channel=user"
+    // },
+    // {
+    //   name: "크레파스",
+    //   image: "https://api.dicebear.com/9.x/glass/svg?seed=%ED%81%AC%EB%A0%88%ED%8C%8C%EC%8A%A4",
+    //   link: "https://www.coupang.com/np/search?component=&q=%ED%81%AC%EB%A0%88%ED%8C%8C%EC%8A%A4&channel=user"
+    // },
+    // {
+    //   name: "색연필",
+    //   image: "https://api.dicebear.com/9.x/glass/svg?seed=%EC%83%89%EC%97%B0%ED%95%84",
+    //   link: "https://www.coupang.com/np/search?component=&q=%EC%83%89%EC%97%B0%ED%95%84&channel=user"
+    // },
+    // {
+    //   name: "사인펜",
+    //   image: "https://api.dicebear.com/9.x/glass/svg?seed=%EC%82%AC%EC%9D%B8%ED%8E%9C",
+    //   link: "https://www.coupang.com/np/search?component=&q=%EC%82%AC%EC%9D%B8%ED%8E%9C&channel=user"
+    // },
+    // {
+    //   name: "형광펜",
+    //   image: "https://api.dicebear.com/9.x/glass/svg?seed=%ED%98%95%EA%B4%91%ED%8E%9C",
+    //   link: "https://www.coupang.com/np/search?component=&q=%ED%98%95%EA%B4%91%ED%8E%9C&channel=user"
+    // },
+    // {
+    //   name: "네임펜",
+    //   image: "https://api.dicebear.com/9.x/glass/svg?seed=%EB%84%A4%EC%9E%84%ED%8E%9C",
+    //   link: "https://www.coupang.com/np/search?component=&q=%EB%84%A4%EC%9E%84%ED%8E%9C&channel=user"
+    // },
+    // {
+    //   name: "매직",
+    //   image: "https://api.dicebear.com/9.x/glass/svg?seed=%EB%A7%A4%EC%A7%81",
+    //   link: "https://www.coupang.com/np/search?component=&q=%EB%A7%A4%EC%A7%81&channel=user"
+    // },
+    // {
+    //   name: "보드마카",
+    //   image: "https://api.dicebear.com/9.x/glass/svg?seed=%EB%B3%B4%EB%93%9C%EB%A7%88%EC%B9%B4",
+    //   link: "https://www.coupang.com/np/search?component=&q=%EB%B3%B4%EB%93%9C%EB%A7%88%EC%B9%B4&channel=user"
+    // },
+    // {
+    //   name: "칠판지우개",
+    //   image: "https://api.dicebear.com/9.x/glass/svg?seed=%EC%B9%A0%ED%8C%90%EC%A7%80%EC%9A%B0%EA%B0%9C",
+    //   link: "https://www.coupang.com/np/search?component=&q=%EC%B9%A0%ED%8C%90%EC%A7%80%EC%9A%B0%EA%B0%9C&channel=user"
+    // },
+    // {
+    //   name: "분필",
+    //   image: "https://api.dicebear.com/9.x/glass/svg?seed=%EB%B6%84%ED%95%84",
+    //   link: "https://www.coupang.com/np/search?component=&q=%EB%B6%84%ED%95%84&channel=user"
+    // },
+    // {
+    //   name: "자석",
+    //   image: "https://api.dicebear.com/9.x/glass/svg?seed=%EC%9E%90%EC%84%9D",
+    //   link: "https://www.coupang.com/np/search?component=&q=%EC%9E%90%EC%84%9D&channel=user"
+    // }
   ],
 };
 

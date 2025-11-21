@@ -70,11 +70,11 @@ export default function Home() {
         )}
 
         {/* AdFit Advertisement (Footer - Input/Result only) */}
-        {/* {step !== "loading" && (
-          <div className="mt-8 mb-4">
+        {step !== "loading" && (
+          <div className="mt-8 mb-4 flex justify-center">
             <KakaoAdFit unit="DAN-zgZw9Q6wvZuU1nIl" width="250" height="250" />
           </div>
-        )} */}
+        )}
       </div>
 
       {/* Footer */}
