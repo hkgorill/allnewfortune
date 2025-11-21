@@ -23,15 +23,20 @@ import SajuIntro from "./components/saju/SajuIntro";
 import SajuInput from "./components/saju/SajuInput";
 import SajuResult from "./components/saju/SajuResult";
 import { calculateSaju, SajuResultType } from "./lib/sajuData";
+import PsychologyIntro from "./components/psychology/PsychologyIntro";
+import PsychologyTest from "./components/psychology/PsychologyTest";
+import PsychologyResult from "./components/psychology/PsychologyResult";
+import { PsychResultType } from "./lib/psychologyData";
 import KakaoAdFit from "./components/KakaoAdFit";
 import { ChevronLeft } from "lucide-react";
 
-type ViewState = "intro" | "menu" | "fortune" | "mbti" | "tarot" | "horoscope" | "saju";
+type ViewState = "intro" | "menu" | "fortune" | "mbti" | "tarot" | "horoscope" | "saju" | "psychology";
 type FortuneStep = "input" | "loading" | "result";
 type MbtiStep = "intro" | "test" | "loading" | "result";
 type TarotStep = "intro" | "test" | "loading" | "result";
 type HoroscopeStep = "intro" | "select" | "loading" | "result";
 type SajuStep = "intro" | "input" | "loading" | "result";
+type PsychologyStep = "intro" | "test" | "loading" | "result";
 
 export default function Home() {
   const [view, setView] = useState<ViewState>("intro");
@@ -56,6 +61,10 @@ export default function Home() {
   const [sajuStep, setSajuStep] = useState<SajuStep>("intro");
   const [sajuResult, setSajuResult] = useState<SajuResultType | null>(null);
 
+  // Psychology State
+  const [psychologyStep, setPsychologyStep] = useState<PsychologyStep>("intro");
+  const [psychologyResult, setPsychologyResult] = useState<PsychResultType | null>(null);
+
   // 인트로 -> 메뉴 이동
   const handleStart = () => {
     setView("menu");
@@ -78,6 +87,9 @@ export default function Home() {
     } else if (menuId === "saju") {
       setSajuStep("intro");
       setView("saju");
+    } else if (menuId === "egogram") {
+      setPsychologyStep("intro");
+      setView("psychology");
     } else {
       alert("준비 중인 서비스입니다. 2026년 신년운세 먼저 확인해보세요! 🔮");
     }
@@ -96,6 +108,8 @@ export default function Home() {
     setHoroscopeResult(null);
     setSajuStep("intro");
     setSajuResult(null);
+    setPsychologyStep("intro");
+    setPsychologyResult(null);
   };
 
   // --- Fortune Logic ---
@@ -130,7 +144,6 @@ export default function Home() {
 
   const handleMbtiComplete = (result: MbtiResultType) => {
     setMbtiStep("loading");
-    // Fake loading delay
     setTimeout(() => {
       setMbtiResult(result);
       setMbtiStep("result");
@@ -188,9 +201,8 @@ export default function Home() {
     setSajuStep("loading");
     
     const [year, month, day] = data.birthdate.split("-").map(Number);
-    let hour = 12; // Default
+    let hour = 12;
     if (data.birthtime) {
-      // "AM 9:30" format parsing
       const [ampm, timeStr] = data.birthtime.split(" ");
       const [h, m] = timeStr.split(":").map(Number);
       hour = ampm === "PM" && h !== 12 ? h + 12 : (ampm === "AM" && h === 12 ? 0 : h);
@@ -206,6 +218,24 @@ export default function Home() {
   const handleSajuReset = () => {
     setSajuResult(null);
     setSajuStep("intro");
+  };
+
+  // --- Psychology Logic ---
+  const handlePsychologyStart = () => {
+    setPsychologyStep("test");
+  };
+
+  const handlePsychologyComplete = (result: PsychResultType) => {
+    setPsychologyStep("loading");
+    setTimeout(() => {
+      setPsychologyResult(result);
+      setPsychologyStep("result");
+    }, 2000);
+  };
+
+  const handlePsychologyReset = () => {
+    setPsychologyResult(null);
+    setPsychologyStep("intro");
   };
 
   return (
@@ -397,6 +427,35 @@ export default function Home() {
                 {sajuStep === "input" && <SajuInput onSubmit={handleSajuSubmit} isLoading={false} />}
                 {sajuStep === "loading" && <FortuneLoading />}
                 {sajuStep === "result" && sajuResult && <SajuResult result={sajuResult} onReset={handleSajuReset} />}
+              </div>
+            </div>
+          </motion.div>
+        )}
+
+        {/* --- Psychology View --- */}
+        {view === "psychology" && (
+          <motion.div 
+            key="psychology"
+            initial={{ opacity: 0, x: 100 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -100 }}
+            transition={{ type: "spring", stiffness: 300, damping: 30 }}
+            className="w-full max-w-md z-10 min-h-screen flex flex-col"
+          >
+             <header className="sticky top-0 z-50 px-4 py-4 bg-black/10 backdrop-blur-md border-b border-white/5 flex items-center justify-between">
+              <button onClick={handleBackToMenu} className="p-2 rounded-full hover:bg-white/10 transition-colors active:scale-95">
+                <ChevronLeft className="w-6 h-6 text-white" />
+              </button>
+              <h2 className="text-lg font-bold">심리테스트</h2>
+              <div className="w-10" />
+            </header>
+
+            <div className="flex-1 overflow-y-auto pb-20 px-4 pt-6">
+              <div className="w-full transition-all duration-500">
+                {psychologyStep === "intro" && <PsychologyIntro onStart={handlePsychologyStart} />}
+                {psychologyStep === "test" && <PsychologyTest onComplete={handlePsychologyComplete} />}
+                {psychologyStep === "loading" && <FortuneLoading />}
+                {psychologyStep === "result" && psychologyResult && <PsychologyResult result={psychologyResult} onReset={handlePsychologyReset} />}
               </div>
             </div>
           </motion.div>
