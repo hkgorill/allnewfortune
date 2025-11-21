@@ -65,10 +65,10 @@ export const metadata: Metadata = {
     },
   },
   verification: {
-    // google: '구글_서치_콘솔_인증코드',
-    // other: {
-    //   'naver-site-verification': '네이버_웹마스터도구_인증코드',
-    // },
+    google: "fcpLiUoCtqFZ4bzNC-x9TQ5Gv3iRLi3RJsAMq9dDy90",
+    other: {
+      "naver-site-verification": "93770c0244827914a2b09e4be1fa0b07e9339f4b",
+    },
   },
 };
 
