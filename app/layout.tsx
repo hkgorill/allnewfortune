@@ -86,8 +86,9 @@ export const metadata: Metadata = {
   },
   verification: {
     google: "c_zwevHTZKeQNZ6qbs70JMBCwgvdMgfkfJx2ebJIU2Q",
+    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
     other: {
-      "naver-site-verification": "93770c0244827914a2b09e4be1fa0b07e9339f4b",
+      "naver-site-verification": process.env.NEXT_PUBLIC_NAVER_SITE_VERIFICATION!,
     },
   },
 };
@@ -119,7 +120,7 @@ export default function RootLayout({
         />
         <Script
           async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1418145553425899"
+          src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${process.env.NEXT_PUBLIC_GOOGLE_ADSENSE_ID}`}
           crossOrigin="anonymous"
           strategy="afterInteractive"
         />

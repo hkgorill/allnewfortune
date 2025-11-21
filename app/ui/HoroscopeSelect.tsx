@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { HOROSCOPE_SIGNS, HoroscopeSign } from "../../lib/horoscopeData";
+import { HOROSCOPE_SIGNS, HoroscopeSign } from "../data/horoscopeData";
 
 interface HoroscopeSelectProps {
   onSelect: (signId: string) => void;

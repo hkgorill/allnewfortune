@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { getRandomCard, TarotCard } from "../../lib/tarotData";
+import { getRandomCard, TarotCard } from "../../data/tarotData";
 
 interface TarotTestProps {
   onComplete: (card: TarotCard) => void;

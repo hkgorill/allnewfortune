@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Share2, RefreshCw, Quote } from "lucide-react";
-import { PsychResultType } from "../../lib/psychologyData";
+import { PsychResultType } from "../../data/psychologyData";
 import KakaoAdFit from "../KakaoAdFit";
 
 interface PsychologyResultProps {

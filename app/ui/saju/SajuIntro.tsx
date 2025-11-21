@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ScrollText, HelpCircle } from "lucide-react";
+import { Compass, HelpCircle } from "lucide-react";
 
 interface SajuIntroProps {
   onStart: () => void;
@@ -22,7 +22,7 @@ export default function SajuIntro({ onStart }: SajuIntroProps) {
 
          <div className="relative z-10 flex flex-col items-center">
             <div className="w-20 h-20 bg-white/10 rounded-full flex items-center justify-center mb-6 animate-float border border-white/10">
-                <ScrollText size={40} className="text-emerald-300" />
+                <Compass size={40} className="text-emerald-300" />
             </div>
 
             <h2 className="text-3xl font-bold text-white mb-2 drop-shadow-sm">

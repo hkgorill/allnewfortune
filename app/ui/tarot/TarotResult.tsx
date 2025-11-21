@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Share2, RefreshCw, Sparkles, Quote } from "lucide-react";
-import { TarotCard } from "../../lib/tarotData";
+import { TarotCard } from "../../data/tarotData";
 import KakaoAdFit from "../KakaoAdFit";
 
 interface TarotResultProps {
