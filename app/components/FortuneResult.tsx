@@ -1,6 +1,7 @@
 "use client";
 
 import ReactMarkdown from "react-markdown";
+import { motion } from "framer-motion";
 import {
   Share2,
   RefreshCw,
@@ -8,6 +9,8 @@ import {
   Coins,
   Sparkles,
   Activity,
+  ExternalLink,
+  Gift
 } from "lucide-react";
 
 export interface FortuneResultData {
@@ -54,142 +57,192 @@ export default function FortuneResult({ data, onReset }: FortuneResultProps) {
     title,
     icon: Icon,
     content,
-    color,
+    colorClass,
+    delay
   }: {
     title: string;
     icon: any;
     content: string;
-    color: string;
+    colorClass: string;
+    delay: number;
   }) => (
-    <div className="mb-6 bg-white/60 backdrop-blur-sm rounded-2xl p-5 shadow-sm border border-white/50">
-      <h3 className={`flex items-center gap-2 text-lg font-bold mb-3 ${color}`}>
-        <Icon size={20} /> {title}
+    <motion.div 
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay, duration: 0.5 }}
+      className={`mb-4 bg-white/5 backdrop-blur-md rounded-3xl p-6 border border-white/10 hover:bg-white/10 transition-colors duration-300 group`}
+    >
+      <h3 className={`flex items-center gap-3 text-lg font-bold mb-4 ${colorClass}`}>
+        <div className="p-2 rounded-xl bg-white/10 group-hover:scale-110 transition-transform duration-300">
+          <Icon size={20} />
+        </div> 
+        {title}
       </h3>
-      <div className="prose prose-sm max-w-none text-gray-600 leading-relaxed">
+      <div className="prose prose-invert prose-sm max-w-none text-gray-200 leading-relaxed">
         <ReactMarkdown>{content}</ReactMarkdown>
       </div>
-    </div>
+    </motion.div>
   );
 
   return (
-    <div className="w-full max-w-md mx-auto pb-10 animate-in fade-in slide-in-from-bottom-4 duration-700">
-      {/* Illustration / Header */}
-      <div className="text-center mb-8 pt-8">
-        <div className="w-32 h-32 mx-auto mb-4 bg-[var(--color-highlight)] rounded-full flex items-center justify-center shadow-inner animate-pulse">
-          {/* Placeholder for illustration */}
-          <Sparkles size={48} className="text-[var(--color-main)] opacity-80" />
+    <div className="w-full max-w-md mx-auto pb-10 relative z-10">
+      
+      {/* Header Animation */}
+      <motion.div 
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.6, type: "spring" }}
+        className="text-center mb-8 pt-4"
+      >
+        <div className="inline-block p-1 rounded-full bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 mb-4">
+          <div className="w-24 h-24 bg-black/40 rounded-full flex items-center justify-center backdrop-blur-md">
+             <Sparkles size={40} className="text-yellow-300 animate-pulse" />
+          </div>
         </div>
-        <h2 className="text-2xl font-bold text-[var(--color-text-primary)]">
-          2026년 신년운세
+        <h2 className="text-3xl font-bold text-white mb-2 drop-shadow-lg">
+          운명의 해답
         </h2>
-        <p className="text-[var(--color-text-secondary)] mt-1 text-sm">
-          당신의 새해를 응원합니다
+        <p className="text-purple-200 text-sm">
+          2026년, 당신에게 펼쳐질 이야기
         </p>
-      </div>
+      </motion.div>
 
-      {/* Advice Card - Main Highlight */}
-      <div className="mx-4 mb-8 p-6 bg-gradient-to-br from-[var(--color-main)] to-[var(--color-highlight)] rounded-3xl shadow-lg text-[var(--color-text-primary)] relative overflow-hidden">
-        <div className="absolute top-0 right-0 p-4 opacity-10">
-          <Sparkles size={100} />
-        </div>
-        <h3 className="text-sm font-bold opacity-60 mb-2 uppercase tracking-wider">
-          올해의 한마디
-        </h3>
-        <p className="text-xl font-bold leading-snug text-center py-2">
-          "{data.advice}"
-        </p>
-        <div className="mt-4 flex flex-wrap justify-center gap-3 text-xs font-medium opacity-90">
-          <div className="flex items-center gap-1.5 bg-white/40 px-3 py-1.5 rounded-full shadow-sm border border-white/20">
-            <span className="text-sm">🎨</span>
-            <span className="opacity-60 mr-1">행운의 색:</span>
-            <span>{data.lucky_color}</span>
+      {/* Main Advice Card - Glassmorphism & Gradient Border */}
+      <motion.div 
+        initial={{ y: 50, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ delay: 0.2 }}
+        className="mx-4 mb-8 relative group"
+      >
+        <div className="absolute -inset-0.5 bg-gradient-to-r from-pink-500 to-violet-600 rounded-[2rem] blur opacity-75 group-hover:opacity-100 transition duration-1000 group-hover:duration-200 animate-tilt"></div>
+        <div className="relative px-8 py-10 bg-black/80 backdrop-blur-xl rounded-[2rem] border border-white/10 shadow-2xl">
+          <div className="absolute top-0 right-0 p-6 opacity-20">
+            <Sparkles size={80} className="text-white" />
           </div>
-          <div className="flex items-center gap-1.5 bg-white/40 px-3 py-1.5 rounded-full shadow-sm border border-white/20">
-            <span className="text-sm">🍀</span>
-            <span className="opacity-60 mr-1">행운템:</span>
-            <span>{data.lucky_item.name}</span>
+          
+          <h3 className="text-xs font-bold text-purple-300 mb-4 uppercase tracking-widest border-b border-white/10 pb-2 inline-block">
+            Key Message
+          </h3>
+          
+          <p className="text-2xl font-bold leading-relaxed text-white text-center mb-8 drop-shadow-md">
+            "{data.advice}"
+          </p>
+          
+          <div className="flex flex-wrap justify-center gap-3">
+            <div className="flex items-center gap-2 bg-white/10 px-4 py-2 rounded-full border border-white/10 backdrop-blur-sm">
+              <span className="text-lg">🎨</span>
+              <div className="flex flex-col text-left">
+                <span className="text-[10px] text-gray-400 uppercase">Lucky Color</span>
+                <span className="text-sm font-bold text-white">{data.lucky_color}</span>
+              </div>
+            </div>
+            <div className="flex items-center gap-2 bg-white/10 px-4 py-2 rounded-full border border-white/10 backdrop-blur-sm">
+              <span className="text-lg">🍀</span>
+              <div className="flex flex-col text-left">
+                <span className="text-[10px] text-gray-400 uppercase">Lucky Item</span>
+                <span className="text-sm font-bold text-white">{data.lucky_item.name}</span>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
+      </motion.div>
 
-      {/* Detailed Sections */}
-      <div className="px-4">
+      {/* Detailed Sections Grid */}
+      <div className="px-4 space-y-4">
         <Section
           title="전체운"
           icon={Sparkles}
           content={data.overall}
-          color="text-purple-500"
+          colorClass="text-violet-400"
+          delay={0.3}
         />
         <Section
           title="금전운"
           icon={Coins}
           content={data.money}
-          color="text-yellow-600"
+          colorClass="text-amber-400"
+          delay={0.4}
         />
         <Section
           title="연애운"
           icon={Heart}
           content={data.love}
-          color="text-pink-500"
+          colorClass="text-pink-400"
+          delay={0.5}
         />
         <Section
           title="건강운"
           icon={Activity}
           content={data.health}
-          color="text-green-500"
+          colorClass="text-emerald-400"
+          delay={0.6}
         />
       </div>
 
-      {/* Recommended Item Card */}
-      <div className="mx-4 mb-8 p-6 bg-white/80 backdrop-blur-sm rounded-3xl shadow-lg border border-white/50">
-        <h3 className="text-lg font-bold text-[var(--color-text-primary)] mb-4 flex items-center gap-2">
-          <Sparkles size={20} className="text-yellow-500" /> 당신을 위한 추천 아이템
-        </h3>
-        <div className="flex flex-col items-center">
-          <div className="relative w-48 h-48 mb-4 rounded-2xl overflow-hidden shadow-md bg-gray-100">
+      {/* Lucky Item Recommendation */}
+      <motion.div 
+        initial={{ opacity: 0, scale: 0.95 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ delay: 0.7 }}
+        className="mx-4 my-8 bg-gradient-to-b from-white/10 to-white/5 backdrop-blur-md rounded-3xl p-1 border border-white/20 shadow-lg overflow-hidden"
+      >
+        <div className="p-6 flex flex-col items-center text-center">
+          <div className="flex items-center gap-2 mb-6 text-yellow-300 font-bold text-lg">
+            <Gift className="animate-bounce" /> 행운의 아이템 추천
+          </div>
+          
+          <div className="relative w-full aspect-square max-w-[200px] mb-6 bg-white rounded-2xl p-4 shadow-inner overflow-hidden group">
+            <div className="absolute inset-0 bg-gradient-to-tr from-purple-500/20 to-pink-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10" />
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img 
               src="/images/gift-box.svg" 
-              alt="행운의 선물" 
-              className="w-full h-full object-contain p-4 hover:scale-105 transition-transform duration-500"
+              alt={data.lucky_item.name} 
+              className="w-full h-full object-contain group-hover:scale-110 transition-transform duration-500 ease-out"
             />
           </div>
-          <p className="text-lg font-bold text-[var(--color-text-primary)] mb-2">
+          
+          <h4 className="text-xl font-bold text-white mb-2">
             {data.lucky_item.name}
+          </h4>
+          <p className="text-white/60 text-sm mb-6 leading-relaxed">
+            2026년, 이 아이템이 당신의 운을 상승시켜줄 거예요.<br/>
+            작은 변화가 큰 행운을 불러옵니다.
           </p>
-          <p className="text-sm text-gray-500 text-center mb-4">
-            2026년 당신에게 행운을 가져다 줄 아이템입니다.
-          </p>
+          
           <a 
             href={data.lucky_item.link} 
             target="_blank" 
             rel="noopener noreferrer"
-            className="w-full py-3 bg-[#00C73C] hover:bg-[#00b636] text-white font-bold rounded-xl shadow-sm text-center transition-colors flex items-center justify-center gap-2"
+            className="w-full py-4 bg-[#00C73C] hover:bg-[#00b636] text-white font-bold rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all flex items-center justify-center gap-2 group"
           >
-             <span className="text-sm">🔍</span> 쿠팡에서 최저가 확인하기
+             <span>지금 바로 확인하기</span> <ExternalLink size={16} className="group-hover:translate-x-1 transition-transform" />
           </a>
-          <p className="text-[10px] text-gray-400 mt-2 text-center">
-            이 포스팅은 쿠팡 파트너스 활동의 일환으로,<br/>이에 따른 일정액의 수수료를 제공받습니다.
+          <p className="text-[10px] text-white/30 mt-3">
+            쿠팡 파트너스 활동으로 수수료를 받을 수 있습니다.
           </p>
         </div>
-      </div>
+      </motion.div>
 
-      {/* Actions */}
-      <div className="mt-8 flex gap-3 z-50">
+      {/* Floating Action Buttons */}
+      <motion.div 
+        initial={{ y: 50, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ delay: 0.9 }}
+        className="px-4 pb-4 flex gap-3 sticky bottom-4 z-50"
+      >
         <button
           onClick={onReset}
-          className="flex-1 py-4 bg-white text-[var(--color-text-primary)] rounded-2xl font-bold shadow-lg border border-gray-100 hover:bg-gray-50 flex items-center justify-center gap-2 transition-all"
+          className="flex-1 py-4 bg-white/10 backdrop-blur-xl text-white border border-white/20 rounded-2xl font-bold shadow-lg hover:bg-white/20 active:scale-95 transition-all flex items-center justify-center gap-2"
         >
-          <RefreshCw size={18} /> 다시하기
+          <RefreshCw size={18} /> <span className="text-sm">다시하기</span>
         </button>
         <button
           onClick={handleShare}
-          className="flex-1 py-4 bg-[var(--color-text-primary)] text-white rounded-2xl font-bold shadow-lg flex items-center justify-center gap-2 hover:opacity-90 transition-all"
+          className="flex-[2] py-4 bg-gradient-to-r from-violet-600 to-indigo-600 text-white rounded-2xl font-bold shadow-lg hover:shadow-indigo-500/30 active:scale-95 transition-all flex items-center justify-center gap-2 border border-white/10"
         >
-          <Share2 size={18} /> 공유하기
+          <Share2 size={18} /> <span>친구에게 결과 공유</span>
         </button>
-      </div>
-
+      </motion.div>
     </div>
   );
 }

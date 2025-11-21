@@ -7,16 +7,27 @@ import MenuScreen from "./components/MenuScreen";
 import FortuneInput, { FortuneInputData } from "./components/FortuneInput";
 import FortuneLoading from "./components/FortuneLoading";
 import FortuneResult, { FortuneResultData } from "./components/FortuneResult";
+import MbtiIntro from "./components/mbti/MbtiIntro";
+import MbtiTest from "./components/mbti/MbtiTest";
+import MbtiResult from "./components/mbti/MbtiResult";
+import { MbtiResultType } from "./lib/mbtiData";
 import KakaoAdFit from "./components/KakaoAdFit";
 import { ChevronLeft } from "lucide-react";
 
-type ViewState = "intro" | "menu" | "fortune";
+type ViewState = "intro" | "menu" | "fortune" | "mbti";
 type FortuneStep = "input" | "loading" | "result";
+type MbtiStep = "intro" | "test" | "loading" | "result";
 
 export default function Home() {
   const [view, setView] = useState<ViewState>("intro");
+  
+  // Fortune State
   const [fortuneStep, setFortuneStep] = useState<FortuneStep>("input");
   const [resultData, setResultData] = useState<FortuneResultData | null>(null);
+
+  // MBTI State
+  const [mbtiStep, setMbtiStep] = useState<MbtiStep>("intro");
+  const [mbtiResult, setMbtiResult] = useState<MbtiResultType | null>(null);
 
   // 인트로 -> 메뉴 이동
   const handleStart = () => {
@@ -28,26 +39,33 @@ export default function Home() {
     if (menuId === "new_year") {
       setFortuneStep("input");
       setView("fortune");
+    } else if (menuId === "mbti") {
+      setMbtiStep("intro");
+      setView("mbti");
     } else {
       alert("준비 중인 서비스입니다. 2026년 신년운세 먼저 확인해보세요! 🔮");
     }
   };
 
-  // 운세 입력 제출
+  const handleBackToMenu = () => {
+    setView("menu");
+    // Reset States
+    setFortuneStep("input");
+    setResultData(null);
+    setMbtiStep("intro");
+    setMbtiResult(null);
+  };
+
+  // --- Fortune Logic ---
   const handleInputSubmit = async (data: FortuneInputData) => {
     setFortuneStep("loading");
-
     try {
       const response = await fetch("/api/fortune", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
       });
-
-      if (!response.ok) {
-        throw new Error("Failed to fetch fortune");
-      }
-
+      if (!response.ok) throw new Error("Failed to fetch fortune");
       const result = await response.json();
       setResultData(result);
       setFortuneStep("result");
@@ -58,22 +76,32 @@ export default function Home() {
     }
   };
 
-  // 리셋
-  const handleReset = () => {
+  const handleResetFortune = () => {
     setResultData(null);
     setFortuneStep("input");
   };
 
-  const handleBackToMenu = () => {
-    setView("menu");
-    setFortuneStep("input");
-    setResultData(null);
+  // --- MBTI Logic ---
+  const handleMbtiStart = () => {
+    setMbtiStep("test");
+  };
+
+  const handleMbtiComplete = (result: MbtiResultType) => {
+    setMbtiStep("loading");
+    // Fake loading delay
+    setTimeout(() => {
+      setMbtiResult(result);
+      setMbtiStep("result");
+    }, 2000);
+  };
+
+  const handleMbtiReset = () => {
+    setMbtiResult(null);
+    setMbtiStep("intro");
   };
 
   return (
     <main className="min-h-screen flex flex-col items-center relative overflow-hidden text-white selection:bg-pink-500 selection:text-white">
-      
-      {/* Note: Animated Background is handled in globals.css via body styles */}
       
       <AnimatePresence mode="wait">
         {view === "intro" && (
@@ -102,6 +130,7 @@ export default function Home() {
           </motion.div>
         )}
 
+        {/* --- Fortune View --- */}
         {view === "fortune" && (
           <motion.div 
             key="fortune"
@@ -111,40 +140,27 @@ export default function Home() {
             transition={{ type: "spring", stiffness: 300, damping: 30 }}
             className="w-full max-w-md z-10 min-h-screen flex flex-col"
           >
-            {/* Sticky Header */}
             <header className="sticky top-0 z-50 px-4 py-4 bg-black/10 backdrop-blur-md border-b border-white/5 flex items-center justify-between">
-              <button 
-                onClick={handleBackToMenu}
-                className="p-2 rounded-full hover:bg-white/10 transition-colors active:scale-95"
-              >
+              <button onClick={handleBackToMenu} className="p-2 rounded-full hover:bg-white/10 transition-colors active:scale-95">
                 <ChevronLeft className="w-6 h-6 text-white" />
               </button>
               <h2 className="text-lg font-bold">신년운세 2026</h2>
-              <div className="w-10" /> {/* Spacer */}
+              <div className="w-10" />
             </header>
 
-            {/* Scrollable Content Area */}
             <div className="flex-1 overflow-y-auto pb-20 px-4 pt-6">
               <div className="w-full transition-all duration-500">
-                {fortuneStep === "input" && (
-                  <FortuneInput onSubmit={handleInputSubmit} isLoading={false} />
-                )}
-
+                {fortuneStep === "input" && <FortuneInput onSubmit={handleInputSubmit} isLoading={false} />}
                 {fortuneStep === "loading" && <FortuneLoading />}
-
-                {fortuneStep === "result" && resultData && (
-                  <FortuneResult data={resultData} onReset={handleReset} />
-                )}
+                {fortuneStep === "result" && resultData && <FortuneResult data={resultData} onReset={handleResetFortune} />}
               </div>
 
-              {/* AdFit (Result Only) */}
               {fortuneStep === "result" && (
                 <div className="mt-8 mb-4 flex justify-center items-center w-full h-[250px] overflow-hidden bg-white/5 rounded-2xl backdrop-blur-sm border border-white/10">
                   <KakaoAdFit unit="DAN-zgZw9Q6wvZuU1nIl" width="250" height="250" />
                 </div>
               )}
 
-              {/* SEO Content (Visible only on Input step) */}
               {fortuneStep === "input" && (
                 <section className="mt-12 mb-8 px-2 text-white/60 text-sm leading-relaxed">
                    <article className="p-6 bg-white/5 rounded-3xl border border-white/10 backdrop-blur-sm shadow-lg">
@@ -155,36 +171,50 @@ export default function Home() {
                      <p className="mb-4 leading-7">
                        2026년은 '붉은 말의 해'인 병오년(丙午年)입니다. 태양처럼 뜨거운 열정과 에너지가 넘치는 해로, 새로운 시작과 과감한 도전에 아주 좋은 기운을 가지고 있습니다.
                      </p>
-                     <p className="leading-7">
-                       ALL NEW FORTUNE은 전통 명리학 데이터와 최신 AI 기술을 결합하여, 당신의 사주팔자를 정밀하게 분석하고 2026년의 흐름을 읽어드립니다.
-                     </p>
                    </article>
-                   
-                   {/* Structured Data */}
-                   <script
-                     type="application/ld+json"
-                     dangerouslySetInnerHTML={{
-                       __html: JSON.stringify({
-                         "@context": "https://schema.org",
-                         "@type": "SoftwareApplication",
-                         "name": "ALL NEW FORTUNE",
-                         "applicationCategory": "LifestyleApplication",
-                         "operatingSystem": "Any",
-                         "description": "2026년 신년운세, 사주, 토정비결을 무료로 확인하세요.",
-                         "offers": {
-                           "@type": "Offer",
-                           "price": "0",
-                           "priceCurrency": "KRW"
-                         }
-                       })
-                     }}
-                   />
                 </section>
               )}
             </div>
           </motion.div>
         )}
+
+        {/* --- MBTI View --- */}
+        {view === "mbti" && (
+          <motion.div 
+            key="mbti"
+            initial={{ opacity: 0, x: 100 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -100 }}
+            transition={{ type: "spring", stiffness: 300, damping: 30 }}
+            className="w-full max-w-md z-10 min-h-screen flex flex-col"
+          >
+             <header className="sticky top-0 z-50 px-4 py-4 bg-black/10 backdrop-blur-md border-b border-white/5 flex items-center justify-between">
+              <button onClick={handleBackToMenu} className="p-2 rounded-full hover:bg-white/10 transition-colors active:scale-95">
+                <ChevronLeft className="w-6 h-6 text-white" />
+              </button>
+              <h2 className="text-lg font-bold">성격 유형 테스트</h2>
+              <div className="w-10" />
+            </header>
+
+            <div className="flex-1 overflow-y-auto pb-20 px-4 pt-6">
+              <div className="w-full transition-all duration-500">
+                {mbtiStep === "intro" && <MbtiIntro onStart={handleMbtiStart} />}
+                {mbtiStep === "test" && <MbtiTest onComplete={handleMbtiComplete} />}
+                {/* Reuse FortuneLoading for consistency */}
+                {mbtiStep === "loading" && <FortuneLoading />}
+                {mbtiStep === "result" && mbtiResult && <MbtiResult result={mbtiResult} onReset={handleMbtiReset} />}
+              </div>
+            </div>
+          </motion.div>
+        )}
       </AnimatePresence>
+
+      {/* Global Footer */}
+      <footer className="absolute bottom-4 w-full text-center pointer-events-none z-50">
+        <p className="text-[10px] text-white/30 font-light tracking-widest">
+          © 2026 ALL NEW FORTUNE. All rights reserved.
+        </p>
+      </footer>
     </main>
   );
 }
