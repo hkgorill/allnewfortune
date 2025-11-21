@@ -1,11 +1,27 @@
-import { motion } from "framer-motion";
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { Sparkles, ChevronRight } from "lucide-react";
 
 interface IntroScreenProps {
   onStart: () => void;
 }
 
+const ROLLING_TEXTS = [
+  "2026 당신의 '갓생' 설계도: 세치 혀를 대신할 운명 가이드",
+  "[속보] 2026년 대박 기류 포착! 당신만 모르는 내년 운세",
+  "혹시 '내년의 나'를 스포 당해 본 적 있으세요?"
+];
+
 export default function IntroScreen({ onStart }: IntroScreenProps) {
+  const [textIndex, setTextIndex] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setTextIndex((prev) => (prev + 1) % ROLLING_TEXTS.length);
+    }, 3000);
+    return () => clearInterval(timer);
+  }, []);
+
   return (
     <div className="relative flex flex-col items-center justify-center min-h-[90vh] w-full overflow-hidden">
       
@@ -41,10 +57,21 @@ export default function IntroScreen({ onStart }: IntroScreenProps) {
           </span>
         </h1>
 
-        <p className="text-lg text-gray-300 mb-12 max-w-md mx-auto leading-relaxed">
-          AI가 분석하는 정밀한 사주와 타로.<br/>
-          당신의 2026년은 어떤 모습일까요?
-        </p>
+        {/* Rolling Text */}
+        <div className="h-20 mb-12 relative flex items-center justify-center w-full">
+          <AnimatePresence mode="wait">
+            <motion.p
+              key={textIndex}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.5 }}
+              className="text-lg text-gray-300 max-w-md mx-auto leading-relaxed absolute px-4 break-keep"
+            >
+              {ROLLING_TEXTS[textIndex]}
+            </motion.p>
+          </AnimatePresence>
+        </div>
 
         {/* CTA Button */}
         <motion.button

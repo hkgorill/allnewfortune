@@ -4,6 +4,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import IntroScreen from "./components/IntroScreen";
 import MenuScreen from "./components/MenuScreen";
+import FortuneIntro from "./components/FortuneIntro";
 import FortuneInput, { FortuneInputData } from "./components/FortuneInput";
 import FortuneLoading from "./components/FortuneLoading";
 import FortuneResult, { FortuneResultData } from "./components/FortuneResult";
@@ -31,7 +32,7 @@ import KakaoAdFit from "./components/KakaoAdFit";
 import { ChevronLeft } from "lucide-react";
 
 type ViewState = "intro" | "menu" | "fortune" | "mbti" | "tarot" | "horoscope" | "saju" | "psychology";
-type FortuneStep = "input" | "loading" | "result";
+type FortuneStep = "intro" | "input" | "loading" | "result";
 type MbtiStep = "intro" | "test" | "loading" | "result";
 type TarotStep = "intro" | "test" | "loading" | "result";
 type HoroscopeStep = "intro" | "select" | "loading" | "result";
@@ -42,7 +43,7 @@ export default function Home() {
   const [view, setView] = useState<ViewState>("intro");
   
   // Fortune State
-  const [fortuneStep, setFortuneStep] = useState<FortuneStep>("input");
+  const [fortuneStep, setFortuneStep] = useState<FortuneStep>("intro");
   const [resultData, setResultData] = useState<FortuneResultData | null>(null);
 
   // MBTI State
@@ -73,7 +74,7 @@ export default function Home() {
   // 메뉴 선택 핸들러
   const handleMenuSelect = (menuId: string) => {
     if (menuId === "new_year") {
-      setFortuneStep("input");
+      setFortuneStep("intro");
       setView("fortune");
     } else if (menuId === "mbti") {
       setMbtiStep("intro");
@@ -98,7 +99,7 @@ export default function Home() {
   const handleBackToMenu = () => {
     setView("menu");
     // Reset States
-    setFortuneStep("input");
+    setFortuneStep("intro");
     setResultData(null);
     setMbtiStep("intro");
     setMbtiResult(null);
@@ -113,6 +114,10 @@ export default function Home() {
   };
 
   // --- Fortune Logic ---
+  const handleFortuneStart = () => {
+    setFortuneStep("input");
+  };
+
   const handleInputSubmit = async (data: FortuneInputData) => {
     setFortuneStep("loading");
     try {
@@ -134,7 +139,7 @@ export default function Home() {
 
   const handleResetFortune = () => {
     setResultData(null);
-    setFortuneStep("input");
+    setFortuneStep("intro");
   };
 
   // --- MBTI Logic ---
@@ -288,6 +293,7 @@ export default function Home() {
 
             <div className="flex-1 overflow-y-auto pb-20 px-4 pt-6">
               <div className="w-full transition-all duration-500">
+                {fortuneStep === "intro" && <FortuneIntro onStart={handleFortuneStart} />}
                 {fortuneStep === "input" && <FortuneInput onSubmit={handleInputSubmit} isLoading={false} />}
                 {fortuneStep === "loading" && <FortuneLoading />}
                 {fortuneStep === "result" && resultData && <FortuneResult data={resultData} onReset={handleResetFortune} />}
@@ -297,20 +303,6 @@ export default function Home() {
                 <div className="mt-8 mb-4 flex justify-center items-center w-full h-[250px] overflow-hidden">
                   <KakaoAdFit unit="DAN-zgZw9Q6wvZuU1nIl" width="250" height="250" />
                 </div>
-              )}
-
-              {fortuneStep === "input" && (
-                <section className="mt-12 mb-8 px-2 text-white/60 text-sm leading-relaxed">
-                   <article className="p-6 bg-white/5 rounded-3xl border border-white/10 backdrop-blur-sm shadow-lg">
-                     <div className="flex items-center gap-2 mb-4">
-                        <span className="text-2xl">🐎</span>
-                        <h3 className="text-lg font-bold text-white">2026년 병오년 미리보기</h3>
-                     </div>
-                     <p className="mb-4 leading-7">
-                       2026년은 '붉은 말의 해'인 병오년(丙午年)입니다. 태양처럼 뜨거운 열정과 에너지가 넘치는 해로, 새로운 시작과 과감한 도전에 아주 좋은 기운을 가지고 있습니다.
-                     </p>
-                   </article>
-                </section>
               )}
             </div>
           </motion.div>
