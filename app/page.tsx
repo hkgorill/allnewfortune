@@ -294,7 +294,7 @@ export default function Home() {
               </div>
 
               {fortuneStep === "result" && (
-                <div className="mt-8 mb-4 flex justify-center items-center w-full h-[250px] overflow-hidden bg-white/5 rounded-2xl backdrop-blur-sm border border-white/10">
+                <div className="mt-8 mb-4 flex justify-center items-center w-full h-[250px] overflow-hidden">
                   <KakaoAdFit unit="DAN-zgZw9Q6wvZuU1nIl" width="250" height="250" />
                 </div>
               )}

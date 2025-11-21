@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Sparkles } from "lucide-react";
-import KakaoAdFit from "./KakaoAdFit";
+// import KakaoAdFit from "./KakaoAdFit";
 
 export default function FortuneLoading() {
   return (
@@ -74,14 +74,14 @@ export default function FortuneLoading() {
       </motion.div>
 
       {/* Loading Screen Ad - Glass Style */}
-      <div className="bg-white/5 border border-white/10 p-2 rounded-2xl backdrop-blur-sm">
+      {/* <div className="bg-white/5 border border-white/10 p-2 rounded-2xl backdrop-blur-sm">
         <KakaoAdFit
           unit="DAN-iUHbVHNHWKXzbEpq"
           width="250"
           height="250"
           className="animate-in fade-in duration-1000 delay-500 rounded-xl overflow-hidden"
         />
-      </div>
+      </div> */}
     </div>
   );
 }
