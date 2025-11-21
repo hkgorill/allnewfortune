@@ -22,7 +22,8 @@ export default function KakaoAdFit({ unit, width, height, className }: KakaoAdFi
     const script = document.createElement('script');
 
     ins.className = 'kakao_ad_area';
-    ins.style.display = 'none';
+    ins.style.display = 'block';
+    ins.style.width = '100%';
     ins.setAttribute('data-ad-unit', unit);
     ins.setAttribute('data-ad-width', width);
     ins.setAttribute('data-ad-height', height);
@@ -44,7 +45,7 @@ export default function KakaoAdFit({ unit, width, height, className }: KakaoAdFi
 
   return (
     <div className={`flex justify-center items-center ${className}`}>
-       <div ref={adRef} style={{ width: `${width}px`, height: `${height}px` }} />
+       <div ref={adRef} style={{ width: `${width}px`, height: `${height}px`, minWidth: `${width}px`, minHeight: `${height}px` }} />
     </div>
   );
 }

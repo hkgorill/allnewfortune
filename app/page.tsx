@@ -70,8 +70,14 @@ export default function Home() {
         )}
 
         {/* AdFit Advertisement (Footer - Input/Result only) */}
-        {step !== "loading" && (
-          <div className="mt-8 mb-4 flex justify-center">
+        {/* {step !== "loading" && (
+          <div className="mt-8 mb-4 flex justify-center items-center w-full h-[250px] overflow-hidden">
+            <KakaoAdFit unit="DAN-zgZw9Q6wvZuU1nIl" width="250" height="250" />
+          </div>
+        )} */}
+
+        {step === "result" && (
+          <div className="mt-8 mb-4 flex justify-center items-center w-full h-[250px] overflow-hidden">
             <KakaoAdFit unit="DAN-zgZw9Q6wvZuU1nIl" width="250" height="250" />
           </div>
         )}
