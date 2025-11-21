@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Star, HelpCircle } from "lucide-react";
+import { MoonStar, HelpCircle } from "lucide-react";
 
 interface HoroscopeIntroProps {
   onStart: () => void;
@@ -21,7 +21,7 @@ export default function HoroscopeIntro({ onStart }: HoroscopeIntroProps) {
 
          <div className="relative z-10 flex flex-col items-center">
             <div className="w-20 h-20 bg-white/10 rounded-full flex items-center justify-center mb-6 animate-float">
-                <Star size={40} className="text-violet-300" />
+                <MoonStar size={40} className="text-violet-300" />
             </div>
 
             <h2 className="text-3xl font-bold text-white mb-2 drop-shadow-sm">

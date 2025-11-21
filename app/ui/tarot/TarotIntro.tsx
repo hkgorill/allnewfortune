@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { LibraryBig, HelpCircle, Sparkles } from "lucide-react";
+import { Eye, HelpCircle, Sparkles } from "lucide-react";
 
 interface TarotIntroProps {
   onStart: () => void;
@@ -21,7 +21,7 @@ export default function TarotIntro({ onStart }: TarotIntroProps) {
 
          <div className="relative z-10 flex flex-col items-center">
             <div className="w-20 h-20 bg-white/10 rounded-full flex items-center justify-center mb-6 animate-float">
-                <LibraryBig size={40} className="text-blue-300" />
+                <Eye size={40} className="text-blue-300" />
             </div>
 
             <h2 className="text-3xl font-bold text-white mb-2 drop-shadow-sm">

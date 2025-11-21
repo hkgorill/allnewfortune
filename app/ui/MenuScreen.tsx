@@ -16,7 +16,7 @@ interface MenuScreenProps {
 
 const MENU_TEXTS = {
   new_year: [
-    "[단독] 2025 '운발' 스위치 ON 하는 법 🚀",
+    "[단독] 2026 '운발' 스위치 ON 하는 법 🚀",
     '"내년엔 무조건 잘 될 사람" 선착순 확인!',
   ],
   mbti: [
