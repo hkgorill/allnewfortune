@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { Analytics } from "@vercel/analytics/next";
+
 import { Geist, Geist_Mono } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
@@ -83,7 +85,7 @@ export const metadata: Metadata = {
     },
   },
   verification: {
-    google: "fcpLiUoCtqFZ4bzNC-x9TQ5Gv3iRLi3RJsAMq9dDy90",
+    google: "c_zwevHTZKeQNZ6qbs70JMBCwgvdMgfkfJx2ebJIU2Q",
     other: {
       "naver-site-verification": "93770c0244827914a2b09e4be1fa0b07e9339f4b",
     },
@@ -126,6 +128,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         {children}
+        <Analytics />
       </body>
     </html>
   );
