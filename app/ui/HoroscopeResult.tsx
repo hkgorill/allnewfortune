@@ -2,8 +2,8 @@
 
 import { motion } from "framer-motion";
 import { Share2, RefreshCw, Sparkles, Star, Heart, Coins, Briefcase } from "lucide-react";
-import { HoroscopeResultType } from "../../lib/horoscopeData";
-import KakaoAdFit from "../KakaoAdFit";
+import { HoroscopeResultType } from "../data/horoscopeData";
+import KakaoAdFit from "./KakaoAdFit";
 
 interface HoroscopeResultProps {
   result: HoroscopeResultType;

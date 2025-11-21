@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { fortuneData } from "@/app/lib/fortuneData";
+import { fortuneData } from "@/app/data/fortuneData";
 
 // Simple hash function to generate a seed from a string
 function getHash(str: string): number {

@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Share2, RefreshCw, Sparkles, Quote } from "lucide-react";
-import { MbtiResultType } from "../../lib/mbtiData";
+import { MbtiResultType } from "../../data/mbtiData";
 import KakaoAdFit from "../KakaoAdFit";
 
 interface MbtiResultProps {

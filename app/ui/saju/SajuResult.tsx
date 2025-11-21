@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Share2, RefreshCw, ScrollText, User, Briefcase, Heart, Coins } from "lucide-react";
-import { SajuResultType, SajuPillar } from "../../lib/sajuData";
+import { SajuResultType, SajuPillar } from "../../data/sajuData";
 import KakaoAdFit from "../KakaoAdFit";
 
 interface SajuResultProps {
