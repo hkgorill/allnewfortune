@@ -85,8 +85,10 @@ export const metadata: Metadata = {
     },
   },
   verification: {
-    google: "c_zwevHTZKeQNZ6qbs70JMBCwgvdMgfkfJx2ebJIU2Q",
-    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
+    google: [
+      process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION!,
+      process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION_FORTUNE!,
+    ],
     other: {
       "naver-site-verification": process.env.NEXT_PUBLIC_NAVER_SITE_VERIFICATION!,
     },
