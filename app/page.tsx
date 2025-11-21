@@ -11,12 +11,17 @@ import MbtiIntro from "./components/mbti/MbtiIntro";
 import MbtiTest from "./components/mbti/MbtiTest";
 import MbtiResult from "./components/mbti/MbtiResult";
 import { MbtiResultType } from "./lib/mbtiData";
+import TarotIntro from "./components/tarot/TarotIntro";
+import TarotTest from "./components/tarot/TarotTest";
+import TarotResult from "./components/tarot/TarotResult";
+import { TarotCard } from "./lib/tarotData";
 import KakaoAdFit from "./components/KakaoAdFit";
 import { ChevronLeft } from "lucide-react";
 
-type ViewState = "intro" | "menu" | "fortune" | "mbti";
+type ViewState = "intro" | "menu" | "fortune" | "mbti" | "tarot";
 type FortuneStep = "input" | "loading" | "result";
 type MbtiStep = "intro" | "test" | "loading" | "result";
+type TarotStep = "intro" | "test" | "loading" | "result";
 
 export default function Home() {
   const [view, setView] = useState<ViewState>("intro");
@@ -28,6 +33,10 @@ export default function Home() {
   // MBTI State
   const [mbtiStep, setMbtiStep] = useState<MbtiStep>("intro");
   const [mbtiResult, setMbtiResult] = useState<MbtiResultType | null>(null);
+
+  // Tarot State
+  const [tarotStep, setTarotStep] = useState<TarotStep>("intro");
+  const [tarotResult, setTarotResult] = useState<TarotCard | null>(null);
 
   // 인트로 -> 메뉴 이동
   const handleStart = () => {
@@ -42,6 +51,9 @@ export default function Home() {
     } else if (menuId === "mbti") {
       setMbtiStep("intro");
       setView("mbti");
+    } else if (menuId === "tarot") {
+      setTarotStep("intro");
+      setView("tarot");
     } else {
       alert("준비 중인 서비스입니다. 2026년 신년운세 먼저 확인해보세요! 🔮");
     }
@@ -54,6 +66,8 @@ export default function Home() {
     setResultData(null);
     setMbtiStep("intro");
     setMbtiResult(null);
+    setTarotStep("intro");
+    setTarotResult(null);
   };
 
   // --- Fortune Logic ---
@@ -98,6 +112,24 @@ export default function Home() {
   const handleMbtiReset = () => {
     setMbtiResult(null);
     setMbtiStep("intro");
+  };
+
+  // --- Tarot Logic ---
+  const handleTarotStart = () => {
+    setTarotStep("test");
+  };
+
+  const handleTarotComplete = (card: TarotCard) => {
+    setTarotStep("loading");
+    setTimeout(() => {
+      setTarotResult(card);
+      setTarotStep("result");
+    }, 2000);
+  };
+
+  const handleTarotReset = () => {
+    setTarotResult(null);
+    setTarotStep("intro");
   };
 
   return (
@@ -200,9 +232,37 @@ export default function Home() {
               <div className="w-full transition-all duration-500">
                 {mbtiStep === "intro" && <MbtiIntro onStart={handleMbtiStart} />}
                 {mbtiStep === "test" && <MbtiTest onComplete={handleMbtiComplete} />}
-                {/* Reuse FortuneLoading for consistency */}
                 {mbtiStep === "loading" && <FortuneLoading />}
                 {mbtiStep === "result" && mbtiResult && <MbtiResult result={mbtiResult} onReset={handleMbtiReset} />}
+              </div>
+            </div>
+          </motion.div>
+        )}
+
+        {/* --- Tarot View --- */}
+        {view === "tarot" && (
+          <motion.div 
+            key="tarot"
+            initial={{ opacity: 0, x: 100 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -100 }}
+            transition={{ type: "spring", stiffness: 300, damping: 30 }}
+            className="w-full max-w-md z-10 min-h-screen flex flex-col"
+          >
+             <header className="sticky top-0 z-50 px-4 py-4 bg-black/10 backdrop-blur-md border-b border-white/5 flex items-center justify-between">
+              <button onClick={handleBackToMenu} className="p-2 rounded-full hover:bg-white/10 transition-colors active:scale-95">
+                <ChevronLeft className="w-6 h-6 text-white" />
+              </button>
+              <h2 className="text-lg font-bold">오늘의 타로</h2>
+              <div className="w-10" />
+            </header>
+
+            <div className="flex-1 overflow-y-auto pb-20 px-4 pt-6">
+              <div className="w-full transition-all duration-500">
+                {tarotStep === "intro" && <TarotIntro onStart={handleTarotStart} />}
+                {tarotStep === "test" && <TarotTest onComplete={handleTarotComplete} />}
+                {tarotStep === "loading" && <FortuneLoading />}
+                {tarotStep === "result" && tarotResult && <TarotResult card={tarotResult} onReset={handleTarotReset} />}
               </div>
             </div>
           </motion.div>
