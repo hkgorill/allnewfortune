@@ -7,15 +7,9 @@ import { ChevronLeft } from "lucide-react";
 import HoroscopeIntro from "../ui/HoroscopeIntro";
 import HoroscopeSelect from "../ui/HoroscopeSelect";
 import HoroscopeResult from "../ui/HoroscopeResult";
+import HoroscopeDescription from "../ui/HoroscopeDescription";
 import FortuneLoading from "../ui/FortuneLoading";
 import { getDailyHoroscope, HoroscopeResultType } from "../data/horoscopeData";
-import { Metadata } from "next";
-
-export const metadata: Metadata = {
-  title: "오늘의 별자리 운세 | 매일 확인하는 행운의 가이드 - ALL NEW FORTUNE",
-  description:
-    "물병자리부터 염소자리까지, 별들이 알려주는 당신의 하루. 금전운, 연애운, 행운의 컬러와 아이템까지 확인하세요.",
-};
 
 type HoroscopeStep = "intro" | "select" | "loading" | "result";
 
@@ -65,6 +59,8 @@ export default function HoroscopePage() {
                 {horoscopeStep === "select" && <HoroscopeSelect onSelect={handleHoroscopeSelect} />}
                 {horoscopeStep === "loading" && <FortuneLoading />}
                 {horoscopeStep === "result" && horoscopeResult && <HoroscopeResult result={horoscopeResult} onReset={handleHoroscopeReset} />}
+
+                <HoroscopeDescription />
               </div>
             </div>
         </motion.div>

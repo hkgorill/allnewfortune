@@ -7,14 +7,8 @@ import { ChevronLeft } from "lucide-react";
 import FingerIntro from "../ui/finger/FingerIntro";
 import FingerTest from "../ui/finger/FingerTest";
 import FingerResult from "../ui/finger/FingerResult";
+import FingerDescription from "../ui/finger/FingerDescription";
 import FortuneLoading from "../ui/FortuneLoading";
-import { Metadata } from "next";
-
-export const metadata: Metadata = {
-  title: "뇌 구조 테스트 | 내 머릿속엔 뭐가 들었을까? - ALL NEW FORTUNE",
-  description:
-    "재미로 보는 뇌 구조 분석. 에겐남? 테토녀? 손가락 길이와 간단한 질문으로 알아보는 나의 숨겨진 본능과 성격.",
-};
 
 type FingerStep = "intro" | "test" | "loading" | "result";
 
@@ -63,6 +57,8 @@ export default function FingerPage() {
                 {fingerStep === "test" && <FingerTest onComplete={handleFingerComplete} />}
                 {fingerStep === "loading" && <FortuneLoading />}
                 {fingerStep === "result" && fingerResult && <FingerResult resultData={fingerResult} onReset={handleFingerReset} />}
+
+                <FingerDescription />
               </div>
             </div>
         </motion.div>

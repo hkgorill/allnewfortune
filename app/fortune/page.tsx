@@ -9,13 +9,7 @@ import FortuneInput, { FortuneInputData } from "../ui/FortuneInput";
 import FortuneLoading from "../ui/FortuneLoading";
 import FortuneResult, { FortuneResultData } from "../ui/FortuneResult";
 import KakaoAdFit from "../ui/KakaoAdFit";
-import { Metadata } from "next";
-
-export const metadata: Metadata = {
-  title: "2026년 신년운세 무료보기 | 병오년 말띠 토정비결 - ALL NEW FORTUNE",
-  description:
-    "2026년 병오년(말띠) 당신의 대박운은? AI가 분석하는 소름 돋는 신년운세. 재물운, 연애운, 직장운까지 무료로 확인하세요.",
-};
+import FortuneDescription from "../ui/FortuneDescription";
 
 type FortuneStep = "intro" | "input" | "loading" | "result";
 
@@ -82,6 +76,8 @@ export default function FortunePage() {
                         <KakaoAdFit unit="DAN-zgZw9Q6wvZuU1nIl" width="250" height="250" />
                     </div>
                 )}
+
+                <FortuneDescription />
             </div>
         </motion.div>
     </main>

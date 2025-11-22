@@ -7,15 +7,9 @@ import { ChevronLeft } from "lucide-react";
 import ChemistryIntro from "../ui/chemistry/ChemistryIntro";
 import ChemistryInput from "../ui/chemistry/ChemistryInput";
 import ChemistryResult from "../ui/chemistry/ChemistryResult";
+import ChemistryDescription from "../ui/chemistry/ChemistryDescription";
 import FortuneLoading from "../ui/FortuneLoading";
 import { ChemistryResultType, calculateChemistry } from "../data/chemistryData";
-import { Metadata } from "next";
-
-export const metadata: Metadata = {
-  title: "무료 궁합 테스트 | 우리 둘의 연애/결혼 점수는? - ALL NEW FORTUNE",
-  description:
-    "그 사람과 나, 진짜 인연일까? 생년월일로 보는 정확한 속궁합, 겉궁합. 썸남썸녀, 커플 필독 궁합 분석.",
-};
 
 type ChemistryStep = "intro" | "input" | "loading" | "result";
 
@@ -77,6 +71,8 @@ export default function ChemistryPage() {
                 {chemistryStep === "input" && <ChemistryInput onSubmit={handleChemistrySubmit} />}
                 {chemistryStep === "loading" && <FortuneLoading />}
                 {chemistryStep === "result" && chemistryResult && <ChemistryResult resultData={chemistryResult} onReset={handleChemistryReset} />}
+                
+                <ChemistryDescription />
               </div>
             </div>
         </motion.div>

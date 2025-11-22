@@ -7,16 +7,10 @@ import { ChevronLeft } from "lucide-react";
 import SajuIntro from "../ui/saju/SajuIntro";
 import SajuInput from "../ui/saju/SajuInput";
 import SajuResult from "../ui/saju/SajuResult";
+import SajuDescription from "../ui/saju/SajuDescription";
 import FortuneLoading from "../ui/FortuneLoading";
 import { calculateSaju, SajuResultType } from "../data/sajuData";
 import { FortuneInputData } from "../ui/FortuneInput";
-import { Metadata } from "next";
-
-export const metadata: Metadata = {
-  title: "무료 사주팔자 풀이 | 정확한 평생 총운 분석 - ALL NEW FORTUNE",
-  description:
-    "생년월일시로 보는 정통 사주풀이. 타고난 성향부터 초년, 중년, 말년운까지 내 인생의 흐름을 명리학으로 분석해 드립니다.",
-};
 
 type SajuStep = "intro" | "input" | "loading" | "result";
 
@@ -75,6 +69,8 @@ export default function SajuPage() {
                 {sajuStep === "input" && <SajuInput onSubmit={handleSajuSubmit} isLoading={false} />}
                 {sajuStep === "loading" && <FortuneLoading />}
                 {sajuStep === "result" && sajuResult && <SajuResult result={sajuResult} onReset={handleSajuReset} />}
+                
+                <SajuDescription />
               </div>
             </div>
         </motion.div>

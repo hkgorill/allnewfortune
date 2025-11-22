@@ -7,15 +7,9 @@ import { ChevronLeft } from "lucide-react";
 import TarotIntro from "../ui/tarot/TarotIntro";
 import TarotTest from "../ui/tarot/TarotTest";
 import TarotResult from "../ui/tarot/TarotResult";
+import TarotDescription from "../ui/tarot/TarotDescription";
 import FortuneLoading from "../ui/FortuneLoading";
 import { TarotCard } from "../data/tarotData";
-import { Metadata } from "next";
-
-export const metadata: Metadata = {
-  title: "오늘의 타로점 | 고민 해결 & 속마음 읽기 - ALL NEW FORTUNE",
-  description:
-    '"그 사람은 나를 좋아할까?" 연애운, 재회운, 금전운. 타로 카드가 들려주는 당신의 오늘 하루 조언.',
-};
 
 type TarotStep = "intro" | "test" | "loading" | "result";
 
@@ -64,6 +58,8 @@ export default function TarotPage() {
                 {tarotStep === "test" && <TarotTest onComplete={handleTarotComplete} />}
                 {tarotStep === "loading" && <FortuneLoading />}
                 {tarotStep === "result" && tarotResult && <TarotResult card={tarotResult} onReset={handleTarotReset} />}
+                
+                <TarotDescription />
               </div>
             </div>
         </motion.div>

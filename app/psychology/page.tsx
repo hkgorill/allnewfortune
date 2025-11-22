@@ -7,15 +7,9 @@ import { ChevronLeft } from "lucide-react";
 import PsychologyIntro from "../ui/psychology/PsychologyIntro";
 import PsychologyTest from "../ui/psychology/PsychologyTest";
 import PsychologyResult from "../ui/psychology/PsychologyResult";
+import PsychologyDescription from "../ui/psychology/PsychologyDescription";
 import FortuneLoading from "../ui/FortuneLoading";
 import { PsychResultType } from "../data/psychologyData";
-import { Metadata } from "next";
-
-export const metadata: Metadata = {
-  title: "무료 심리테스트 모음 | 소름 돋는 성격 분석 - ALL NEW FORTUNE",
-  description:
-    '"나도 몰랐던 내 마음." 간단한 질문으로 알아보는 나의 심리 상태와 무의식 분석. 친구와 함께 공유해보세요.',
-};
 
 type PsychologyStep = "intro" | "test" | "loading" | "result";
 
@@ -64,6 +58,8 @@ export default function PsychologyPage() {
                 {psychologyStep === "test" && <PsychologyTest onComplete={handlePsychologyComplete} />}
                 {psychologyStep === "loading" && <FortuneLoading />}
                 {psychologyStep === "result" && psychologyResult && <PsychologyResult result={psychologyResult} onReset={handlePsychologyReset} />}
+                
+                <PsychologyDescription />
               </div>
             </div>
         </motion.div>
