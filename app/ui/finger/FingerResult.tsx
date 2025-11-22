@@ -1,0 +1,138 @@
+import { motion } from "framer-motion";
+import { RotateCcw, Share2, Home } from "lucide-react";
+import { FINGER_RESULTS } from "../../data/fingerData";
+import KakaoAdFit from "../KakaoAdFit";
+
+interface FingerResultProps {
+  resultData: {
+    gender: "M" | "F";
+    finger: "Index" | "Ring" | "Same";
+    scoreE: number;
+    scoreT: number;
+  };
+  onReset: () => void;
+}
+
+export default function FingerResult({ resultData, onReset }: FingerResultProps) {
+  // 결과 로직 계산
+  // 1. 손가락 기반 1차 판별 (생물학적)
+  // 2. 설문 기반 2차 판별 (성격적) -> 가중치 50:50 또는 설문 우세
+  
+  // 여기서는 간단하게 '성별 + (손가락점수 + 설문점수)'로 판별
+  // E성향 점수: (검지면 +3) + 설문E점수
+  // T성향 점수: (약지면 +3) + 설문T점수
+  
+  let finalE = resultData.scoreE;
+  let finalT = resultData.scoreT;
+
+  if (resultData.finger === "Index") finalE += 3;
+  if (resultData.finger === "Ring") finalT += 3;
+  // Same인 경우 점수 추가 없음
+
+  const type = finalE >= finalT ? "E" : "T"; // E: 에겐, T: 테토
+  const resultKey = `${resultData.gender}-${type}`;
+  
+  const result = FINGER_RESULTS[resultKey];
+
+  return (
+    <div className="w-full max-w-md mx-auto px-6 py-12 pb-24 flex flex-col items-center">
+      <motion.div
+        initial={{ opacity: 0, scale: 0.9 }}
+        animate={{ opacity: 1, scale: 1 }}
+        className="w-full text-center mb-8"
+      >
+        <span className="inline-block py-1 px-3 rounded-full bg-white/10 border border-white/20 text-sm mb-4">
+          나의 뇌 구조 타입은?
+        </span>
+        <h1 className="text-3xl font-bold mb-2 bg-clip-text text-transparent bg-gradient-to-r from-pink-400 to-blue-400">
+          {result.name}
+        </h1>
+        <p className="text-white/70 text-lg">{result.subtitle}</p>
+      </motion.div>
+
+      {/* Tags */}
+      <motion.div 
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.2 }}
+        className="flex flex-wrap justify-center gap-2 mb-8"
+      >
+        {result.tags.map((tag, idx) => (
+          <span key={idx} className="px-3 py-1 rounded-full bg-white/5 text-sm text-pink-300 border border-pink-500/20">
+            {tag}
+          </span>
+        ))}
+      </motion.div>
+
+      {/* Description Box */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.3 }}
+        className="w-full bg-white/5 border border-white/10 rounded-2xl p-6 mb-8 backdrop-blur-md text-left"
+      >
+        <h3 className="font-bold text-lg mb-4 border-b border-white/10 pb-2">
+          상세 분석
+        </h3>
+        <ul className="space-y-3 text-white/80 leading-relaxed list-disc list-outside pl-4">
+          {result.description.map((desc, idx) => (
+            <li key={idx}>{desc}</li>
+          ))}
+        </ul>
+      </motion.div>
+
+      {/* Ad */}
+      <div className="w-full flex justify-center mb-8 overflow-hidden rounded-xl bg-white/5">
+         <KakaoAdFit unit="DAN-zgZw9Q6wvZuU1nIl" width="300" height="250" />
+      </div>
+
+      {/* Match Box */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.4 }}
+        className="w-full grid grid-cols-2 gap-4 mb-12"
+      >
+        <div className="bg-blue-500/10 border border-blue-500/20 rounded-2xl p-4 text-center">
+          <span className="block text-blue-400 text-xs font-bold mb-1">GOOD MATCH</span>
+          <p className="font-bold text-sm">{result.match.good}</p>
+        </div>
+        <div className="bg-red-500/10 border border-red-500/20 rounded-2xl p-4 text-center">
+          <span className="block text-red-400 text-xs font-bold mb-1">BAD MATCH</span>
+          <p className="font-bold text-sm">{result.match.bad}</p>
+        </div>
+      </motion.div>
+
+      {/* Actions */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.5 }}
+        className="w-full space-y-3"
+      >
+        <button
+          onClick={onReset}
+          className="w-full py-4 rounded-xl bg-white text-black font-bold text-lg hover:bg-gray-200 transition-colors flex items-center justify-center gap-2"
+        >
+          <RotateCcw className="w-5 h-5" />
+          다시 테스트하기
+        </button>
+        
+        <div className="grid grid-cols-2 gap-3">
+          <button className="py-4 rounded-xl bg-white/10 border border-white/10 font-medium hover:bg-white/20 transition-colors flex items-center justify-center gap-2">
+            <Share2 className="w-5 h-5" />
+            결과 공유
+          </button>
+          <button 
+            onClick={() => window.location.href = "/"}
+            className="py-4 rounded-xl bg-white/10 border border-white/10 font-medium hover:bg-white/20 transition-colors flex items-center justify-center gap-2"
+          >
+            <Home className="w-5 h-5" />
+            홈으로
+          </button>
+        </div>
+      </motion.div>
+    </div>
+  );
+}
+

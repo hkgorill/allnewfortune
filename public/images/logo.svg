@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#8B5CF6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#3B82F6;stop-opacity:1" />
+    </linearGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="5" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+  
+  <!-- Background Circle (Optional, for app icon consistency) -->
+  <circle cx="256" cy="256" r="240" fill="#111827" />
+
+  <!-- Main Symbol -->
+  <g transform="translate(256, 256)" filter="url(#glow)">
+    <!-- Outer Ring (Wheel of Fortune abstract) -->
+    <circle cx="0" cy="0" r="160" fill="none" stroke="url(#grad1)" stroke-width="12" stroke-opacity="0.3" />
+    <circle cx="0" cy="0" r="140" fill="none" stroke="url(#grad1)" stroke-width="2" stroke-dasharray="10 20" stroke-opacity="0.5" />
+
+    <!-- Central Star / Sparkle -->
+    <path d="M0 -100 L20 -20 L100 0 L20 20 L0 100 L-20 20 L-100 0 L-20 -20 Z" fill="url(#grad1)" />
+    
+    <!-- AI Nodes / Constellation connections -->
+    <circle cx="0" cy="-160" r="16" fill="#FCD34D" />
+    <circle cx="138" cy="80" r="12" fill="#60A5FA" />
+    <circle cx="-138" cy="80" r="12" fill="#A78BFA" />
+    
+    <!-- Connection Lines -->
+    <line x1="0" y1="-160" x2="0" y2="-100" stroke="#FCD34D" stroke-width="4" stroke-opacity="0.8" />
+    <line x1="138" y1="80" x2="100" y2="0" stroke="#60A5FA" stroke-width="4" stroke-opacity="0.6" />
+    <line x1="-138" y1="80" x2="-100" y2="0" stroke="#A78BFA" stroke-width="4" stroke-opacity="0.6" />
+  </g>
+</svg>
+
+

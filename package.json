@@ -9,6 +9,7 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@notionhq/client": "^5.4.0",
     "@vercel/analytics": "^1.4.1",
     "clsx": "^2.1.1",
     "framer-motion": "^12.23.24",

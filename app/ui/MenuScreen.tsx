@@ -8,6 +8,8 @@ import {
   Eye,
   MoonStar,
   ArrowRight,
+  Brain,
+  Heart,
 } from "lucide-react";
 
 interface MenuScreenProps {
@@ -26,6 +28,14 @@ const MENU_TEXTS = {
   egogram: [
     "이거 풀고 연애/재물/성공력 100% 예측 완료 📈",
     "오늘 당신의 심리 상태는? (feat. 소름 주의)",
+  ],
+  finger: [
+    "손가락으로 보는 내 '본능' 테스트 👇",
+    "에겐남 vs 테토녀? 1분 만에 확인!",
+  ],
+  chemistry: [
+    "우리... 진짜 인연일까? 💕",
+    "소름 돋는 궁합 점수 확인하기 (무료)",
   ],
   saju: [
     "🚨 올해 '이것' 놓치면 2026년에 후회합니다",
@@ -103,6 +113,12 @@ export default function MenuScreen({ onSelectMenu }: MenuScreenProps) {
 
   return (
     <div className="w-full max-w-md px-4 py-6 pb-20">
+      <h1 className="sr-only">
+        ALL NEW FORTUNE - 2026년 신년운세, 무료 사주, 타로, MBTI, 심리테스트
+      </h1>
+      <p className="sr-only">
+        AI가 분석해주는 정확한 신년운세와 사주풀이. 오늘의 운세부터 궁합, 재물운, 연애운까지 무료로 확인하세요.
+      </p>
       <motion.header
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -193,6 +209,42 @@ export default function MenuScreen({ onSelectMenu }: MenuScreenProps) {
             <h4 className="font-bold text-lg mb-2">심리테스트</h4>
             <FadeText
               text={MENU_TEXTS.egogram[textIndex % MENU_TEXTS.egogram.length]}
+              className="text-xs text-white/60 h-[4.5em] justify-center"
+            />
+          </div>
+        </motion.div>
+
+        {/* 3.5. Finger Test (Square) */}
+        <motion.div
+          variants={itemVariant}
+          onClick={() => onSelectMenu("finger")}
+          className="col-span-1 bg-white/5 border border-white/10 rounded-[2rem] p-6 flex flex-col items-center justify-between text-center hover:bg-white/10 transition-colors cursor-pointer group"
+        >
+          <div className="w-14 h-14 rounded-full bg-violet-500/20 flex items-center justify-center text-violet-400 group-hover:bg-violet-500 group-hover:text-white transition-colors">
+            <Brain className="w-7 h-7" />
+          </div>
+          <div className="w-full flex flex-col items-center">
+            <h4 className="font-bold text-lg mb-2">뇌 구조</h4>
+            <FadeText
+              text={MENU_TEXTS.finger[textIndex % MENU_TEXTS.finger.length]}
+              className="text-xs text-white/60 h-[4.5em] justify-center"
+            />
+          </div>
+        </motion.div>
+
+        {/* 3.6. Chemistry (Square) */}
+        <motion.div
+          variants={itemVariant}
+          onClick={() => onSelectMenu("chemistry")}
+          className="col-span-1 bg-white/5 border border-white/10 rounded-[2rem] p-6 flex flex-col items-center justify-between text-center hover:bg-white/10 transition-colors cursor-pointer group"
+        >
+          <div className="w-14 h-14 rounded-full bg-red-500/20 flex items-center justify-center text-red-400 group-hover:bg-red-500 group-hover:text-white transition-colors">
+            <Heart className="w-7 h-7" />
+          </div>
+          <div className="w-full flex flex-col items-center">
+            <h4 className="font-bold text-lg mb-2">궁합</h4>
+            <FadeText
+              text={MENU_TEXTS.chemistry[textIndex % MENU_TEXTS.chemistry.length]}
               className="text-xs text-white/60 h-[4.5em] justify-center"
             />
           </div>

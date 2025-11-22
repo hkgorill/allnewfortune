@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import IntroScreen from "./ui/IntroScreen";
 import MenuScreen from "./ui/MenuScreen";
 import FortuneIntro from "./ui/FortuneIntro";
 import FortuneInput, { FortuneInputData } from "./ui/FortuneInput";
@@ -28,19 +27,28 @@ import PsychologyIntro from "./ui/psychology/PsychologyIntro";
 import PsychologyTest from "./ui/psychology/PsychologyTest";
 import PsychologyResult from "./ui/psychology/PsychologyResult";
 import { PsychResultType } from "./data/psychologyData";
+import FingerIntro from "./ui/finger/FingerIntro";
+import FingerTest from "./ui/finger/FingerTest";
+import FingerResult from "./ui/finger/FingerResult";
+import { ChemistryResultType, calculateChemistry } from "./data/chemistryData";
+import ChemistryIntro from "./ui/chemistry/ChemistryIntro";
+import ChemistryInput from "./ui/chemistry/ChemistryInput";
+import ChemistryResult from "./ui/chemistry/ChemistryResult";
 import KakaoAdFit from "./ui/KakaoAdFit";
 import { ChevronLeft } from "lucide-react";
 
-type ViewState = "intro" | "menu" | "fortune" | "mbti" | "tarot" | "horoscope" | "saju" | "psychology";
+type ViewState = "menu" | "fortune" | "mbti" | "tarot" | "horoscope" | "saju" | "psychology" | "finger" | "chemistry";
 type FortuneStep = "intro" | "input" | "loading" | "result";
 type MbtiStep = "intro" | "test" | "loading" | "result";
 type TarotStep = "intro" | "test" | "loading" | "result";
 type HoroscopeStep = "intro" | "select" | "loading" | "result";
 type SajuStep = "intro" | "input" | "loading" | "result";
 type PsychologyStep = "intro" | "test" | "loading" | "result";
+type FingerStep = "intro" | "test" | "loading" | "result";
+type ChemistryStep = "intro" | "input" | "loading" | "result";
 
 export default function Home() {
-  const [view, setView] = useState<ViewState>("intro");
+  const [view, setView] = useState<ViewState>("menu");
   
   // Fortune State
   const [fortuneStep, setFortuneStep] = useState<FortuneStep>("intro");
@@ -66,10 +74,13 @@ export default function Home() {
   const [psychologyStep, setPsychologyStep] = useState<PsychologyStep>("intro");
   const [psychologyResult, setPsychologyResult] = useState<PsychResultType | null>(null);
 
-  // 인트로 -> 메뉴 이동
-  const handleStart = () => {
-    setView("menu");
-  };
+  // Finger State
+  const [fingerStep, setFingerStep] = useState<FingerStep>("intro");
+  const [fingerResult, setFingerResult] = useState<any | null>(null);
+
+  // Chemistry State
+  const [chemistryStep, setChemistryStep] = useState<ChemistryStep>("intro");
+  const [chemistryResult, setChemistryResult] = useState<ChemistryResultType | null>(null);
 
   // 메뉴 선택 핸들러
   const handleMenuSelect = (menuId: string) => {
@@ -91,6 +102,12 @@ export default function Home() {
     } else if (menuId === "egogram") {
       setPsychologyStep("intro");
       setView("psychology");
+    } else if (menuId === "finger") {
+      setFingerStep("intro");
+      setView("finger");
+    } else if (menuId === "chemistry") {
+      setChemistryStep("intro");
+      setView("chemistry");
     } else {
       alert("준비 중인 서비스입니다. 2026년 신년운세 먼저 확인해보세요! 🔮");
     }
@@ -111,6 +128,10 @@ export default function Home() {
     setSajuResult(null);
     setPsychologyStep("intro");
     setPsychologyResult(null);
+    setFingerStep("intro");
+    setFingerResult(null);
+    setChemistryStep("intro");
+    setChemistryResult(null);
   };
 
   // --- Fortune Logic ---
@@ -243,23 +264,59 @@ export default function Home() {
     setPsychologyStep("intro");
   };
 
+  // --- Finger Logic ---
+  const handleFingerStart = () => {
+    setFingerStep("test");
+  };
+
+  const handleFingerComplete = (result: any) => {
+    setFingerStep("loading");
+    setTimeout(() => {
+      setFingerResult(result);
+      setFingerStep("result");
+    }, 2000);
+  };
+
+  const handleFingerReset = () => {
+    setFingerResult(null);
+    setFingerStep("intro");
+  };
+
+  // --- Chemistry Logic ---
+  const handleChemistryStart = () => {
+    setChemistryStep("input");
+  };
+
+  const handleChemistrySubmit = (data: {
+    me: { name: string; birthdate: string; gender: "M" | "F" };
+    partner: { name: string; birthdate: string; gender: "M" | "F" };
+  }) => {
+    setChemistryStep("loading");
+    
+    setTimeout(() => {
+      // 생년월일 문자열을 분해하여 계산 함수에 전달
+      const [myYear, myMonth, myDay] = data.me.birthdate.split("-").map(Number);
+      const [partnerYear, partnerMonth, partnerDay] = data.partner.birthdate.split("-").map(Number);
+
+      const result = calculateChemistry(
+        { year: myYear, month: myMonth, day: myDay },
+        { year: partnerYear, month: partnerMonth, day: partnerDay }
+      );
+      
+      setChemistryResult(result);
+      setChemistryStep("result");
+    }, 2000);
+  };
+
+  const handleChemistryReset = () => {
+    setChemistryResult(null);
+    setChemistryStep("intro");
+  };
+
   return (
     <main className="min-h-screen flex flex-col items-center relative overflow-hidden text-white selection:bg-pink-500 selection:text-white">
       
       <AnimatePresence mode="wait">
-        {view === "intro" && (
-          <motion.div 
-            key="intro"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0, scale: 1.1, filter: "blur(10px)" }}
-            transition={{ duration: 0.5 }}
-            className="w-full max-w-md z-10 min-h-screen flex flex-col"
-          >
-            <IntroScreen onStart={handleStart} />
-          </motion.div>
-        )}
-
         {view === "menu" && (
           <motion.div 
             key="menu"
@@ -453,10 +510,74 @@ export default function Home() {
           </motion.div>
         )}
 
+        {/* --- Finger View --- */}
+        {view === "finger" && (
+          <motion.div 
+            key="finger"
+            initial={{ opacity: 0, x: 100 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -100 }}
+            transition={{ type: "spring", stiffness: 300, damping: 30 }}
+            className="w-full max-w-md z-10 min-h-screen flex flex-col"
+          >
+             <header className="sticky top-0 z-50 px-4 py-4 bg-black/10 backdrop-blur-md border-b border-white/5 flex items-center justify-between">
+              <button onClick={handleBackToMenu} className="p-2 rounded-full hover:bg-white/10 transition-colors active:scale-95">
+                <ChevronLeft className="w-6 h-6 text-white" />
+              </button>
+              <h2 className="text-lg font-bold">뇌 구조 테스트</h2>
+              <div className="w-10" />
+            </header>
+
+            <div className="flex-1 overflow-y-auto pb-20 px-4 pt-6">
+              <div className="w-full transition-all duration-500">
+                {fingerStep === "intro" && <FingerIntro onStart={handleFingerStart} />}
+                {fingerStep === "test" && <FingerTest onComplete={handleFingerComplete} />}
+                {fingerStep === "loading" && <FortuneLoading />}
+                {fingerStep === "result" && fingerResult && <FingerResult resultData={fingerResult} onReset={handleFingerReset} />}
+              </div>
+            </div>
+          </motion.div>
+        )}
+
+        {/* --- Chemistry View --- */}
+        {view === "chemistry" && (
+          <motion.div 
+            key="chemistry"
+            initial={{ opacity: 0, x: 100 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -100 }}
+            transition={{ type: "spring", stiffness: 300, damping: 30 }}
+            className="w-full max-w-md z-10 min-h-screen flex flex-col"
+          >
+             <header className="sticky top-0 z-50 px-4 py-4 bg-black/10 backdrop-blur-md border-b border-white/5 flex items-center justify-between">
+              <button onClick={handleBackToMenu} className="p-2 rounded-full hover:bg-white/10 transition-colors active:scale-95">
+                <ChevronLeft className="w-6 h-6 text-white" />
+              </button>
+              <h2 className="text-lg font-bold">궁합 테스트</h2>
+              <div className="w-10" />
+            </header>
+
+            <div className="flex-1 overflow-y-auto pb-20 px-4 pt-6">
+              <div className="w-full transition-all duration-500">
+                {chemistryStep === "intro" && <ChemistryIntro onStart={handleChemistryStart} />}
+                {chemistryStep === "input" && <ChemistryInput onSubmit={handleChemistrySubmit} />}
+                {chemistryStep === "loading" && <FortuneLoading />}
+                {chemistryStep === "result" && chemistryResult && <ChemistryResult resultData={chemistryResult} onReset={handleChemistryReset} />}
+              </div>
+            </div>
+          </motion.div>
+        )}
       </AnimatePresence>
 
       {/* Global Footer */}
-      <footer className="absolute bottom-4 w-full text-center pointer-events-none z-50">
+      <footer className="absolute bottom-4 w-full text-center z-50 pb-4">
+        <div className="flex justify-center gap-4 mb-2 text-[10px] text-white/50 font-light">
+          <a href="/about" className="hover:text-white transition-colors">서비스 소개</a>
+          <span className="text-white/20">|</span>
+          <a href="/privacy" className="hover:text-white transition-colors">개인정보처리방침</a>
+          <span className="text-white/20">|</span>
+          <a href="/contact" className="hover:text-white transition-colors">문의하기</a>
+        </div>
         <p className="text-[10px] text-white/30 font-light tracking-widest">
           © 2026 ALL NEW FORTUNE. All rights reserved.
         </p>
