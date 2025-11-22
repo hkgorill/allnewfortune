@@ -8,7 +8,7 @@ import ChemistryIntro from "../ui/chemistry/ChemistryIntro";
 import ChemistryInput from "../ui/chemistry/ChemistryInput";
 import ChemistryResult from "../ui/chemistry/ChemistryResult";
 import ChemistryDescription from "../ui/chemistry/ChemistryDescription";
-import FortuneLoading from "../ui/FortuneLoading";
+import FortuneLoading from "../ui/fortune/FortuneLoading";
 import { ChemistryResultType, calculateChemistry } from "../data/chemistryData";
 import { useUrlShare } from "../hooks/useUrlShare";
 

@@ -4,12 +4,12 @@ import { useState, useEffect, Suspense } from "react";
 import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
 import { ChevronLeft } from "lucide-react";
-import FortuneIntro from "../ui/FortuneIntro";
-import FortuneInput, { FortuneInputData } from "../ui/FortuneInput";
-import FortuneLoading from "../ui/FortuneLoading";
-import FortuneResult, { FortuneResultData } from "../ui/FortuneResult";
+import FortuneIntro from "../ui/fortune/FortuneIntro";
+import FortuneInput, { FortuneInputData } from "../ui/fortune/FortuneInput";
+import FortuneLoading from "../ui/fortune/FortuneLoading";
+import FortuneResult, { FortuneResultData } from "../ui/fortune/FortuneResult";
 import KakaoAdFit from "../ui/KakaoAdFit";
-import FortuneDescription from "../ui/FortuneDescription";
+import FortuneDescription from "../ui/fortune/FortuneDescription";
 import { useUrlShare } from "../hooks/useUrlShare";
 
 type FortuneStep = "intro" | "input" | "loading" | "result";

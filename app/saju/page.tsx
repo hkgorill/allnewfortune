@@ -8,9 +8,9 @@ import SajuIntro from "../ui/saju/SajuIntro";
 import SajuInput from "../ui/saju/SajuInput";
 import SajuResult from "../ui/saju/SajuResult";
 import SajuDescription from "../ui/saju/SajuDescription";
-import FortuneLoading from "../ui/FortuneLoading";
+import FortuneLoading from "../ui/fortune/FortuneLoading";
 import { calculateSaju, SajuResultType } from "../data/sajuData";
-import { FortuneInputData } from "../ui/FortuneInput";
+import { FortuneInputData } from "../ui/fortune/FortuneInput";
 import { useUrlShare } from "../hooks/useUrlShare";
 
 type SajuStep = "intro" | "input" | "loading" | "result";

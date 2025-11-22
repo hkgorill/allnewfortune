@@ -12,7 +12,7 @@ import {
   ExternalLink,
   Gift
 } from "lucide-react";
-import GoogleAdSense from "./GoogleAdSense";
+import GoogleAdSense from "../GoogleAdSense";
 
 export interface FortuneResultData {
   overall: string;

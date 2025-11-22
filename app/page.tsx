@@ -21,18 +21,7 @@ export default function Home() {
       </AnimatePresence>
 
       {/* Global Footer */}
-      <footer className="absolute bottom-4 w-full text-center z-50 pb-4">
-        <div className="flex justify-center gap-4 mb-2 text-[10px] text-white/50 font-light">
-          <a href="/about" className="hover:text-white transition-colors">서비스 소개</a>
-          <span className="text-white/20">|</span>
-          <a href="/privacy" className="hover:text-white transition-colors">개인정보처리방침</a>
-          <span className="text-white/20">|</span>
-          <a href="/contact" className="hover:text-white transition-colors">문의하기</a>
-        </div>
-        <p className="text-[10px] text-white/30 font-light tracking-widest">
-          © 2026 ALL NEW FORTUNE. All rights reserved.
-        </p>
-      </footer>
+      {/* Footer is now handled in app/layout.tsx */}
     </main>
   );
 }

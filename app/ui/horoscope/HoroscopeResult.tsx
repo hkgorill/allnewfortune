@@ -3,8 +3,8 @@
 import { motion } from "framer-motion";
 import { Share2, RefreshCw, Sparkles, Star, Heart, Coins, Briefcase } from "lucide-react";
 import { HoroscopeResultType } from "../data/horoscopeData";
-import KakaoAdFit from "./KakaoAdFit";
-import GoogleAdSense from "./GoogleAdSense";
+import KakaoAdFit from "../KakaoAdFit";
+import GoogleAdSense from "../GoogleAdSense";
 
 interface HoroscopeResultProps {
   result: HoroscopeResultType;

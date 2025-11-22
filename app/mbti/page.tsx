@@ -8,7 +8,7 @@ import MbtiIntro from "../ui/mbti/MbtiIntro";
 import MbtiTest from "../ui/mbti/MbtiTest";
 import MbtiResult from "../ui/mbti/MbtiResult";
 import MbtiDescription from "../ui/mbti/MbtiDescription";
-import FortuneLoading from "../ui/FortuneLoading";
+import FortuneLoading from "../ui/fortune/FortuneLoading";
 import { MbtiResultType } from "../data/mbtiData";
 import { useUrlShare } from "../hooks/useUrlShare";
 

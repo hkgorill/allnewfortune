@@ -8,7 +8,7 @@ import TarotIntro from "../ui/tarot/TarotIntro";
 import TarotTest from "../ui/tarot/TarotTest";
 import TarotResult from "../ui/tarot/TarotResult";
 import TarotDescription from "../ui/tarot/TarotDescription";
-import FortuneLoading from "../ui/FortuneLoading";
+import FortuneLoading from "../ui/fortune/FortuneLoading";
 import { TarotCard } from "../data/tarotData";
 import { useUrlShare } from "../hooks/useUrlShare";
 

@@ -115,3 +115,5 @@ export default function FingerIntro({ onStart }: FingerIntroProps) {
   );
 }
 
+
+

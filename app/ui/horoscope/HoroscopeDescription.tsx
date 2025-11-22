@@ -1,4 +1,4 @@
-import GoogleAdSense from "./GoogleAdSense";
+import GoogleAdSense from "../GoogleAdSense";
 
 export default function HoroscopeDescription() {
   return (

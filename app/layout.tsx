@@ -3,6 +3,7 @@ import { Analytics } from "@vercel/analytics/next";
 
 import { Geist, Geist_Mono } from "next/font/google";
 import Script from "next/script";
+import Footer from "./ui/Footer";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -133,17 +134,20 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-        <Script
+        {/* <Script
           async
           src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${process.env.NEXT_PUBLIC_GOOGLE_ADSENSE_ID}`}
           crossOrigin="anonymous"
           strategy="afterInteractive"
-        />
+        /> */}
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-col min-h-screen`}
       >
-        {children}
+        <div className="flex-grow">
+          {children}
+        </div>
+        <Footer />
         <Analytics />
       </body>
     </html>

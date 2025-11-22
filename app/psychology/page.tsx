@@ -8,7 +8,7 @@ import PsychologyIntro from "../ui/psychology/PsychologyIntro";
 import PsychologyTest from "../ui/psychology/PsychologyTest";
 import PsychologyResult from "../ui/psychology/PsychologyResult";
 import PsychologyDescription from "../ui/psychology/PsychologyDescription";
-import FortuneLoading from "../ui/FortuneLoading";
+import FortuneLoading from "../ui/fortune/FortuneLoading";
 import { PsychResultType } from "../data/psychologyData";
 import { useUrlShare } from "../hooks/useUrlShare";
 

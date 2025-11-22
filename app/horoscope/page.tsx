@@ -4,11 +4,11 @@ import { useState, useEffect, Suspense } from "react";
 import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
 import { ChevronLeft } from "lucide-react";
-import HoroscopeIntro from "../ui/HoroscopeIntro";
-import HoroscopeSelect from "../ui/HoroscopeSelect";
-import HoroscopeResult from "../ui/HoroscopeResult";
-import HoroscopeDescription from "../ui/HoroscopeDescription";
-import FortuneLoading from "../ui/FortuneLoading";
+import HoroscopeIntro from "../ui/horoscope/HoroscopeIntro";
+import HoroscopeSelect from "../ui/horoscope/HoroscopeSelect";
+import HoroscopeResult from "../ui/horoscope/HoroscopeResult";
+import HoroscopeDescription from "../ui/horoscope/HoroscopeDescription";
+import FortuneLoading from "../ui/fortune/FortuneLoading";
 import { getDailyHoroscope, HoroscopeResultType } from "../data/horoscopeData";
 import { useUrlShare } from "../hooks/useUrlShare";
 

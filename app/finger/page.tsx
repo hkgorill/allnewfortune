@@ -8,7 +8,7 @@ import FingerIntro from "../ui/finger/FingerIntro";
 import FingerTest from "../ui/finger/FingerTest";
 import FingerResult from "../ui/finger/FingerResult";
 import FingerDescription from "../ui/finger/FingerDescription";
-import FortuneLoading from "../ui/FortuneLoading";
+import FortuneLoading from "../ui/fortune/FortuneLoading";
 import { useUrlShare } from "../hooks/useUrlShare";
 
 type FingerStep = "intro" | "test" | "loading" | "result";
