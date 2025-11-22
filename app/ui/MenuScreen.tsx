@@ -11,6 +11,7 @@ import {
   ArrowRight,
   Brain,
   Heart,
+  Download
 } from "lucide-react";
 
 const MENU_TEXTS = {
@@ -97,6 +98,7 @@ export default function MenuScreen() {
   const router = useRouter();
   const [textIndex, setTextIndex] = useState(0);
   const [subtitle, setSubtitle] = useState("");
+  const [deferredPrompt, setDeferredPrompt] = useState<any>(null);
 
   const handleMenuClick = (path: string) => {
     router.push(path);
@@ -112,6 +114,30 @@ export default function MenuScreen() {
     }, 60000); // 30초마다 텍스트 변경
     return () => clearInterval(timer);
   }, []);
+
+  // PWA Install Prompt Event Listener
+  useEffect(() => {
+    const handleBeforeInstallPrompt = (e: any) => {
+      e.preventDefault();
+      setDeferredPrompt(e);
+    };
+
+    window.addEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
+
+    return () => {
+      window.removeEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
+    };
+  }, []);
+
+  const handleInstallClick = async () => {
+    if (!deferredPrompt) return;
+
+    deferredPrompt.prompt();
+    const { outcome } = await deferredPrompt.userChoice;
+    if (outcome === 'accepted') {
+      setDeferredPrompt(null);
+    }
+  };
 
   return (
     <div className="w-full max-w-md px-4 py-6 pb-20">
@@ -130,8 +156,22 @@ export default function MenuScreen() {
           <h2 className="text-2xl font-bold text-white">ALL NEW FORTUNE</h2>
           <p className="text-white/60 text-sm">{subtitle}</p>
         </div>
-        <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center border border-white/10">
-          <span className="text-lg">🔮</span>
+        
+        {/* Install Button / Icon */}
+        <div 
+          onClick={handleInstallClick}
+          className={`w-10 h-10 rounded-full bg-white/10 flex items-center justify-center border border-white/10 transition-all ${
+            deferredPrompt 
+              ? "cursor-pointer hover:bg-white/20 animate-pulse ring-2 ring-emerald-400/50 bg-emerald-500/10" 
+              : ""
+          }`}
+          title={deferredPrompt ? "앱으로 설치하기" : "ALL NEW FORTUNE"}
+        >
+          {deferredPrompt ? (
+            <Download className="w-5 h-5 text-emerald-400" />
+          ) : (
+            <span className="text-lg">🔮</span>
+          )}
         </div>
       </motion.header>
 

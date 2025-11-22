@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Share2, RefreshCw, Sparkles, Star, Heart, Coins, Briefcase, Home } from "lucide-react";
-import { HoroscopeResultType } from "../data/horoscopeData";
+import { HoroscopeResultType } from "../../data/horoscopeData";
 import KakaoAdFit from "../KakaoAdFit";
 import GoogleAdSense from "../GoogleAdSense";
 
