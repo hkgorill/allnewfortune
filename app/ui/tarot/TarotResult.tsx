@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { Share2, RefreshCw, Sparkles, Quote, Home } from "lucide-react";
 import { TarotCard } from "../../data/tarotData";
@@ -12,7 +13,12 @@ interface TarotResultProps {
 }
 
 export default function TarotResult({ card, onReset }: TarotResultProps) {
+  const [isSharing, setIsSharing] = useState(false);
+
   const handleShare = async () => {
+    if (isSharing) return;
+    setIsSharing(true);
+
     const shareData = {
       title: '나의 타로 카드 결과 - ALL NEW FORTUNE',
       text: `[타로 카드 결과]\n\n🔮 ${card.name_ko} (${card.name})\n\n"${card.advice}"\n\n당신의 운명도 확인해보세요!`,
@@ -40,6 +46,8 @@ export default function TarotResult({ card, onReset }: TarotResultProps) {
       }
     } catch (error) {
       console.error('Error sharing:', error);
+    } finally {
+      setIsSharing(false);
     }
   };
 
@@ -139,9 +147,15 @@ export default function TarotResult({ card, onReset }: TarotResultProps) {
         <div className="grid grid-cols-2 gap-3">
           <button
             onClick={handleShare}
-            className="py-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-2xl font-bold shadow-lg active:scale-95 transition-all flex items-center justify-center gap-2 border border-white/10"
+            disabled={isSharing}
+            className="py-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-2xl font-bold shadow-lg active:scale-95 transition-all flex items-center justify-center gap-2 border border-white/10 disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            <Share2 size={18} /> <span>결과 공유</span>
+            {isSharing ? (
+              <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+            ) : (
+              <Share2 size={18} />
+            )}
+            <span>{isSharing ? '공유 중...' : '결과 공유'}</span>
           </button>
           <button
             onClick={() => window.location.href = "/"}

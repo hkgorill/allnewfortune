@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Calendar, Clock, User, ChevronDown } from "lucide-react";
 
@@ -29,6 +29,30 @@ export default function FortuneInput({
   const [hour, setHour] = useState("");
   const [minute, setMinute] = useState("");
 
+  // 로컬 스토리지에서 사용자 정보 불러오기
+  useEffect(() => {
+    const saved = localStorage.getItem("fortuneUser");
+    if (saved) {
+      try {
+        const parsed = JSON.parse(saved);
+        if (parsed.username) setName(parsed.username);
+        if (parsed.birthdate) setBirthdate(parsed.birthdate);
+        if (parsed.gender) setGender(parsed.gender);
+        if (parsed.birthtime) {
+          const [pAmpm, pTime] = parsed.birthtime.split(" ");
+          if (pAmpm && pTime) {
+            setAmpm(pAmpm);
+            const [pH, pM] = pTime.split(":");
+            setHour(pH);
+            setMinute(pM);
+          }
+        }
+      } catch (e) {
+        console.error("Failed to parse saved user data", e);
+      }
+    }
+  }, []);
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!birthdate) return;
@@ -39,7 +63,12 @@ export default function FortuneInput({
       formattedTime = `${ampm} ${hour}:${minute}`;
     }
 
-    onSubmit({ username: name, birthdate, gender, birthtime: formattedTime });
+    const submitData = { username: name, birthdate, gender, birthtime: formattedTime };
+    
+    // 로컬 스토리지에 저장
+    localStorage.setItem("fortuneUser", JSON.stringify(submitData));
+
+    onSubmit(submitData);
   };
 
   return (
@@ -125,8 +154,8 @@ export default function FortuneInput({
               placeholder="분"
               value={minute}
               onChange={(e) => {
-                 const val = parseInt(e.target.value);
-                 if (!e.target.value || (val >= 0 && val <= 59)) setMinute(e.target.value);
+                const val = parseInt(e.target.value);
+                if (!e.target.value || (val >= 0 && val <= 59)) setMinute(e.target.value);
               }}
               className="flex-1 p-4 rounded-2xl bg-black/20 border border-white/10 text-white text-center placeholder-white/30 focus:ring-2 focus:ring-purple-400/50 focus:bg-white/10 outline-none transition-all"
             />

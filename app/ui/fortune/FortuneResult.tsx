@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import ReactMarkdown from "react-markdown";
 import { motion } from "framer-motion";
 import {
@@ -37,7 +38,12 @@ interface FortuneResultProps {
 }
 
 export default function FortuneResult({ data, onReset }: FortuneResultProps) {
+  const [isSharing, setIsSharing] = useState(false);
+
   const handleShare = async () => {
+    if (isSharing) return;
+    setIsSharing(true);
+
     const shareData = {
       title: `${data.userName ? data.userName + '님의 ' : ''}2026년 신년운세 - ALL NEW FORTUNE`,
       text: `[${data.userName ? data.userName + '님의 ' : ''}2026년 신년운세 결과]\n\n"${data.advice}"\n\n🎨 행운의 색: ${data.lucky_color}\n🍀 행운템: ${data.lucky_item.name}\n\n당신의 2026년 운세도 확인해보세요!`,
@@ -65,6 +71,8 @@ export default function FortuneResult({ data, onReset }: FortuneResultProps) {
       }
     } catch (error) {
       console.error('Error sharing:', error);
+    } finally {
+      setIsSharing(false);
     }
   };
 
@@ -259,9 +267,15 @@ export default function FortuneResult({ data, onReset }: FortuneResultProps) {
         <div className="grid grid-cols-2 gap-3">
           <button
             onClick={handleShare}
-            className="py-4 bg-gradient-to-r from-violet-600 to-indigo-600 text-white rounded-2xl font-bold shadow-lg hover:shadow-indigo-500/30 active:scale-95 transition-all flex items-center justify-center gap-2 border border-white/10"
+            disabled={isSharing}
+            className="py-4 bg-gradient-to-r from-violet-600 to-indigo-600 text-white rounded-2xl font-bold shadow-lg hover:shadow-indigo-500/30 active:scale-95 transition-all flex items-center justify-center gap-2 border border-white/10 disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            <Share2 size={18} /> <span>결과 공유</span>
+            {isSharing ? (
+              <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+            ) : (
+              <Share2 size={18} />
+            )}
+            <span>{isSharing ? '공유 중...' : '결과 공유'}</span>
           </button>
           <button
             onClick={() => window.location.href = "/"}

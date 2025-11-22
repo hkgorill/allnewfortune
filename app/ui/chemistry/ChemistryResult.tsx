@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { RotateCcw, Share2, Home, Heart, Star, Flame } from "lucide-react";
 import KakaoAdFit from "../KakaoAdFit";
@@ -12,7 +13,12 @@ interface ChemistryResultProps {
 }
 
 export default function ChemistryResult({ resultData, onReset }: ChemistryResultProps) {
+  const [isSharing, setIsSharing] = useState(false);
+
   const handleShare = async () => {
+    if (isSharing) return;
+    setIsSharing(true);
+
     const shareData = {
       title: '궁합 테스트 결과',
       text: `[ALL NEW FORTUNE] ${resultData.myName && resultData.partnerName ? `${resultData.myName}님과 ${resultData.partnerName}님의` : '우리의'} 궁합 점수는 ${resultData.score}점! 💕\n\n"${resultData.title}"\n\n당신의 운명적 궁합도 확인해보세요!`,
@@ -40,6 +46,8 @@ export default function ChemistryResult({ resultData, onReset }: ChemistryResult
       }
     } catch (error) {
       console.error('Error sharing:', error);
+    } finally {
+      setIsSharing(false);
     }
   };
 
@@ -178,9 +186,14 @@ export default function ChemistryResult({ resultData, onReset }: ChemistryResult
         <div className="grid grid-cols-2 gap-3">
           <button 
             onClick={handleShare}
-            className="py-4 rounded-xl bg-white/10 border border-white/10 font-medium hover:bg-white/20 transition-colors flex items-center justify-center gap-2"
+            disabled={isSharing}
+            className="py-4 rounded-xl bg-white/10 border border-white/10 font-medium hover:bg-white/20 transition-colors flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            <Share2 className="w-5 h-5" />
+            {isSharing ? (
+              <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+            ) : (
+              <Share2 className="w-5 h-5" />
+            )}
             결과 공유
           </button>
           <button 

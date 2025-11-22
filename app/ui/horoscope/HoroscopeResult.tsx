@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { Share2, RefreshCw, Sparkles, Star, Heart, Coins, Briefcase, Home } from "lucide-react";
 import { HoroscopeResultType } from "../data/horoscopeData";
@@ -12,7 +13,12 @@ interface HoroscopeResultProps {
 }
 
 export default function HoroscopeResult({ result, onReset }: HoroscopeResultProps) {
+  const [isSharing, setIsSharing] = useState(false);
+
   const handleShare = async () => {
+    if (isSharing) return;
+    setIsSharing(true);
+
     const shareData = {
       title: '나의 별자리 운세 - ALL NEW FORTUNE',
       text: `[${result.sign.name} 오늘의 운세]\n\n"${result.overall}"\n\n🍀 행운의 색: ${result.lucky_color}\n🔢 행운의 숫자: ${result.lucky_number}\n\n당신의 별자리 운세도 확인해보세요!`,
@@ -40,6 +46,8 @@ export default function HoroscopeResult({ result, onReset }: HoroscopeResultProp
       }
     } catch (error) {
       console.error('Error sharing:', error);
+    } finally {
+      setIsSharing(false);
     }
   };
 
@@ -156,9 +164,15 @@ export default function HoroscopeResult({ result, onReset }: HoroscopeResultProp
         <div className="grid grid-cols-2 gap-3">
           <button
             onClick={handleShare}
-            className="py-4 bg-gradient-to-r from-violet-600 to-fuchsia-600 text-white rounded-2xl font-bold shadow-lg active:scale-95 transition-all flex items-center justify-center gap-2 border border-white/10"
+            disabled={isSharing}
+            className="py-4 bg-gradient-to-r from-violet-600 to-fuchsia-600 text-white rounded-2xl font-bold shadow-lg active:scale-95 transition-all flex items-center justify-center gap-2 border border-white/10 disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            <Share2 size={18} /> <span>운세 공유</span>
+            {isSharing ? (
+              <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+            ) : (
+              <Share2 size={18} />
+            )}
+            <span>{isSharing ? '공유 중...' : '운세 공유'}</span>
           </button>
           <button
             onClick={() => window.location.href = "/"}

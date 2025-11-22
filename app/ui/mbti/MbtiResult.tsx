@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { Share2, RefreshCw, Sparkles, Quote, Home } from "lucide-react";
 import { MbtiResultType } from "../../data/mbtiData";
@@ -12,7 +13,12 @@ interface MbtiResultProps {
 }
 
 export default function MbtiResult({ result, onReset }: MbtiResultProps) {
+  const [isSharing, setIsSharing] = useState(false);
+
   const handleShare = async () => {
+    if (isSharing) return;
+    setIsSharing(true);
+
     const shareData = {
       title: '나의 MBTI 성격 유형 - ALL NEW FORTUNE',
       text: `[나의 성격 유형 결과]\n\n"${result.title} (${result.type})"\n\n${result.description}\n\n당신의 MBTI도 확인해보세요!`,
@@ -40,6 +46,8 @@ export default function MbtiResult({ result, onReset }: MbtiResultProps) {
       }
     } catch (error) {
       console.error('Error sharing:', error);
+    } finally {
+      setIsSharing(false);
     }
   };
 
@@ -131,9 +139,15 @@ export default function MbtiResult({ result, onReset }: MbtiResultProps) {
         <div className="grid grid-cols-2 gap-3">
           <button
             onClick={handleShare}
-            className="py-4 bg-gradient-to-r from-pink-600 to-purple-600 text-white rounded-2xl font-bold shadow-lg active:scale-95 transition-all flex items-center justify-center gap-2 border border-white/10"
+            disabled={isSharing}
+            className="py-4 bg-gradient-to-r from-pink-600 to-purple-600 text-white rounded-2xl font-bold shadow-lg active:scale-95 transition-all flex items-center justify-center gap-2 border border-white/10 disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            <Share2 size={18} /> <span>결과 공유</span>
+            {isSharing ? (
+              <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+            ) : (
+              <Share2 size={18} />
+            )}
+            <span>{isSharing ? '공유 중...' : '결과 공유'}</span>
           </button>
           <button
             onClick={() => window.location.href = "/"}

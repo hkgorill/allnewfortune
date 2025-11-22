@@ -1,4 +1,6 @@
-import { useState } from "react";
+"use client";
+
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { User, Heart } from "lucide-react";
 
@@ -15,6 +17,27 @@ export default function ChemistryInput({ onSubmit }: ChemistryInputProps) {
     me: { name: "", birthdate: "", gender: "M" as "M" | "F" },
     partner: { name: "", birthdate: "", gender: "F" as "M" | "F" },
   });
+
+  // 로컬 스토리지에서 내 정보 불러오기
+  useEffect(() => {
+    const saved = localStorage.getItem("fortuneUser");
+    if (saved) {
+      try {
+        const parsed = JSON.parse(saved);
+        setFormData(prev => ({
+          ...prev,
+          me: {
+            ...prev.me,
+            name: parsed.username || prev.me.name,
+            birthdate: parsed.birthdate || prev.me.birthdate,
+            gender: parsed.gender === "male" ? "M" : parsed.gender === "female" ? "F" : prev.me.gender
+          }
+        }));
+      } catch (e) {
+        console.error("Failed to parse saved user data", e);
+      }
+    }
+  }, []);
 
   const handleNext = () => {
     if (step === "me") {
@@ -127,6 +150,3 @@ export default function ChemistryInput({ onSubmit }: ChemistryInputProps) {
     </div>
   );
 }
-
-
-
