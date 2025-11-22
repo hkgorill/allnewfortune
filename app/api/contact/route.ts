@@ -65,10 +65,17 @@ export async function POST(request: Request) {
     });
 
     return NextResponse.json({ success: true });
-  } catch (error) {
+  } catch (error: any) {
     console.error("Notion API Error:", error);
+    console.error("Error Details:", JSON.stringify(error.body || error, null, 2));
+    
     return NextResponse.json(
-      { error: "Failed to submit to Notion" },
+      { 
+        error: "Failed to submit to Notion", 
+        message: error.message,
+        code: error.code,
+        details: error.body 
+      },
       { status: 500 }
     );
   }

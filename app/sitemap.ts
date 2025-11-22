@@ -1,13 +1,23 @@
 import { MetadataRoute } from 'next'
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  return [
-    {
-      url: 'https://allnewfortune.vercel.app',
-      lastModified: new Date(),
-      changeFrequency: 'daily',
-      priority: 1,
-    },
-  ]
-}
+  const baseUrl = 'https://allnewfortune.vercel.app';
+  const routes = [
+    '',
+    '/fortune',
+    '/saju',
+    '/mbti',
+    '/tarot',
+    '/horoscope',
+    '/psychology',
+    '/finger',
+    '/chemistry',
+  ];
 
+  return routes.map((route) => ({
+    url: `${baseUrl}${route}`,
+    lastModified: new Date(),
+    changeFrequency: 'daily' as const,
+    priority: route === '' ? 1 : 0.8,
+  }));
+}

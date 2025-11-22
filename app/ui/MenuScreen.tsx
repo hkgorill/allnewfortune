@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Sparkles,
@@ -11,10 +12,6 @@ import {
   Brain,
   Heart,
 } from "lucide-react";
-
-interface MenuScreenProps {
-  onSelectMenu: (menuId: string) => void;
-}
 
 const MENU_TEXTS = {
   new_year: [
@@ -96,9 +93,14 @@ const SUBTITLES = [
   "내 인생 스위치? ⚡️ 가장 힙한 해답을 여기서 찾으세요.",
 ];
 
-export default function MenuScreen({ onSelectMenu }: MenuScreenProps) {
+export default function MenuScreen() {
+  const router = useRouter();
   const [textIndex, setTextIndex] = useState(0);
   const [subtitle, setSubtitle] = useState("");
+
+  const handleMenuClick = (path: string) => {
+    router.push(path);
+  };
 
   useEffect(() => {
     setSubtitle(SUBTITLES[Math.floor(Math.random() * SUBTITLES.length)]);
@@ -142,7 +144,7 @@ export default function MenuScreen({ onSelectMenu }: MenuScreenProps) {
         {/* 1. Featured: 신년운세 (Large Card, Spans 2 Columns) */}
         <motion.div
           variants={itemVariant}
-          onClick={() => onSelectMenu("new_year")}
+          onClick={() => handleMenuClick("/fortune")}
           className="col-span-2 row-span-1 relative overflow-hidden rounded-[2rem] cursor-pointer group"
         >
           <div className="absolute inset-0 bg-gradient-to-br from-violet-600 to-indigo-600 opacity-90 transition-opacity group-hover:opacity-100" />
@@ -181,7 +183,7 @@ export default function MenuScreen({ onSelectMenu }: MenuScreenProps) {
         {/* 2. MBTI (Square) */}
         <motion.div
           variants={itemVariant}
-          onClick={() => onSelectMenu("mbti")}
+          onClick={() => handleMenuClick("/mbti")}
           className="col-span-1 bg-white/5 border border-white/10 rounded-[2rem] p-6 flex flex-col items-center justify-between text-center hover:bg-white/10 transition-colors cursor-pointer group"
         >
           <div className="w-14 h-14 rounded-full bg-pink-500/20 flex items-center justify-center text-pink-400 group-hover:bg-pink-500 group-hover:text-white transition-colors">
@@ -199,7 +201,7 @@ export default function MenuScreen({ onSelectMenu }: MenuScreenProps) {
         {/* 3. Egogram (Square) */}
         <motion.div
           variants={itemVariant}
-          onClick={() => onSelectMenu("egogram")}
+          onClick={() => handleMenuClick("/psychology")}
           className="col-span-1 bg-white/5 border border-white/10 rounded-[2rem] p-6 flex flex-col items-center justify-between text-center hover:bg-white/10 transition-colors cursor-pointer group"
         >
           <div className="w-14 h-14 rounded-full bg-orange-500/20 flex items-center justify-center text-orange-400 group-hover:bg-orange-500 group-hover:text-white transition-colors">
@@ -217,7 +219,7 @@ export default function MenuScreen({ onSelectMenu }: MenuScreenProps) {
         {/* 3.5. Finger Test (Square) */}
         <motion.div
           variants={itemVariant}
-          onClick={() => onSelectMenu("finger")}
+          onClick={() => handleMenuClick("/finger")}
           className="col-span-1 bg-white/5 border border-white/10 rounded-[2rem] p-6 flex flex-col items-center justify-between text-center hover:bg-white/10 transition-colors cursor-pointer group"
         >
           <div className="w-14 h-14 rounded-full bg-violet-500/20 flex items-center justify-center text-violet-400 group-hover:bg-violet-500 group-hover:text-white transition-colors">
@@ -235,7 +237,7 @@ export default function MenuScreen({ onSelectMenu }: MenuScreenProps) {
         {/* 3.6. Chemistry (Square) */}
         <motion.div
           variants={itemVariant}
-          onClick={() => onSelectMenu("chemistry")}
+          onClick={() => handleMenuClick("/chemistry")}
           className="col-span-1 bg-white/5 border border-white/10 rounded-[2rem] p-6 flex flex-col items-center justify-between text-center hover:bg-white/10 transition-colors cursor-pointer group"
         >
           <div className="w-14 h-14 rounded-full bg-red-500/20 flex items-center justify-center text-red-400 group-hover:bg-red-500 group-hover:text-white transition-colors">
@@ -253,7 +255,7 @@ export default function MenuScreen({ onSelectMenu }: MenuScreenProps) {
         {/* 4. Saju (Square) */}
         <motion.div
           variants={itemVariant}
-          onClick={() => onSelectMenu("saju")}
+          onClick={() => handleMenuClick("/saju")}
           className="col-span-1 bg-white/5 border border-white/10 rounded-[2rem] p-6 flex flex-col items-center justify-between text-center hover:bg-white/10 transition-colors cursor-pointer group"
         >
           <div className="w-14 h-14 rounded-full bg-emerald-500/20 flex items-center justify-center text-emerald-400 group-hover:bg-emerald-500 group-hover:text-white transition-colors">
@@ -271,7 +273,7 @@ export default function MenuScreen({ onSelectMenu }: MenuScreenProps) {
         {/* 5. Tarot (Square) */}
         <motion.div
           variants={itemVariant}
-          onClick={() => onSelectMenu("tarot")}
+          onClick={() => handleMenuClick("/tarot")}
           className="col-span-1 bg-white/5 border border-white/10 rounded-[2rem] p-6 flex flex-col items-center justify-between text-center hover:bg-white/10 transition-colors cursor-pointer group"
         >
           <div className="w-14 h-14 rounded-full bg-blue-500/20 flex items-center justify-center text-blue-400 group-hover:bg-blue-500 group-hover:text-white transition-colors">
@@ -289,7 +291,7 @@ export default function MenuScreen({ onSelectMenu }: MenuScreenProps) {
         {/* 6. Horoscope (Full Width Bottom) */}
         <motion.div
           variants={itemVariant}
-          onClick={() => onSelectMenu("horoscope")}
+          onClick={() => handleMenuClick("/horoscope")}
           className="col-span-2 row-span-1 h-[140px] bg-gradient-to-r from-slate-800 to-slate-900 border border-white/10 rounded-[2rem] p-7 flex items-center justify-between hover:border-white/30 transition-colors cursor-pointer relative overflow-hidden group"
         >
           <div className="absolute top-0 right-0 w-32 h-32 bg-purple-500/20 rounded-full blur-2xl -translate-y-1/2 translate-x-1/2" />

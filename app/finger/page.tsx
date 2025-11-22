@@ -1,0 +1,72 @@
+"use client";
+
+import { useState } from "react";
+import { motion } from "framer-motion";
+import { useRouter } from "next/navigation";
+import { ChevronLeft } from "lucide-react";
+import FingerIntro from "../ui/finger/FingerIntro";
+import FingerTest from "../ui/finger/FingerTest";
+import FingerResult from "../ui/finger/FingerResult";
+import FortuneLoading from "../ui/FortuneLoading";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "뇌 구조 테스트 | 내 머릿속엔 뭐가 들었을까? - ALL NEW FORTUNE",
+  description:
+    "재미로 보는 뇌 구조 분석. 에겐남? 테토녀? 손가락 길이와 간단한 질문으로 알아보는 나의 숨겨진 본능과 성격.",
+};
+
+type FingerStep = "intro" | "test" | "loading" | "result";
+
+export default function FingerPage() {
+  const router = useRouter();
+  const [fingerStep, setFingerStep] = useState<FingerStep>("intro");
+  const [fingerResult, setFingerResult] = useState<any | null>(null);
+
+  const handleFingerStart = () => {
+    setFingerStep("test");
+  };
+
+  const handleFingerComplete = (result: any) => {
+    setFingerStep("loading");
+    setTimeout(() => {
+      setFingerResult(result);
+      setFingerStep("result");
+    }, 2000);
+  };
+
+  const handleFingerReset = () => {
+    setFingerResult(null);
+    setFingerStep("intro");
+  };
+
+  return (
+    <main className="min-h-screen flex flex-col items-center relative overflow-hidden text-white selection:bg-pink-500 selection:text-white">
+        <motion.div
+            initial={{ opacity: 0, x: 100 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -100 }}
+            transition={{ type: "spring", stiffness: 300, damping: 30 }}
+            className="w-full max-w-md z-10 min-h-screen flex flex-col"
+        >
+             <header className="sticky top-0 z-50 px-4 py-4 bg-black/10 backdrop-blur-md border-b border-white/5 flex items-center justify-between">
+              <button onClick={() => router.push('/')} className="p-2 rounded-full hover:bg-white/10 transition-colors active:scale-95">
+                <ChevronLeft className="w-6 h-6 text-white" />
+              </button>
+              <h2 className="text-lg font-bold">뇌 구조 테스트</h2>
+              <div className="w-10" />
+            </header>
+
+            <div className="flex-1 overflow-y-auto pb-20 px-4 pt-6">
+              <div className="w-full transition-all duration-500">
+                {fingerStep === "intro" && <FingerIntro onStart={handleFingerStart} />}
+                {fingerStep === "test" && <FingerTest onComplete={handleFingerComplete} />}
+                {fingerStep === "loading" && <FortuneLoading />}
+                {fingerStep === "result" && fingerResult && <FingerResult resultData={fingerResult} onReset={handleFingerReset} />}
+              </div>
+            </div>
+        </motion.div>
+    </main>
+  );
+}
+
