@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Analytics } from "@vercel/analytics/next";
 
 import { Geist, Geist_Mono } from "next/font/google";
@@ -14,6 +14,14 @@ const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
 });
+
+export const viewport: Viewport = {
+  themeColor: "#8B5CF6",
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
+};
 
 export const metadata: Metadata = {
   title: {
@@ -92,6 +100,11 @@ export const metadata: Metadata = {
     other: {
       "naver-site-verification": process.env.NEXT_PUBLIC_NAVER_SITE_VERIFICATION!,
     },
+  },
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "black-translucent",
+    title: "ALL NEW FORTUNE",
   },
 };
 
