@@ -1,3 +1,5 @@
+import GoogleAdSense from "../GoogleAdSense";
+
 export default function MbtiDescription() {
   return (
     <section className="w-full max-w-md mx-auto px-6 py-12 text-white/70 space-y-8 border-t border-white/10 mt-12">
@@ -9,6 +11,8 @@ export default function MbtiDescription() {
           MBTI(Myers-Briggs Type Indicator)는 사람의 성격을 4가지 척도에 따라 16가지 유형으로 분류하는 심리 검사입니다. 자신의 타고난 선호 경향을 이해하면, 대인 관계에서의 갈등을 줄이고 진로를 선택하는 데 큰 도움이 됩니다.
         </p>
       </article>
+
+      <GoogleAdSense slot="1234567890" />
 
       <article>
         <h2 className="text-xl font-bold text-white mb-4">
@@ -33,4 +37,3 @@ export default function MbtiDescription() {
     </section>
   );
 }
-

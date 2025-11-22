@@ -1,3 +1,5 @@
+import GoogleAdSense from "../GoogleAdSense";
+
 export default function PsychologyDescription() {
   return (
     <section className="w-full max-w-md mx-auto px-6 py-12 text-white/70 space-y-8 border-t border-white/10 mt-12">
@@ -9,6 +11,8 @@ export default function PsychologyDescription() {
           우리의 행동과 선택은 90% 이상 무의식의 영향을 받습니다. 재미있는 상황극이나 그림 선택을 통해 진행되는 심리테스트는, 방어 기제를 우회하여 당신의 <strong>진심(Deep Mind)</strong>을 드러나게 합니다.
         </p>
       </article>
+
+      <GoogleAdSense slot="1234567890" />
 
       <article>
         <h2 className="text-xl font-bold text-white mb-4">
@@ -33,4 +37,3 @@ export default function PsychologyDescription() {
     </section>
   );
 }
-

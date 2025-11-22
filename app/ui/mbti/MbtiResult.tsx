@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { Share2, RefreshCw, Sparkles, Quote } from "lucide-react";
 import { MbtiResultType } from "../../data/mbtiData";
 import KakaoAdFit from "../KakaoAdFit";
+import GoogleAdSense from "../GoogleAdSense";
 
 interface MbtiResultProps {
   result: MbtiResultType;
@@ -114,6 +115,10 @@ export default function MbtiResult({ result, onReset }: MbtiResultProps) {
         <KakaoAdFit unit="DAN-zgZw9Q6wvZuU1nIl" width="250" height="250" />
       </div>
 
+      <div className="mx-4 mb-8">
+        <GoogleAdSense slot="1234567890" />
+      </div>
+
       {/* Actions */}
       <div className="px-4 flex gap-3 sticky bottom-4 z-50">
         <button
@@ -132,5 +137,3 @@ export default function MbtiResult({ result, onReset }: MbtiResultProps) {
     </div>
   );
 }
-
-

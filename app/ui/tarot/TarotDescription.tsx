@@ -1,3 +1,5 @@
+import GoogleAdSense from "../GoogleAdSense";
+
 export default function TarotDescription() {
   return (
     <section className="w-full max-w-md mx-auto px-6 py-12 text-white/70 space-y-8 border-t border-white/10 mt-12">
@@ -9,6 +11,8 @@ export default function TarotDescription() {
           타로(Tarot)는 78장의 카드를 통해 현재의 상황과 미래의 가능성을 점치는 도구입니다. 무작위로 뽑은 것 같지만, 심리학자 칼 융(Carl Jung)이 말한 <strong>'동시성 원리'</strong>에 의해 당신의 무의식이 현재 가장 필요한 메시지를 선택하게 됩니다.
         </p>
       </article>
+
+      <GoogleAdSense slot="1234567890" />
 
       <article>
         <h2 className="text-xl font-bold text-white mb-4">
@@ -35,4 +39,3 @@ export default function TarotDescription() {
     </section>
   );
 }
-

@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { Share2, RefreshCw, Sparkles, Star, Heart, Coins, Briefcase } from "lucide-react";
 import { HoroscopeResultType } from "../data/horoscopeData";
 import KakaoAdFit from "./KakaoAdFit";
+import GoogleAdSense from "./GoogleAdSense";
 
 interface HoroscopeResultProps {
   result: HoroscopeResultType;
@@ -139,6 +140,10 @@ export default function HoroscopeResult({ result, onReset }: HoroscopeResultProp
         <KakaoAdFit unit="DAN-zgZw9Q6wvZuU1nIl" width="250" height="250" />
       </div>
 
+      <div className="mx-4 mb-8">
+        <GoogleAdSense slot="1234567890" />
+      </div>
+
       {/* Actions */}
       <div className="px-4 flex gap-3 sticky bottom-4 z-50">
         <button
@@ -157,5 +162,3 @@ export default function HoroscopeResult({ result, onReset }: HoroscopeResultProp
     </div>
   );
 }
-
-

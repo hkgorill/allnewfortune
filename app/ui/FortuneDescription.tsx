@@ -1,3 +1,5 @@
+import GoogleAdSense from "./GoogleAdSense";
+
 export default function FortuneDescription() {
   return (
     <section className="w-full max-w-md mx-auto px-6 py-12 text-white/70 space-y-8 border-t border-white/10 mt-12">
@@ -12,6 +14,8 @@ export default function FortuneDescription() {
           말은 생동감과 활력이 넘치는 동물로, 특히 붉은 말(적토마)은 강렬한 에너지와 추진력을 상징합니다. 2026년은 변화와 혁신을 꾀하기에 아주 좋은 해가 될 것입니다. 정체되어 있던 일들이 풀리고, 새로운 도전을 통해 큰 성취를 이룰 수 있는 기운이 강한 해입니다.
         </p>
       </article>
+
+      <GoogleAdSense slot="1234567890" />
 
       <article>
         <h2 className="text-xl font-bold text-white mb-4">
@@ -38,4 +42,3 @@ export default function FortuneDescription() {
     </section>
   );
 }
-

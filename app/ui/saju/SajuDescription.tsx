@@ -1,3 +1,5 @@
+import GoogleAdSense from "../GoogleAdSense";
+
 export default function SajuDescription() {
   return (
     <section className="w-full max-w-md mx-auto px-6 py-12 text-white/70 space-y-8 border-t border-white/10 mt-12">
@@ -12,6 +14,8 @@ export default function SajuDescription() {
           서양의 점성술이 별자리의 위치를 본다면, 동양의 사주는 우주의 기운인 음양오행(음과 양, 목화토금수)의 조화를 분석하여 운명을 해석합니다.
         </p>
       </article>
+
+      <GoogleAdSense slot="1234567890" />
 
       <article>
         <h2 className="text-xl font-bold text-white mb-4">
@@ -38,4 +42,3 @@ export default function SajuDescription() {
     </section>
   );
 }
-

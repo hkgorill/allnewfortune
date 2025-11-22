@@ -1,7 +1,10 @@
+"use client";
+
 import { motion } from "framer-motion";
 import { RotateCcw, Share2, Home } from "lucide-react";
 import { FINGER_RESULTS } from "../../data/fingerData";
 import KakaoAdFit from "../KakaoAdFit";
+import GoogleAdSense from "../GoogleAdSense";
 
 interface FingerResultProps {
   resultData: {
@@ -14,20 +17,11 @@ interface FingerResultProps {
 }
 
 export default function FingerResult({ resultData, onReset }: FingerResultProps) {
-  // 결과 로직 계산
-  // 1. 손가락 기반 1차 판별 (생물학적)
-  // 2. 설문 기반 2차 판별 (성격적) -> 가중치 50:50 또는 설문 우세
-  
-  // 여기서는 간단하게 '성별 + (손가락점수 + 설문점수)'로 판별
-  // E성향 점수: (검지면 +3) + 설문E점수
-  // T성향 점수: (약지면 +3) + 설문T점수
-  
   let finalE = resultData.scoreE;
   let finalT = resultData.scoreT;
 
   if (resultData.finger === "Index") finalE += 3;
   if (resultData.finger === "Ring") finalT += 3;
-  // Same인 경우 점수 추가 없음
 
   const type = finalE >= finalT ? "E" : "T"; // E: 에겐, T: 테토
   const resultKey = `${resultData.gender}-${type}`;
@@ -117,6 +111,10 @@ export default function FingerResult({ resultData, onReset }: FingerResultProps)
          <KakaoAdFit unit="DAN-zgZw9Q6wvZuU1nIl" width="300" height="250" />
       </div>
 
+      <div className="w-full mb-8">
+        <GoogleAdSense slot="1234567890" />
+      </div>
+
       {/* Match Box */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
@@ -169,4 +167,3 @@ export default function FingerResult({ resultData, onReset }: FingerResultProps)
     </div>
   );
 }
-

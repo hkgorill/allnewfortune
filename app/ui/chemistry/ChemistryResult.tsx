@@ -1,6 +1,9 @@
+"use client";
+
 import { motion } from "framer-motion";
 import { RotateCcw, Share2, Home, Heart, Star, Flame } from "lucide-react";
 import KakaoAdFit from "../KakaoAdFit";
+import GoogleAdSense from "../GoogleAdSense";
 import { ChemistryResultType } from "../../data/chemistryData";
 
 interface ChemistryResultProps {
@@ -153,6 +156,10 @@ export default function ChemistryResult({ resultData, onReset }: ChemistryResult
          <KakaoAdFit unit="DAN-zgZw9Q6wvZuU1nIl" width="300" height="250" />
       </div>
 
+      <div className="w-full mb-8">
+        <GoogleAdSense slot="1234567890" />
+      </div>
+
       {/* Actions */}
       <motion.div
         initial={{ opacity: 0 }}
@@ -188,4 +195,3 @@ export default function ChemistryResult({ resultData, onReset }: ChemistryResult
     </div>
   );
 }
-

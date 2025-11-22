@@ -1,3 +1,5 @@
+import GoogleAdSense from "./GoogleAdSense";
+
 export default function HoroscopeDescription() {
   return (
     <section className="w-full max-w-md mx-auto px-6 py-12 text-white/70 space-y-8 border-t border-white/10 mt-12">
@@ -9,6 +11,8 @@ export default function HoroscopeDescription() {
           당신이 태어난 날, 태양은 어느 별자리에 머물고 있었나요? 서양 점성술(Horoscope)은 하늘의 별들이 우리 삶에 미치는 영향을 해석합니다. 12개의 황도 12궁은 저마다 고유한 성격과 운명을 지니고 있습니다.
         </p>
       </article>
+
+      <GoogleAdSense slot="1234567890" />
 
       <article>
         <h2 className="text-xl font-bold text-white mb-4">
@@ -45,4 +49,3 @@ export default function HoroscopeDescription() {
     </section>
   );
 }
-

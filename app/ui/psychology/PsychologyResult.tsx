@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { Share2, RefreshCw, Quote } from "lucide-react";
 import { PsychResultType } from "../../data/psychologyData";
 import KakaoAdFit from "../KakaoAdFit";
+import GoogleAdSense from "../GoogleAdSense";
 
 interface PsychologyResultProps {
   result: PsychResultType;
@@ -105,6 +106,10 @@ export default function PsychologyResult({ result, onReset }: PsychologyResultPr
         <KakaoAdFit unit="DAN-zgZw9Q6wvZuU1nIl" width="250" height="250" />
       </div>
 
+      <div className="mx-4 mb-8">
+        <GoogleAdSense slot="1234567890" />
+      </div>
+
       {/* Actions */}
       <div className="px-4 flex gap-3 sticky bottom-4 z-50">
         <button
@@ -123,5 +128,3 @@ export default function PsychologyResult({ result, onReset }: PsychologyResultPr
     </div>
   );
 }
-
-

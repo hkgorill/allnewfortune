@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { Share2, RefreshCw, ScrollText, User, Briefcase, Heart, Coins } from "lucide-react";
 import { SajuResultType, SajuPillar } from "../../data/sajuData";
 import KakaoAdFit from "../KakaoAdFit";
+import GoogleAdSense from "../GoogleAdSense";
 
 interface SajuResultProps {
   result: SajuResultType;
@@ -165,6 +166,10 @@ export default function SajuResult({ result, onReset }: SajuResultProps) {
         <KakaoAdFit unit="DAN-zgZw9Q6wvZuU1nIl" width="250" height="250" />
       </div>
 
+      <div className="mx-4 mb-8">
+        <GoogleAdSense slot="1234567890" />
+      </div>
+
       {/* Actions */}
       <div className="px-4 flex gap-3 sticky bottom-4 z-50">
         <button
@@ -183,5 +188,3 @@ export default function SajuResult({ result, onReset }: SajuResultProps) {
     </div>
   );
 }
-
-

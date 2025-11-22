@@ -12,6 +12,7 @@ import {
   ExternalLink,
   Gift
 } from "lucide-react";
+import GoogleAdSense from "./GoogleAdSense";
 
 export interface FortuneResultData {
   overall: string;
@@ -235,6 +236,10 @@ export default function FortuneResult({ data, onReset }: FortuneResultProps) {
         </div>
       </motion.div>
 
+      <div className="mx-4 mb-8">
+        <GoogleAdSense slot="1234567890" />
+      </div>
+
       {/* Floating Action Buttons */}
       <motion.div 
         initial={{ y: 50, opacity: 0 }}
@@ -258,4 +263,3 @@ export default function FortuneResult({ data, onReset }: FortuneResultProps) {
     </div>
   );
 }
-
