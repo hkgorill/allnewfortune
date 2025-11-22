@@ -67,7 +67,7 @@ function HoroscopeContent() {
           <div className="w-full transition-all duration-500">
             {horoscopeStep === "intro" && <HoroscopeIntro onStart={handleHoroscopeStart} />}
             {horoscopeStep === "select" && <HoroscopeSelect onSelect={handleHoroscopeSelect} />}
-            {horoscopeStep === "loading" && <FortuneLoading />}
+            {horoscopeStep === "loading" && <FortuneLoading type="horoscope" />}
             {horoscopeStep === "result" && horoscopeResult && <HoroscopeResult result={horoscopeResult} onReset={handleHoroscopeReset} />}
 
             <HoroscopeDescription />
@@ -80,7 +80,7 @@ function HoroscopeContent() {
 export default function HoroscopePage() {
   return (
     <main className="min-h-screen flex flex-col items-center relative overflow-hidden text-white selection:bg-pink-500 selection:text-white">
-      <Suspense fallback={<FortuneLoading />}>
+      <Suspense fallback={<FortuneLoading type="horoscope" />}>
         <HoroscopeContent />
       </Suspense>
     </main>

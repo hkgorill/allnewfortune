@@ -66,7 +66,7 @@ function TarotContent() {
           <div className="w-full transition-all duration-500">
             {tarotStep === "intro" && <TarotIntro onStart={handleTarotStart} />}
             {tarotStep === "test" && <TarotTest onComplete={handleTarotComplete} />}
-            {tarotStep === "loading" && <FortuneLoading />}
+            {tarotStep === "loading" && <FortuneLoading type="tarot" />}
             {tarotStep === "result" && tarotResult && <TarotResult card={tarotResult} onReset={handleTarotReset} />}
             
             <TarotDescription />
@@ -79,7 +79,7 @@ function TarotContent() {
 export default function TarotPage() {
   return (
     <main className="min-h-screen flex flex-col items-center relative overflow-hidden text-white selection:bg-pink-500 selection:text-white">
-      <Suspense fallback={<FortuneLoading />}>
+      <Suspense fallback={<FortuneLoading type="tarot" />}>
         <TarotContent />
       </Suspense>
     </main>

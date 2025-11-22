@@ -1,4 +1,6 @@
 export type ChemistryResultType = {
+  myName?: string;
+  partnerName?: string;
   score: number;
   title: string;
   zodiacMatch: {
@@ -99,8 +101,8 @@ export function getElementByYear(year: number): string {
 }
 
 export function calculateChemistry(
-  myData: { year: number; month: number; day: number },
-  partnerData: { year: number; month: number; day: number }
+  myData: { year: number; month: number; day: number; name?: string },
+  partnerData: { year: number; month: number; day: number; name?: string }
 ): ChemistryResultType {
   // 1. 띠 궁합 계산
   const myZodiacIdx = getZodiac(myData.year);
@@ -198,6 +200,8 @@ export function calculateChemistry(
   }
 
   return {
+    myName: myData.name,
+    partnerName: partnerData.name,
     score: totalScore,
     title,
     zodiacMatch: {
@@ -214,6 +218,3 @@ export function calculateChemistry(
     advice
   };
 }
-
-
-

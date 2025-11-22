@@ -10,11 +10,13 @@ import {
   Sparkles,
   Activity,
   ExternalLink,
-  Gift
+  Gift,
+  Home
 } from "lucide-react";
 import GoogleAdSense from "../GoogleAdSense";
 
 export interface FortuneResultData {
+  userName?: string;
   overall: string;
   money: string;
   love: string;
@@ -37,8 +39,8 @@ interface FortuneResultProps {
 export default function FortuneResult({ data, onReset }: FortuneResultProps) {
   const handleShare = async () => {
     const shareData = {
-      title: '2026년 신년운세 - ALL NEW FORTUNE',
-      text: `[2026년 신년운세 결과]\n\n"${data.advice}"\n\n🎨 행운의 색: ${data.lucky_color}\n🍀 행운템: ${data.lucky_item.name}\n\n당신의 2026년 운세도 확인해보세요!`,
+      title: `${data.userName ? data.userName + '님의 ' : ''}2026년 신년운세 - ALL NEW FORTUNE`,
+      text: `[${data.userName ? data.userName + '님의 ' : ''}2026년 신년운세 결과]\n\n"${data.advice}"\n\n🎨 행운의 색: ${data.lucky_color}\n🍀 행운템: ${data.lucky_item.name}\n\n당신의 2026년 운세도 확인해보세요!`,
       url: window.location.href,
     };
 
@@ -116,7 +118,7 @@ export default function FortuneResult({ data, onReset }: FortuneResultProps) {
           운명의 해답
         </h2>
         <p className="text-purple-200 text-sm">
-          2026년, 당신에게 펼쳐질 이야기
+          {data.userName ? `${data.userName}님의 ` : ''}2026년, 당신에게 펼쳐질 이야기
         </p>
       </motion.div>
 
@@ -245,20 +247,29 @@ export default function FortuneResult({ data, onReset }: FortuneResultProps) {
         initial={{ y: 50, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ delay: 0.9 }}
-        className="px-4 pb-4 flex gap-3 sticky bottom-4 z-50"
+        className="px-4 space-y-3 sticky bottom-4 z-50 pb-4"
       >
         <button
           onClick={onReset}
-          className="flex-1 py-4 bg-white/10 backdrop-blur-xl text-white border border-white/20 rounded-2xl font-bold shadow-lg hover:bg-white/20 active:scale-95 transition-all flex items-center justify-center gap-2"
+          className="w-full py-4 bg-white/10 backdrop-blur-xl text-white border border-white/20 rounded-2xl font-bold shadow-lg hover:bg-white/20 active:scale-95 transition-all flex items-center justify-center gap-2"
         >
           <RefreshCw size={18} /> <span className="text-sm">다시하기</span>
         </button>
-        <button
-          onClick={handleShare}
-          className="flex-[2] py-4 bg-gradient-to-r from-violet-600 to-indigo-600 text-white rounded-2xl font-bold shadow-lg hover:shadow-indigo-500/30 active:scale-95 transition-all flex items-center justify-center gap-2 border border-white/10"
-        >
-          <Share2 size={18} /> <span>친구에게 결과 공유</span>
-        </button>
+        
+        <div className="grid grid-cols-2 gap-3">
+          <button
+            onClick={handleShare}
+            className="py-4 bg-gradient-to-r from-violet-600 to-indigo-600 text-white rounded-2xl font-bold shadow-lg hover:shadow-indigo-500/30 active:scale-95 transition-all flex items-center justify-center gap-2 border border-white/10"
+          >
+            <Share2 size={18} /> <span>결과 공유</span>
+          </button>
+          <button
+            onClick={() => window.location.href = "/"}
+            className="py-4 bg-white/10 backdrop-blur-xl text-white border border-white/20 rounded-2xl font-bold shadow-lg hover:bg-white/20 active:scale-95 transition-all flex items-center justify-center gap-2"
+          >
+            <Home size={18} /> <span>홈으로</span>
+          </button>
+        </div>
       </motion.div>
     </div>
   );

@@ -66,7 +66,7 @@ function MbtiContent() {
           <div className="w-full transition-all duration-500">
             {mbtiStep === "intro" && <MbtiIntro onStart={handleMbtiStart} />}
             {mbtiStep === "test" && <MbtiTest onComplete={handleMbtiComplete} />}
-            {mbtiStep === "loading" && <FortuneLoading />}
+            {mbtiStep === "loading" && <FortuneLoading type="mbti" />}
             {mbtiStep === "result" && mbtiResult && <MbtiResult result={mbtiResult} onReset={handleMbtiReset} />}
             
             <MbtiDescription />
@@ -79,7 +79,7 @@ function MbtiContent() {
 export default function MbtiPage() {
   return (
     <main className="min-h-screen flex flex-col items-center relative overflow-hidden text-white selection:bg-pink-500 selection:text-white">
-      <Suspense fallback={<FortuneLoading />}>
+      <Suspense fallback={<FortuneLoading type="mbti" />}>
         <MbtiContent />
       </Suspense>
     </main>

@@ -65,7 +65,7 @@ function FingerContent() {
           <div className="w-full transition-all duration-500">
             {fingerStep === "intro" && <FingerIntro onStart={handleFingerStart} />}
             {fingerStep === "test" && <FingerTest onComplete={handleFingerComplete} />}
-            {fingerStep === "loading" && <FortuneLoading />}
+            {fingerStep === "loading" && <FortuneLoading type="finger" />}
             {fingerStep === "result" && fingerResult && <FingerResult resultData={fingerResult} onReset={handleFingerReset} />}
 
             <FingerDescription />
@@ -78,7 +78,7 @@ function FingerContent() {
 export default function FingerPage() {
   return (
     <main className="min-h-screen flex flex-col items-center relative overflow-hidden text-white selection:bg-pink-500 selection:text-white">
-      <Suspense fallback={<FortuneLoading />}>
+      <Suspense fallback={<FortuneLoading type="finger" />}>
         <FingerContent />
       </Suspense>
     </main>

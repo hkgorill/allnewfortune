@@ -66,7 +66,7 @@ function PsychologyContent() {
           <div className="w-full transition-all duration-500">
             {psychologyStep === "intro" && <PsychologyIntro onStart={handlePsychologyStart} />}
             {psychologyStep === "test" && <PsychologyTest onComplete={handlePsychologyComplete} />}
-            {psychologyStep === "loading" && <FortuneLoading />}
+            {psychologyStep === "loading" && <FortuneLoading type="psychology" />}
             {psychologyStep === "result" && psychologyResult && <PsychologyResult result={psychologyResult} onReset={handlePsychologyReset} />}
             
             <PsychologyDescription />
@@ -79,7 +79,7 @@ function PsychologyContent() {
 export default function PsychologyPage() {
   return (
     <main className="min-h-screen flex flex-col items-center relative overflow-hidden text-white selection:bg-pink-500 selection:text-white">
-      <Suspense fallback={<FortuneLoading />}>
+      <Suspense fallback={<FortuneLoading type="psychology" />}>
         <PsychologyContent />
       </Suspense>
     </main>

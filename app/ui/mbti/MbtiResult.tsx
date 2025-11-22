@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Share2, RefreshCw, Sparkles, Quote } from "lucide-react";
+import { Share2, RefreshCw, Sparkles, Quote, Home } from "lucide-react";
 import { MbtiResultType } from "../../data/mbtiData";
 import KakaoAdFit from "../KakaoAdFit";
 import GoogleAdSense from "../GoogleAdSense";
@@ -120,19 +120,28 @@ export default function MbtiResult({ result, onReset }: MbtiResultProps) {
       </div>
 
       {/* Actions */}
-      <div className="px-4 flex gap-3 sticky bottom-4 z-50">
+      <div className="px-4 space-y-3 sticky bottom-4 z-50 pb-4">
         <button
           onClick={onReset}
-          className="flex-1 py-4 bg-white/10 backdrop-blur-xl text-white border border-white/20 rounded-2xl font-bold shadow-lg hover:bg-white/20 active:scale-95 transition-all flex items-center justify-center gap-2"
+          className="w-full py-4 bg-white/10 backdrop-blur-xl text-white border border-white/20 rounded-2xl font-bold shadow-lg hover:bg-white/20 active:scale-95 transition-all flex items-center justify-center gap-2"
         >
           <RefreshCw size={18} /> <span className="text-sm">처음으로</span>
         </button>
-        <button
-          onClick={handleShare}
-          className="flex-[2] py-4 bg-gradient-to-r from-pink-600 to-purple-600 text-white rounded-2xl font-bold shadow-lg active:scale-95 transition-all flex items-center justify-center gap-2 border border-white/10"
-        >
-          <Share2 size={18} /> <span>결과 공유하기</span>
-        </button>
+        
+        <div className="grid grid-cols-2 gap-3">
+          <button
+            onClick={handleShare}
+            className="py-4 bg-gradient-to-r from-pink-600 to-purple-600 text-white rounded-2xl font-bold shadow-lg active:scale-95 transition-all flex items-center justify-center gap-2 border border-white/10"
+          >
+            <Share2 size={18} /> <span>결과 공유</span>
+          </button>
+          <button
+            onClick={() => window.location.href = "/"}
+            className="py-4 bg-white/10 backdrop-blur-xl text-white border border-white/20 rounded-2xl font-bold shadow-lg hover:bg-white/20 active:scale-95 transition-all flex items-center justify-center gap-2"
+          >
+            <Home size={18} /> <span>홈으로</span>
+          </button>
+        </div>
       </div>
     </div>
   );

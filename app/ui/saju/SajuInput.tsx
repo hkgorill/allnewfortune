@@ -33,7 +33,7 @@ export default function SajuInput({
       formattedTime = `${ampm} ${hour}:${minute}`;
     }
 
-    onSubmit({ name, birthdate, gender, birthtime: formattedTime });
+    onSubmit({ username: name, birthdate, gender, birthtime: formattedTime });
   };
 
   return (

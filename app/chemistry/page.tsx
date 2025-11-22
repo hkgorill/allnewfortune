@@ -43,8 +43,8 @@ function ChemistryContent() {
       const [partnerYear, partnerMonth, partnerDay] = data.partner.birthdate.split("-").map(Number);
 
       const result = calculateChemistry(
-        { year: myYear, month: myMonth, day: myDay },
-        { year: partnerYear, month: partnerMonth, day: partnerDay }
+        { year: myYear, month: myMonth, day: myDay, name: data.me.name },
+        { year: partnerYear, month: partnerMonth, day: partnerDay, name: data.partner.name }
       );
       
       setChemistryResult(result);
@@ -79,7 +79,7 @@ function ChemistryContent() {
           <div className="w-full transition-all duration-500">
             {chemistryStep === "intro" && <ChemistryIntro onStart={handleChemistryStart} />}
             {chemistryStep === "input" && <ChemistryInput onSubmit={handleChemistrySubmit} />}
-            {chemistryStep === "loading" && <FortuneLoading />}
+            {chemistryStep === "loading" && <FortuneLoading type="chemistry" />}
             {chemistryStep === "result" && chemistryResult && <ChemistryResult resultData={chemistryResult} onReset={handleChemistryReset} />}
             
             <ChemistryDescription />
@@ -92,7 +92,7 @@ function ChemistryContent() {
 export default function ChemistryPage() {
   return (
     <main className="min-h-screen flex flex-col items-center relative overflow-hidden text-white selection:bg-pink-500 selection:text-white">
-      <Suspense fallback={<FortuneLoading />}>
+      <Suspense fallback={<FortuneLoading type="chemistry" />}>
         <ChemistryContent />
       </Suspense>
     </main>

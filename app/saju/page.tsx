@@ -44,7 +44,7 @@ function SajuContent() {
     }
 
     setTimeout(() => {
-      const result = calculateSaju(year, month, day, hour);
+      const result = calculateSaju(year, month, day, hour, data.username);
       setSajuResult(result);
       setSajuStep("result");
       shareData(result);
@@ -77,7 +77,7 @@ function SajuContent() {
           <div className="w-full transition-all duration-500">
             {sajuStep === "intro" && <SajuIntro onStart={handleSajuStart} />}
             {sajuStep === "input" && <SajuInput onSubmit={handleSajuSubmit} isLoading={false} />}
-            {sajuStep === "loading" && <FortuneLoading />}
+            {sajuStep === "loading" && <FortuneLoading type="saju" />}
             {sajuStep === "result" && sajuResult && <SajuResult result={sajuResult} onReset={handleSajuReset} />}
             
             <SajuDescription />
@@ -90,7 +90,7 @@ function SajuContent() {
 export default function SajuPage() {
   return (
     <main className="min-h-screen flex flex-col items-center relative overflow-hidden text-white selection:bg-pink-500 selection:text-white">
-      <Suspense fallback={<FortuneLoading />}>
+      <Suspense fallback={<FortuneLoading type="saju" />}>
         <SajuContent />
       </Suspense>
     </main>

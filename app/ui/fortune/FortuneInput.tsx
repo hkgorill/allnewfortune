@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { Calendar, Clock, User, ChevronDown } from "lucide-react";
 
 export interface FortuneInputData {
-  name: string;
+  username: string;
   birthdate: string;
   gender: "male" | "female" | "none";
   birthtime: string;
@@ -39,7 +39,7 @@ export default function FortuneInput({
       formattedTime = `${ampm} ${hour}:${minute}`;
     }
 
-    onSubmit({ name, birthdate, gender, birthtime: formattedTime });
+    onSubmit({ username: name, birthdate, gender, birthtime: formattedTime });
   };
 
   return (

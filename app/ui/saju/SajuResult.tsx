@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Share2, RefreshCw, ScrollText, User, Briefcase, Heart, Coins } from "lucide-react";
+import { Share2, RefreshCw, ScrollText, User, Briefcase, Heart, Coins, Home } from "lucide-react";
 import { SajuResultType, SajuPillar } from "../../data/sajuData";
 import KakaoAdFit from "../KakaoAdFit";
 import GoogleAdSense from "../GoogleAdSense";
@@ -14,8 +14,8 @@ interface SajuResultProps {
 export default function SajuResult({ result, onReset }: SajuResultProps) {
   const handleShare = async () => {
     const shareData = {
-      title: '나의 사주팔자 결과 - ALL NEW FORTUNE',
-      text: `[사주 명식 결과]\n\n일주: ${result.mainCharacter}\n\n"${result.interpretation.personality}"\n\n당신의 사주도 확인해보세요!`,
+      title: `${result.userName ? result.userName + '님의 ' : ''}사주팔자 결과 - ALL NEW FORTUNE`,
+      text: `[${result.userName ? result.userName + '님의 ' : ''}사주 명식 결과]\n\n일주: ${result.mainCharacter}\n\n"${result.interpretation.personality}"\n\n당신의 사주도 확인해보세요!`,
       url: window.location.href,
     };
 
@@ -97,7 +97,7 @@ export default function SajuResult({ result, onReset }: SajuResultProps) {
       >
         <p className="text-emerald-200 text-sm font-bold mb-2">분석 완료</p>
         <h2 className="text-3xl font-bold text-white mb-2">
-          나의 사주 명식
+          {result.userName ? `${result.userName}님의 ` : '나의 '}사주 명식
         </h2>
         <p className="text-white/50 text-xs">
           타고난 기운과 운명의 흐름
@@ -171,19 +171,28 @@ export default function SajuResult({ result, onReset }: SajuResultProps) {
       </div>
 
       {/* Actions */}
-      <div className="px-4 flex gap-3 sticky bottom-4 z-50">
+      <div className="px-4 space-y-3 sticky bottom-4 z-50 pb-4">
         <button
           onClick={onReset}
-          className="flex-1 py-4 bg-white/10 backdrop-blur-xl text-white border border-white/20 rounded-2xl font-bold shadow-lg hover:bg-white/20 active:scale-95 transition-all flex items-center justify-center gap-2"
+          className="w-full py-4 bg-white/10 backdrop-blur-xl text-white border border-white/20 rounded-2xl font-bold shadow-lg hover:bg-white/20 active:scale-95 transition-all flex items-center justify-center gap-2"
         >
           <RefreshCw size={18} /> <span className="text-sm">다시하기</span>
         </button>
-        <button
-          onClick={handleShare}
-          className="flex-[2] py-4 bg-gradient-to-r from-emerald-600 to-teal-600 text-white rounded-2xl font-bold shadow-lg active:scale-95 transition-all flex items-center justify-center gap-2 border border-white/10"
-        >
-          <Share2 size={18} /> <span>사주 공유하기</span>
-        </button>
+        
+        <div className="grid grid-cols-2 gap-3">
+          <button
+            onClick={handleShare}
+            className="py-4 bg-gradient-to-r from-emerald-600 to-teal-600 text-white rounded-2xl font-bold shadow-lg active:scale-95 transition-all flex items-center justify-center gap-2 border border-white/10"
+          >
+            <Share2 size={18} /> <span>결과 공유</span>
+          </button>
+          <button
+            onClick={() => window.location.href = "/"}
+            className="py-4 bg-white/10 backdrop-blur-xl text-white border border-white/20 rounded-2xl font-bold shadow-lg hover:bg-white/20 active:scale-95 transition-all flex items-center justify-center gap-2"
+          >
+            <Home size={18} /> <span>홈으로</span>
+          </button>
+        </div>
       </div>
     </div>
   );

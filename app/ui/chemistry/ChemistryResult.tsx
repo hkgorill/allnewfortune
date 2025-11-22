@@ -15,7 +15,7 @@ export default function ChemistryResult({ resultData, onReset }: ChemistryResult
   const handleShare = async () => {
     const shareData = {
       title: '궁합 테스트 결과',
-      text: `[ALL NEW FORTUNE] 우리의 궁합 점수는 ${resultData.score}점! 💕\n\n"${resultData.title}"\n\n당신의 운명적 궁합도 확인해보세요!`,
+      text: `[ALL NEW FORTUNE] ${resultData.myName && resultData.partnerName ? `${resultData.myName}님과 ${resultData.partnerName}님의` : '우리의'} 궁합 점수는 ${resultData.score}점! 💕\n\n"${resultData.title}"\n\n당신의 운명적 궁합도 확인해보세요!`,
       url: window.location.href,
     };
 
@@ -51,7 +51,7 @@ export default function ChemistryResult({ resultData, onReset }: ChemistryResult
         className="w-full text-center mb-8"
       >
         <span className="inline-block py-1 px-3 rounded-full bg-white/10 border border-white/20 text-sm mb-4 text-pink-300">
-          우리의 궁합 점수는?
+          {resultData.myName && resultData.partnerName ? `${resultData.myName}님 ❤️ ${resultData.partnerName}님의` : '우리의'} 궁합 점수는?
         </span>
         
         {/* Score Circle */}

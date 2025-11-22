@@ -41,9 +41,11 @@ function FortuneContent() {
       });
       if (!response.ok) throw new Error("Failed to fetch fortune");
       const result = await response.json();
-      setResultData(result);
+      // API 결과에 사용자 이름 병합
+      const resultWithUser = { ...result, userName: data.username };
+      setResultData(resultWithUser);
       setFortuneStep("result");
-      shareData(result);
+      shareData(resultWithUser);
     } catch (error) {
       console.error(error);
       alert("운세를 불러오는데 실패했습니다. 다시 시도해주세요.");
@@ -77,7 +79,7 @@ function FortuneContent() {
             <div className="w-full transition-all duration-500">
                 {fortuneStep === "intro" && <FortuneIntro onStart={handleFortuneStart} />}
                 {fortuneStep === "input" && <FortuneInput onSubmit={handleInputSubmit} isLoading={false} />}
-                {fortuneStep === "loading" && <FortuneLoading />}
+                {fortuneStep === "loading" && <FortuneLoading type="fortune" />}
                 {fortuneStep === "result" && resultData && <FortuneResult data={resultData} onReset={handleResetFortune} />}
             </div>
 
@@ -96,7 +98,7 @@ function FortuneContent() {
 export default function FortunePage() {
   return (
     <main className="min-h-screen flex flex-col items-center relative overflow-hidden text-white selection:bg-pink-500 selection:text-white">
-      <Suspense fallback={<FortuneLoading />}>
+      <Suspense fallback={<FortuneLoading type="fortune" />}>
         <FortuneContent />
       </Suspense>
     </main>

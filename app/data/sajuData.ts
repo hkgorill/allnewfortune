@@ -12,6 +12,7 @@ export interface SajuPillar {
 }
 
 export interface SajuResultType {
+  userName?: string; // 사용자 이름 추가
   year: SajuPillar;
   month: SajuPillar;
   day: SajuPillar;
@@ -91,7 +92,7 @@ const INTERPRETATIONS = {
 };
 
 // 계산 로직 (약식 알고리즘)
-export const calculateSaju = (year: number, month: number, day: number, hour: number): SajuResultType => {
+export const calculateSaju = (year: number, month: number, day: number, hour: number, userName?: string): SajuResultType => {
   // 1. 년주 (Year Pillar)
   // 1984년이 갑자년(0, 0)
   const baseYear = 1984;
@@ -159,6 +160,7 @@ export const calculateSaju = (year: number, month: number, day: number, hour: nu
   const getInterpretation = (arr: string[], seed: number) => arr[seed % arr.length];
   
   return {
+    userName,
     ...pillars,
     fiveElements: counts,
     mainCharacter: `${pillars.day.gan.korean}${pillars.day.ji.korean}`, // 일주
@@ -170,4 +172,3 @@ export const calculateSaju = (year: number, month: number, day: number, hour: nu
     }
   };
 };
-
