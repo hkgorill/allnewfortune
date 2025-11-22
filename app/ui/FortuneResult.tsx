@@ -44,9 +44,21 @@ export default function FortuneResult({ data, onReset }: FortuneResultProps) {
     try {
       if (navigator.share) {
         await navigator.share(shareData);
-      } else {
+      } else if (navigator.clipboard && navigator.clipboard.writeText) {
         await navigator.clipboard.writeText(`${shareData.text}\n\n${shareData.url}`);
         alert('운세 결과가 클립보드에 복사되었습니다!');
+      } else {
+        const textArea = document.createElement("textarea");
+        textArea.value = `${shareData.text}\n\n${shareData.url}`;
+        document.body.appendChild(textArea);
+        textArea.select();
+        try {
+          document.execCommand('copy');
+          alert('운세 결과가 클립보드에 복사되었습니다!');
+        } catch (err) {
+          alert('공유하기를 지원하지 않는 브라우저입니다.');
+        }
+        document.body.removeChild(textArea);
       }
     } catch (error) {
       console.error('Error sharing:', error);
@@ -246,3 +258,4 @@ export default function FortuneResult({ data, onReset }: FortuneResultProps) {
     </div>
   );
 }
+

@@ -34,6 +34,37 @@ export default function FingerResult({ resultData, onReset }: FingerResultProps)
   
   const result = FINGER_RESULTS[resultKey];
 
+  const handleShare = async () => {
+    const shareData = {
+      title: '뇌 구조 테스트 결과',
+      text: `[ALL NEW FORTUNE] 나의 뇌 구조는 ${result.name}!\n\n"${result.subtitle}"\n\n당신의 뇌 구조도 확인해보세요!`,
+      url: window.location.href,
+    };
+
+    try {
+      if (navigator.share) {
+        await navigator.share(shareData);
+      } else if (navigator.clipboard && navigator.clipboard.writeText) {
+        await navigator.clipboard.writeText(`${shareData.text}\n\n${shareData.url}`);
+        alert('결과가 클립보드에 복사되었습니다!');
+      } else {
+        const textArea = document.createElement("textarea");
+        textArea.value = `${shareData.text}\n\n${shareData.url}`;
+        document.body.appendChild(textArea);
+        textArea.select();
+        try {
+          document.execCommand('copy');
+          alert('결과가 클립보드에 복사되었습니다!');
+        } catch (err) {
+          alert('공유하기를 지원하지 않는 브라우저입니다.');
+        }
+        document.body.removeChild(textArea);
+      }
+    } catch (error) {
+      console.error('Error sharing:', error);
+    }
+  };
+
   return (
     <div className="w-full max-w-md mx-auto px-6 py-12 pb-24 flex flex-col items-center">
       <motion.div
@@ -119,7 +150,10 @@ export default function FingerResult({ resultData, onReset }: FingerResultProps)
         </button>
         
         <div className="grid grid-cols-2 gap-3">
-          <button className="py-4 rounded-xl bg-white/10 border border-white/10 font-medium hover:bg-white/20 transition-colors flex items-center justify-center gap-2">
+          <button 
+            onClick={handleShare}
+            className="py-4 rounded-xl bg-white/10 border border-white/10 font-medium hover:bg-white/20 transition-colors flex items-center justify-center gap-2"
+          >
             <Share2 className="w-5 h-5" />
             결과 공유
           </button>
