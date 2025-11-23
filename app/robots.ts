@@ -7,7 +7,7 @@ export default function robots(): MetadataRoute.Robots {
       allow: '/',
       disallow: '/private/',
     },
-    sitemap: 'https://allnewfortune.vercel.app/sitemap.xml',
+    sitemap: 'https://fortune.jungpyung.com/sitemap.xml',
   }
 }
 

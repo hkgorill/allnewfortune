@@ -56,14 +56,14 @@ export const metadata: Metadata = {
     address: false,
     telephone: false,
   },
-  metadataBase: new URL("https://allnewfortune.vercel.app"),
+  metadataBase: new URL("https://fortune.jungpyung.com"),
   alternates: {
     canonical: "/",
   },
   openGraph: {
     title: "2026년 신년운세 & AI 종합 운세 | 사주·타로·MBTI",
     description: "2026년 병오년 나의 운세는? AI가 분석하는 정밀 사주풀이와 신년 운세. MBTI, 타로, 심리테스트까지 지금 바로 무료로 확인해보세요.",
-    url: "https://allnewfortune.vercel.app",
+    url: "https://fortune.jungpyung.com",
     siteName: "ALL NEW FORTUNE",
     images: [
       {
@@ -118,11 +118,11 @@ export default function RootLayout({
     "@context": "https://schema.org",
     "@type": "WebSite",
     "name": "ALL NEW FORTUNE",
-    "url": "https://allnewfortune.vercel.app",
+    "url": "https://fortune.jungpyung.com",
     "description": "AI 기반 2026년 신년운세, 사주, 타로, MBTI, 심리테스트 무료 서비스",
     "potentialAction": {
       "@type": "SearchAction",
-      "target": "https://allnewfortune.vercel.app/?q={search_term_string}",
+      "target": "https://fortune.jungpyung.com/?q={search_term_string}",
       "query-input": "required name=search_term_string"
     }
   };
