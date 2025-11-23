@@ -108,7 +108,7 @@ export default function FingerResult({ resultData, onReset }: FingerResultProps)
 
       {/* Ad */}
       <div className="w-full flex justify-center mb-8 overflow-hidden rounded-xl bg-white/5">
-         <KakaoAdFit unit="DAN-zgZw9Q6wvZuU1nIl" width="300" height="250" />
+         <KakaoAdFit unit="DAN-oEqhVJwNYljTA78D" width="300" height="250" />
       </div>
 
       <div className="w-full mb-8">

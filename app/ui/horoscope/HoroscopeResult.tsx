@@ -145,7 +145,7 @@ export default function HoroscopeResult({ result, onReset }: HoroscopeResultProp
 
       {/* AdFit */}
       <div className="mx-4 mb-8 flex justify-center items-center overflow-hidden">
-        <KakaoAdFit unit="DAN-zgZw9Q6wvZuU1nIl" width="250" height="250" />
+        <KakaoAdFit unit="DAN-oEqhVJwNYljTA78D" width="250" height="250" />
       </div>
 
       <div className="mx-4 mb-8">

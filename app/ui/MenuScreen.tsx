@@ -13,6 +13,7 @@ import {
   Heart,
   Download
 } from "lucide-react";
+import KakaoAdFit from "./KakaoAdFit";
 
 const MENU_TEXTS = {
   new_year: [
@@ -140,7 +141,8 @@ export default function MenuScreen() {
   };
 
   return (
-    <div className="w-full max-w-md px-4 py-6 pb-20">
+    <div className="flex flex-col items-center w-full pb-8">
+      <div className="w-full max-w-md px-4 py-6">
       <h1 className="sr-only">
         ALL NEW FORTUNE - 2026년 신년운세, 무료 사주, 타로, MBTI, 심리테스트
       </h1>
@@ -351,6 +353,18 @@ export default function MenuScreen() {
           </div>
         </motion.div>
       </motion.div>
+      </div>
+
+      <div className="mt-6 flex justify-center w-full">
+        {/* Mobile Ad (320x50) */}
+        <div className="block md:hidden">
+          <KakaoAdFit unit="DAN-MSEM8ye2XnTJRB4u" width="320" height="50" />
+        </div>
+        {/* PC Ad (728x90) */}
+        <div className="hidden md:block">
+          <KakaoAdFit unit="DAN-HSHMP9erAHFO6IQx" width="728" height="90" />
+        </div>
+      </div>
     </div>
   );
 }
