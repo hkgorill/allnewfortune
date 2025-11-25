@@ -39,11 +39,11 @@ export default function FingerResult({ resultData, onReset }: FingerResultProps)
       if (navigator.share) {
         await navigator.share(shareData);
       } else if (navigator.clipboard && navigator.clipboard.writeText) {
-        await navigator.clipboard.writeText(`${shareData.text}\n\n${shareData.url}`);
+        await navigator.clipboard.writeText(`${shareData.text}\n\n ${shareData.url}`);
         alert('결과가 클립보드에 복사되었습니다!');
       } else {
         const textArea = document.createElement("textarea");
-        textArea.value = `${shareData.text}\n\n${shareData.url}`;
+        textArea.value = `${shareData.text}\n\n ${shareData.url}`;
         document.body.appendChild(textArea);
         textArea.select();
         try {

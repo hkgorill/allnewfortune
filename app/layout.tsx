@@ -67,7 +67,7 @@ export const metadata: Metadata = {
     siteName: "ALL NEW FORTUNE",
     images: [
       {
-        url: "/images/og-image.png",
+        url: "/opengraph-image",
         width: 1200,
         height: 630,
         alt: "ALL NEW FORTUNE 서비스 예시 이미지",
@@ -80,7 +80,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "2026년 신년운세 & AI 종합 운세",
     description: "AI가 알려주는 2026년 병오년 당신의 운세. 재물운, 연애운, MBTI, 타로까지 한 번에 확인하세요.",
-    images: ["/images/og-image.png"],
+    images: ["/opengraph-image"],
   },
   robots: {
     index: true,
