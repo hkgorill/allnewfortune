@@ -110,8 +110,10 @@ export default function PsychologyResult({ result, onReset }: PsychologyResultPr
       </motion.div>
 
       {/* AdFit */}
-      <div className="mx-4 mb-8 flex justify-center items-center overflow-hidden">
-        <KakaoAdFit unit="DAN-oEqhVJwNYljTA78D" width="250" height="250" />
+      <div className="w-full mb-8 flex justify-center items-center min-h-[250px] px-4">
+        <div className="w-full max-w-[250px] flex justify-center">
+          <KakaoAdFit unit="DAN-oEqhVJwNYljTA78D" width="250" height="250" />
+        </div>
       </div>
 
       <div className="mx-4 mb-8">

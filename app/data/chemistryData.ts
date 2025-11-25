@@ -19,7 +19,18 @@ export type ChemistryResultType = {
 
 // 띠 (Zodiac) 데이터
 export const ZODIACS = [
-  "쥐", "소", "호랑이", "토끼", "용", "뱀", "말", "양", "원숭이", "닭", "개", "돼지"
+  "쥐",
+  "소",
+  "호랑이",
+  "토끼",
+  "용",
+  "뱀",
+  "말",
+  "양",
+  "원숭이",
+  "닭",
+  "개",
+  "돼지",
 ];
 
 // 띠 궁합 표 (간소화된 버전: 0=보통, 1=좋음, 2=아주좋음, -1=나쁨, -2=상극)
@@ -53,23 +64,38 @@ const ZODIAC_MATRIX = [
 
 // 오행 (Elements) 계산용 천간
 // 갑을(목), 병정(화), 무기(토), 경신(금), 임계(수)
-const HEAVENLY_STEMS = ["갑", "을", "병", "정", "무", "기", "경", "신", "임", "계"];
+const HEAVENLY_STEMS = [
+  "갑",
+  "을",
+  "병",
+  "정",
+  "무",
+  "기",
+  "경",
+  "신",
+  "임",
+  "계",
+];
 const ELEMENTS = ["목", "목", "화", "화", "토", "토", "금", "금", "수", "수"];
 
 // 오행 상생상극 (행이 본인, 열이 상대)
 // 2: 상생(아주 좋음), 1: 비화(같음, 좋음), 0: 보통, -1: 상극(나쁨), -2: 상충(아주 나쁨)
 const ELEMENT_MATRIX: Record<string, Record<string, number>> = {
-  "목": { "목": 1, "화": 2, "토": -1, "금": -2, "수": 2 },
-  "화": { "목": 2, "화": 1, "토": 2, "금": -1, "수": -2 },
-  "토": { "목": -2, "화": 2, "토": 1, "금": 2, "수": -1 },
-  "금": { "목": -1, "화": -2, "토": 2, "금": 1, "수": 2 },
-  "수": { "목": 2, "화": -1, "토": -2, "금": 2, "수": 1 },
+  목: { 목: 1, 화: 2, 토: -1, 금: -2, 수: 2 },
+  화: { 목: 2, 화: 1, 토: 2, 금: -1, 수: -2 },
+  토: { 목: -2, 화: 2, 토: 1, 금: 2, 수: -1 },
+  금: { 목: -1, 화: -2, 토: 2, 금: 1, 수: 2 },
+  수: { 목: 2, 화: -1, 토: -2, 금: 2, 수: 1 },
 };
 
 export const CHEMISTRY_FAQ = [
   {
     q: "궁합 점수는 어떻게 계산되나요?",
     a: "본인과 상대방의 생년월일을 기반으로 '띠 궁합(겉궁합)'과 '오행 궁합(속궁합)'을 종합적으로 분석하여 점수를 산출합니다. 정통 명리학의 원리를 현대적으로 해석한 알고리즘을 사용합니다.",
+  },
+  {
+    q: "양력/음력 중 무엇을 입력하나요?",
+    a: "일반적으로 사용하는 양력 생일을 입력해주시면 시스템 내부에서 변환하여 분석합니다.",
   },
   {
     q: "태어난 시간을 몰라도 되나요?",
@@ -128,7 +154,8 @@ export function calculateChemistry(
   } else if (zodiacScoreVal === -2) {
     zodiacScore = 20;
     zodiacLabel = "상극";
-    zodiacDesc = "성향이 정반대일 수 있습니다. 다름을 인정하는 것이 중요합니다.";
+    zodiacDesc =
+      "성향이 정반대일 수 있습니다. 다름을 인정하는 것이 중요합니다.";
   }
 
   // 2. 오행 궁합 (연주 천간 기준 약식)
@@ -159,7 +186,7 @@ export function calculateChemistry(
   }
 
   // 3. 종합 점수
-  const totalScore = Math.round((zodiacScore * 0.6) + (elementScore * 0.4)); // 띠 비중을 좀 더 높게
+  const totalScore = Math.round(zodiacScore * 0.6 + elementScore * 0.4); // 띠 비중을 좀 더 높게
 
   let title = "";
   let advice = "";
@@ -171,7 +198,7 @@ export function calculateChemistry(
     totalDescription = [
       "두 사람의 인연은 하늘이 맺어준 것처럼 강력합니다.",
       "성격적으로도 서로 부족한 점을 채워주며, 갈등이 생겨도 금방 해결될 것입니다.",
-      "함께 있으면 편안함과 설렘을 동시에 느낄 수 있는 최고의 궁합입니다."
+      "함께 있으면 편안함과 설렘을 동시에 느낄 수 있는 최고의 궁합입니다.",
     ];
   } else if (totalScore >= 70) {
     title = "알콩달콩 예쁜 사랑 💕";
@@ -179,7 +206,7 @@ export function calculateChemistry(
     totalDescription = [
       "전반적으로 조화로운 관계를 유지할 수 있는 좋은 궁합입니다.",
       "비슷한 가치관을 공유하고 있어 대화가 잘 통합니다.",
-      "사소한 다툼은 사랑의 조미료가 될 것입니다."
+      "사소한 다툼은 사랑의 조미료가 될 것입니다.",
     ];
   } else if (totalScore >= 50) {
     title = "친구 같은 편안한 사이 🤝";
@@ -187,7 +214,7 @@ export function calculateChemistry(
     totalDescription = [
       "뜨거운 열정보다는 은근한 정이 더 잘 어울리는 관계입니다.",
       "서로에게 너무 많은 것을 기대하기보다는 있는 그대로를 존중해주세요.",
-      "함께 취미를 공유하며 공감대를 넓혀가는 것이 좋습니다."
+      "함께 취미를 공유하며 공감대를 넓혀가는 것이 좋습니다.",
     ];
   } else {
     title = "서로의 노력이 필요한 관계 ❤️‍🩹";
@@ -195,7 +222,7 @@ export function calculateChemistry(
     totalDescription = [
       "두 분은 서로 다른 매력을 가지고 있어 처음에는 끌렸을지 모릅니다.",
       "하지만 성향 차이로 인해 오해가 쌓이기 쉬운 구조입니다.",
-      "내 방식을 고집하기보다는 상대방의 입장에서 한 번 더 생각해보세요."
+      "내 방식을 고집하기보다는 상대방의 입장에서 한 번 더 생각해보세요.",
     ];
   }
 
@@ -207,14 +234,14 @@ export function calculateChemistry(
     zodiacMatch: {
       score: zodiacScore,
       description: zodiacDesc,
-      label: zodiacLabel
+      label: zodiacLabel,
     },
     elementMatch: {
       score: elementScore,
       description: elementDesc,
-      label: elementLabel
+      label: elementLabel,
     },
     totalDescription,
-    advice
+    advice,
   };
 }

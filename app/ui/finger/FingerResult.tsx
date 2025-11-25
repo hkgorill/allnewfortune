@@ -107,8 +107,10 @@ export default function FingerResult({ resultData, onReset }: FingerResultProps)
       </motion.div>
 
       {/* Ad */}
-      <div className="w-full flex justify-center mb-8 overflow-hidden rounded-xl bg-white/5">
-         <KakaoAdFit unit="DAN-oEqhVJwNYljTA78D" width="300" height="250" />
+      <div className="w-full mb-8 flex justify-center items-center min-h-[250px] px-4">
+        <div className="w-full max-w-[300px] flex justify-center rounded-xl bg-white/5 p-2">
+          <KakaoAdFit unit="DAN-oEqhVJwNYljTA78D" width="300" height="250" />
+        </div>
       </div>
 
       <div className="w-full mb-8">

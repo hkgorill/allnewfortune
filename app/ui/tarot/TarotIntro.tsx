@@ -1,13 +1,34 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Eye, HelpCircle, Sparkles } from "lucide-react";
+import { Eye, HelpCircle, Sparkles, ArrowRight } from "lucide-react";
+import { useState } from "react";
 
 interface TarotIntroProps {
   onStart: () => void;
 }
 
+const TAROT_FAQ = [
+  {
+    q: "어떤 질문을 해야 하나요?",
+    a: '"오늘의 운세는?" 같은 가벼운 질문부터 "이 선택이 맞을까?" 같은 구체적인 고민까지 무엇이든 좋습니다. 마음속으로 질문을 집중해서 떠올려주세요.',
+  },
+  {
+    q: "결과가 나쁘게 나오면 어떡하죠?",
+    a: "타로는 미래를 확정 짓는 것이 아니라 조언을 주는 도구입니다. 카드의 메시지를 참고하여 더 좋은 방향으로 나아가세요.",
+  },
+  {
+    q: "하루에 여러 번 봐도 되나요?",
+    a: "같은 질문으로 여러 번 보는 것은 추천하지 않습니다. 하지만 다른 고민이 있다면 언제든 다시 확인해보셔도 좋습니다.",
+  },
+];
+
 export default function TarotIntro({ onStart }: TarotIntroProps) {
+  const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
+
+  const toggleFaq = (index: number) => {
+    setOpenFaqIndex(openFaqIndex === index ? null : index);
+  };
   return (
     <motion.div 
       initial={{ opacity: 0, y: 20 }}
@@ -44,29 +65,46 @@ export default function TarotIntro({ onStart }: TarotIntroProps) {
       </div>
 
       {/* FAQ Section */}
-      <div className="px-4 text-white/60 text-sm leading-relaxed">
-         <div className="p-6 bg-white/5 rounded-3xl border border-white/10 backdrop-blur-sm shadow-lg">
-           <div className="flex items-center gap-2 mb-6">
-              <HelpCircle className="text-blue-400" />
-              <h3 className="text-lg font-bold text-white">타로 FAQ</h3>
-           </div>
-           
-           <div className="space-y-6">
-             <div>
-               <h4 className="font-bold text-white mb-1">Q. 어떤 질문을 해야 하나요?</h4>
-               <p>A. "오늘의 운세는?" 같은 가벼운 질문부터 "이 선택이 맞을까?" 같은 구체적인 고민까지 무엇이든 좋습니다. 마음속으로 질문을 집중해서 떠올려주세요.</p>
-             </div>
-             <div>
-               <h4 className="font-bold text-white mb-1">Q. 결과가 나쁘게 나오면 어떡하죠?</h4>
-               <p>A. 타로는 미래를 확정 짓는 것이 아니라 조언을 주는 도구입니다. 카드의 메시지를 참고하여 더 좋은 방향으로 나아가세요.</p>
-             </div>
-             <div>
-               <h4 className="font-bold text-white mb-1">Q. 하루에 여러 번 봐도 되나요?</h4>
-               <p>A. 같은 질문으로 여러 번 보는 것은 추천하지 않습니다. 하지만 다른 고민이 있다면 언제든 다시 확인해보셔도 좋습니다.</p>
-             </div>
-           </div>
-         </div>
-      </div>
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.3, duration: 0.5 }}
+        className="w-full mb-8 px-4"
+      >
+        <h3 className="font-bold text-lg mb-4 flex items-center gap-2">
+          <HelpCircle className="w-5 h-5 text-blue-400" />
+          <span className="text-white">자주 묻는 질문</span>
+        </h3>
+        <div className="space-y-3">
+          {TAROT_FAQ.map((faq, index) => (
+            <div
+              key={index}
+              className="bg-white/5 border border-white/10 rounded-xl overflow-hidden transition-colors hover:bg-white/10"
+            >
+              <button
+                onClick={() => toggleFaq(index)}
+                className="w-full px-4 py-4 flex items-center justify-between text-left font-medium text-sm text-white"
+              >
+                <span className="pr-4">{faq.q}</span>
+                <ArrowRight
+                  className={`w-4 h-4 text-white/40 transition-transform duration-300 ${
+                    openFaqIndex === index ? "rotate-90" : ""
+                  }`}
+                />
+              </button>
+              <div
+                className={`px-4 text-sm text-white/60 bg-black/20 transition-all duration-300 ease-in-out ${
+                  openFaqIndex === index
+                    ? "max-h-40 py-4 opacity-100"
+                    : "max-h-0 py-0 opacity-0"
+                }`}
+              >
+                {faq.a}
+              </div>
+            </div>
+          ))}
+        </div>
+      </motion.div>
     </motion.div>
   );
 }

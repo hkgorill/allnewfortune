@@ -84,8 +84,10 @@ function FortuneContent() {
             </div>
 
             {fortuneStep === "result" && (
-                <div className="mt-8 mb-4 flex justify-center items-center w-full h-[250px] overflow-hidden">
+                <div className="w-full mt-8 mb-4 flex justify-center items-center min-h-[250px] px-4">
+                  <div className="w-full max-w-[250px] flex justify-center">
                     <KakaoAdFit unit="DAN-oEqhVJwNYljTA78D" width="250" height="250" />
+                  </div>
                 </div>
             )}
 

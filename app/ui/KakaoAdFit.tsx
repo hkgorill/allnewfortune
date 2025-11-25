@@ -44,8 +44,18 @@ export default function KakaoAdFit({ unit, width, height, className }: KakaoAdFi
   }, [unit, width, height]);
 
   return (
-    <div className={`flex justify-center items-center ${className}`}>
-       <div ref={adRef} style={{ width: `${width}px`, height: `${height}px`, minWidth: `${width}px`, minHeight: `${height}px` }} />
+    <div className={`flex justify-center items-center w-full ${className || ''}`}>
+       <div 
+         ref={adRef} 
+         className="flex justify-center items-center"
+         style={{ 
+           width: `${width}px`, 
+           height: `${height}px`, 
+           minWidth: `${width}px`, 
+           minHeight: `${height}px`,
+           maxWidth: '100%'
+         }} 
+       />
     </div>
   );
 }

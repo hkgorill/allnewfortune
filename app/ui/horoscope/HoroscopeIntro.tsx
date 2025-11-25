@@ -1,13 +1,34 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { MoonStar, HelpCircle } from "lucide-react";
+import { MoonStar, HelpCircle, ArrowRight } from "lucide-react";
+import { useState } from "react";
 
 interface HoroscopeIntroProps {
   onStart: () => void;
 }
 
+const HOROSCOPE_FAQ = [
+  {
+    q: "제 별자리를 모르겠어요.",
+    a: "생일 기준으로 정해집니다. 별자리 선택 화면에서 날짜를 확인하고 선택하시면 됩니다.",
+  },
+  {
+    q: "운세는 매일 바뀌나요?",
+    a: "네, 매일 자정을 기준으로 새로운 별들의 배치를 분석하여 오늘의 운세가 갱신됩니다.",
+  },
+  {
+    q: "행운의 아이템은 무엇인가요?",
+    a: "그날 당신의 기운을 북돋아 줄 색상, 숫자, 시간을 추천해 드립니다. 참고하여 하루를 계획해보세요.",
+  },
+];
+
 export default function HoroscopeIntro({ onStart }: HoroscopeIntroProps) {
+  const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
+
+  const toggleFaq = (index: number) => {
+    setOpenFaqIndex(openFaqIndex === index ? null : index);
+  };
   return (
     <motion.div 
       initial={{ opacity: 0, y: 20 }}
@@ -44,29 +65,46 @@ export default function HoroscopeIntro({ onStart }: HoroscopeIntroProps) {
       </div>
 
       {/* FAQ Section */}
-      <div className="px-4 text-white/60 text-sm leading-relaxed">
-         <div className="p-6 bg-white/5 rounded-3xl border border-white/10 backdrop-blur-sm shadow-lg">
-           <div className="flex items-center gap-2 mb-6">
-              <HelpCircle className="text-violet-400" />
-              <h3 className="text-lg font-bold text-white">별자리 FAQ</h3>
-           </div>
-           
-           <div className="space-y-6">
-             <div>
-               <h4 className="font-bold text-white mb-1">Q. 제 별자리를 모르겠어요.</h4>
-               <p>A. 생일 기준으로 정해집니다. 별자리 선택 화면에서 날짜를 확인하고 선택하시면 됩니다.</p>
-             </div>
-             <div>
-               <h4 className="font-bold text-white mb-1">Q. 운세는 매일 바뀌나요?</h4>
-               <p>A. 네, 매일 자정을 기준으로 새로운 별들의 배치를 분석하여 오늘의 운세가 갱신됩니다.</p>
-             </div>
-             <div>
-               <h4 className="font-bold text-white mb-1">Q. 행운의 아이템은 무엇인가요?</h4>
-               <p>A. 그날 당신의 기운을 북돋아 줄 색상, 숫자, 시간을 추천해 드립니다. 참고하여 하루를 계획해보세요.</p>
-             </div>
-           </div>
-         </div>
-      </div>
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.3, duration: 0.5 }}
+        className="w-full mb-8 px-4"
+      >
+        <h3 className="font-bold text-lg mb-4 flex items-center gap-2">
+          <HelpCircle className="w-5 h-5 text-violet-400" />
+          <span className="text-white">자주 묻는 질문</span>
+        </h3>
+        <div className="space-y-3">
+          {HOROSCOPE_FAQ.map((faq, index) => (
+            <div
+              key={index}
+              className="bg-white/5 border border-white/10 rounded-xl overflow-hidden transition-colors hover:bg-white/10"
+            >
+              <button
+                onClick={() => toggleFaq(index)}
+                className="w-full px-4 py-4 flex items-center justify-between text-left font-medium text-sm text-white"
+              >
+                <span className="pr-4">{faq.q}</span>
+                <ArrowRight
+                  className={`w-4 h-4 text-white/40 transition-transform duration-300 ${
+                    openFaqIndex === index ? "rotate-90" : ""
+                  }`}
+                />
+              </button>
+              <div
+                className={`px-4 text-sm text-white/60 bg-black/20 transition-all duration-300 ease-in-out ${
+                  openFaqIndex === index
+                    ? "max-h-40 py-4 opacity-100"
+                    : "max-h-0 py-0 opacity-0"
+                }`}
+              >
+                {faq.a}
+              </div>
+            </div>
+          ))}
+        </div>
+      </motion.div>
     </motion.div>
   );
 }
