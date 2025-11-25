@@ -1,3 +1,5 @@
+export type PsychologyTestType = "forest" | "island" | "love";
+
 export interface PsychQuestion {
   id: number;
   text: string;
@@ -8,8 +10,9 @@ export interface PsychQuestion {
 }
 
 export interface PsychResultType {
+  testType: PsychologyTestType;
   type: string;
-  name: string; // 동물/캐릭터 이름
+  name: string; // 동물/캐릭터 이름 또는 유형
   tags: string[];
   description: string;
   advice: string;
@@ -17,7 +20,8 @@ export interface PsychResultType {
   emoji: string;
 }
 
-export const PSYCH_QUESTIONS: PsychQuestion[] = [
+// 숲속 심리테스트 질문
+export const FOREST_QUESTIONS: PsychQuestion[] = [
   {
     id: 1,
     text: "낯선 숲속에 들어왔다. 눈앞에 보이는 길은?",
@@ -76,8 +80,10 @@ export const PSYCH_QUESTIONS: PsychQuestion[] = [
   }
 ];
 
-export const PSYCH_RESULTS: Record<string, PsychResultType> = {
+// 숲속 심리테스트 결과
+export const FOREST_RESULTS: Record<string, PsychResultType> = {
   Leader: {
+    testType: "forest",
     type: "Leader",
     name: "용감한 사자",
     tags: ["#야망", "#리더십", "#현실적"],
@@ -87,6 +93,7 @@ export const PSYCH_RESULTS: Record<string, PsychResultType> = {
     emoji: "🦁"
   },
   Artist: {
+    testType: "forest",
     type: "Artist",
     name: "자유로운 고양이",
     tags: ["#개성", "#독립적", "#예술적"],
@@ -96,6 +103,7 @@ export const PSYCH_RESULTS: Record<string, PsychResultType> = {
     emoji: "🐱"
   },
   Healer: {
+    testType: "forest",
     type: "Healer",
     name: "따뜻한 강아지",
     tags: ["#공감", "#배려", "#평화"],
@@ -105,6 +113,7 @@ export const PSYCH_RESULTS: Record<string, PsychResultType> = {
     emoji: "🐶"
   },
   Thinker: {
+    testType: "forest",
     type: "Thinker",
     name: "지혜로운 부엉이",
     tags: ["#신중", "#통찰력", "#분석"],
@@ -115,20 +124,235 @@ export const PSYCH_RESULTS: Record<string, PsychResultType> = {
   }
 };
 
-// 간단한 분석 로직
-export const calculatePsychology = (answers: Record<string, string>): PsychResultType => {
+// 무인도 심리테스트 질문 (물건 선택)
+export const ISLAND_ITEMS = [
+  { id: "water", name: "생수", emoji: "💧", category: "survival" },
+  { id: "knife", name: "칼", emoji: "🔪", category: "tool" },
+  { id: "rope", name: "로프", emoji: "🪢", category: "tool" },
+  { id: "mirror", name: "거울", emoji: "🪞", category: "signal" },
+  { id: "compass", name: "나침반", emoji: "🧭", category: "navigation" },
+  { id: "flashlight", name: "손전등", emoji: "🔦", category: "tool" },
+  { id: "book", name: "책", emoji: "📖", category: "mental" },
+  { id: "radio", name: "무전기", emoji: "📻", category: "signal" },
+  { id: "tent", name: "텐트", emoji: "⛺", category: "survival" },
+  { id: "medicine", name: "구급약", emoji: "💊", category: "survival" },
+  { id: "map", name: "지도", emoji: "🗺️", category: "navigation" },
+  { id: "food", name: "식량", emoji: "🍖", category: "survival" },
+];
+
+// 무인도 심리테스트 결과
+export const ISLAND_RESULTS: Record<string, PsychResultType> = {
+  Survivalist: {
+    testType: "island",
+    type: "Survivalist",
+    name: "생존 전문가",
+    tags: ["#실용적", "#현실적", "#생존력"],
+    description: "당신은 생존에 필수적인 물건들을 우선적으로 선택하는 현실적이고 실용적인 사람입니다. 위기 상황에서도 침착하게 대처할 수 있는 능력을 가지고 있습니다.",
+    advice: "생존에 집중하는 것도 좋지만, 때로는 여유와 낙관도 필요합니다.",
+    color: "text-orange-500",
+    emoji: "🏕️"
+  },
+  Strategist: {
+    testType: "island",
+    type: "Strategist",
+    name: "전략가",
+    tags: ["#계획적", "#분석적", "#체계적"],
+    description: "당신은 구조나 탈출을 위한 도구들을 선택하는 전략적 사고를 가진 사람입니다. 상황을 분석하고 체계적으로 해결책을 찾는 능력이 뛰어납니다.",
+    advice: "계획이 완벽하지 않아도 일단 시작하는 용기가 필요할 때가 있습니다.",
+    color: "text-blue-500",
+    emoji: "🧭"
+  },
+  Optimist: {
+    testType: "island",
+    type: "Optimist",
+    name: "낙천주의자",
+    tags: ["#긍정적", "#여유", "#낙관적"],
+    description: "당신은 정신적 위안이나 여가를 위한 물건들을 선택하는 낙천적인 사람입니다. 어려운 상황에서도 긍정적인 마인드를 유지할 수 있는 힘이 있습니다.",
+    advice: "긍정적인 마인드는 좋지만, 현실적인 준비도 함께 하면 더 좋습니다.",
+    color: "text-yellow-500",
+    emoji: "☀️"
+  },
+  Balanced: {
+    testType: "island",
+    type: "Balanced",
+    name: "균형잡힌 사람",
+    tags: ["#균형", "#다양성", "#융통성"],
+    description: "당신은 생존, 구조, 정신적 위안을 모두 고려하여 균형잡힌 선택을 하는 사람입니다. 다양한 상황에 유연하게 대응할 수 있는 능력을 가지고 있습니다.",
+    advice: "균형은 좋지만, 때로는 한 가지에 집중하는 것도 필요합니다.",
+    color: "text-green-500",
+    emoji: "⚖️"
+  }
+};
+
+// 연애 MBTI 심리테스트 질문
+export const LOVE_QUESTIONS: PsychQuestion[] = [
+  {
+    id: 1,
+    text: "첫 데이트 중 갑자기 비가 왔다. 당신의 반응은?",
+    options: [
+      { text: "우산을 사러 가거나 카페로 들어간다 ☂️", type: "P" },
+      { text: "미리 확인한 실내 장소로 이동한다 📍", type: "J" }
+    ]
+  },
+  {
+    id: 2,
+    text: "데이트 중 상대방이 늦었다. 30분 후 당신은?",
+    options: [
+      { text: "연락을 해서 상황을 확인한다 📱", type: "E" },
+      { text: "조용히 기다리며 혼자 시간을 보낸다 ⏰", type: "I" }
+    ]
+  },
+  {
+    id: 3,
+    text: "데이트 장소를 정할 때 당신은?",
+    options: [
+      { text: "새롭고 특별한 곳을 제안한다 ✨", type: "N" },
+      { text: "검증된 맛집이나 안전한 곳을 선택한다 🍽️", type: "S" }
+    ]
+  },
+  {
+    id: 4,
+    text: "데이트 중 대화가 끊겼을 때 당신은?",
+    options: [
+      { text: "새로운 주제를 찾아 대화를 이어간다 💬", type: "E" },
+      { text: "편안한 침묵을 즐긴다 🤫", type: "I" }
+    ]
+  },
+  {
+    id: 5,
+    text: "상대방이 예상치 못한 선물을 줬다. 당신은?",
+    options: [
+      { text: "즉시 기뻐하며 감사를 표현한다 🎁", type: "F" },
+      { text: "선물의 의미를 생각해보며 반응한다 🤔", type: "T" }
+    ]
+  },
+  {
+    id: 6,
+    text: "데이트 계획이 갑자기 바뀌었다. 당신은?",
+    options: [
+      { text: "즉흥적으로 새로운 계획을 세운다 🎲", type: "P" },
+      { text: "약간 당황하지만 대안을 찾는다 📋", type: "J" }
+    ]
+  },
+  {
+    id: 7,
+    text: "상대방과 의견이 다를 때 당신은?",
+    options: [
+      { text: "감정을 고려하며 부드럽게 설득한다 💕", type: "F" },
+      { text: "논리적으로 이유를 설명한다 📊", type: "T" }
+    ]
+  },
+  {
+    id: 8,
+    text: "이상적인 데이트는?",
+    options: [
+      { text: "계획된 완벽한 하루 📅", type: "J" },
+      { text: "즉흥적이고 자유로운 하루 🎈", type: "P" }
+    ]
+  }
+];
+
+// 연애 MBTI 심리테스트 결과
+export const LOVE_RESULTS: Record<string, PsychResultType> = {
+  ENFP: {
+    testType: "love",
+    type: "ENFP",
+    name: "열정적인 연애인",
+    tags: ["#열정", "#즉흥", "#로맨틱"],
+    description: "당신은 연애에서 자유롭고 열정적인 스타일입니다. 계획보다는 즉흥적인 데이트를 즐기며, 상대방과의 감정적 교감을 중시합니다.",
+    advice: "때로는 계획된 데이트도 로맨틱할 수 있답니다. 균형을 찾아보세요.",
+    color: "text-pink-500",
+    emoji: "💖"
+  },
+  INTJ: {
+    testType: "love",
+    type: "INTJ",
+    name: "전략적 연애인",
+    tags: ["#계획적", "#신중", "#논리적"],
+    description: "당신은 연애에서도 계획적이고 신중한 스타일입니다. 감정보다는 논리적으로 관계를 분석하며, 완벽한 데이트를 준비하는 것을 좋아합니다.",
+    advice: "가끔은 계획을 버리고 순간의 감정에 맡겨보세요. 새로운 발견이 있을 거예요.",
+    color: "text-indigo-500",
+    emoji: "🎯"
+  },
+  ESFJ: {
+    testType: "love",
+    type: "ESFJ",
+    name: "배려심 많은 연애인",
+    tags: ["#배려", "#안정", "#소통"],
+    description: "당신은 상대방을 배려하고 안정적인 관계를 추구하는 스타일입니다. 감정적 소통을 중시하며, 상대방의 기분을 잘 살핍니다.",
+    advice: "상대방을 배려하는 것도 좋지만, 자신의 감정도 솔직하게 표현해보세요.",
+    color: "text-rose-500",
+    emoji: "🌹"
+  },
+  ISTP: {
+    testType: "love",
+    type: "ISTP",
+    name: "자유로운 연애인",
+    tags: ["#독립", "#실용", "#여유"],
+    description: "당신은 연애에서도 독립적이고 실용적인 스타일입니다. 과한 계획보다는 자연스러운 흐름을 좋아하며, 상대방과의 여유로운 시간을 즐깁니다.",
+    advice: "가끔은 상대방을 위한 작은 계획도 로맨틱할 수 있습니다.",
+    color: "text-cyan-500",
+    emoji: "🌊"
+  }
+};
+
+// 숲속 심리테스트 분석
+export const calculateForest = (answers: Record<string, string>): PsychResultType => {
   let scoreA = 0;
   Object.values(answers).forEach(val => {
     if (val === 'A') scoreA++;
   });
-
-  // A가 많으면 외향/주도형(사자), 적으면 내향/신중형(부엉이) 등등 단순 분류
-  // 실제로는 더 복잡한 로직이 가능하지만 예시용으로 4분할
-  // 문항 7개: A개수 0-1(부엉이), 2-3(고양이), 4-5(강아지), 6-7(사자) - 예시
   
-  if (scoreA >= 6) return PSYCH_RESULTS['Leader'];
-  if (scoreA >= 4) return PSYCH_RESULTS['Healer']; // A/B 섞임 (사회적)
-  if (scoreA >= 2) return PSYCH_RESULTS['Artist']; // B가 좀 더 많음 (개인적)
-  return PSYCH_RESULTS['Thinker']; // B가 압도적 (내면적)
+  if (scoreA >= 6) return FOREST_RESULTS['Leader'];
+  if (scoreA >= 4) return FOREST_RESULTS['Healer'];
+  if (scoreA >= 2) return FOREST_RESULTS['Artist'];
+  return FOREST_RESULTS['Thinker'];
 };
+
+// 무인도 심리테스트 분석 (선택한 물건 3개 기반)
+export const calculateIsland = (selectedItems: string[]): PsychResultType => {
+  const categories = selectedItems.map(itemId => {
+    const item = ISLAND_ITEMS.find(i => i.id === itemId);
+    return item?.category || "unknown";
+  });
+  
+  const survivalCount = categories.filter(c => c === "survival").length;
+  const signalCount = categories.filter(c => c === "signal" || c === "navigation").length;
+  const mentalCount = categories.filter(c => c === "mental").length;
+  
+  if (survivalCount >= 2) return ISLAND_RESULTS['Survivalist'];
+  if (signalCount >= 2) return ISLAND_RESULTS['Strategist'];
+  if (mentalCount >= 1 && survivalCount >= 1) return ISLAND_RESULTS['Optimist'];
+  return ISLAND_RESULTS['Balanced'];
+};
+
+// 연애 MBTI 심리테스트 분석
+export const calculateLove = (answers: Record<string, string>): PsychResultType => {
+  let E = 0, I = 0, N = 0, S = 0, F = 0, T = 0, P = 0, J = 0;
+  
+  Object.values(answers).forEach(val => {
+    if (val === 'E') E++;
+    if (val === 'I') I++;
+    if (val === 'N') N++;
+    if (val === 'S') S++;
+    if (val === 'F') F++;
+    if (val === 'T') T++;
+    if (val === 'P') P++;
+    if (val === 'J') J++;
+  });
+  
+  // 간단한 MBTI 조합 (실제로는 더 복잡한 로직 필요)
+  const type = `${E >= I ? 'E' : 'I'}${N >= S ? 'N' : 'S'}${F >= T ? 'F' : 'T'}${P >= J ? 'P' : 'J'}`;
+  
+  // 4가지 타입만 반환 (실제로는 16가지 가능)
+  if (type.startsWith('EN')) return LOVE_RESULTS['ENFP'];
+  if (type.startsWith('IN') && type.includes('T')) return LOVE_RESULTS['INTJ'];
+  if (type.startsWith('ES') && type.includes('F')) return LOVE_RESULTS['ESFJ'];
+  return LOVE_RESULTS['ISTP'];
+};
+
+// 레거시 호환성 (기존 코드용)
+export const PSYCH_QUESTIONS = FOREST_QUESTIONS;
+export const PSYCH_RESULTS = FOREST_RESULTS;
+export const calculatePsychology = calculateForest;
 

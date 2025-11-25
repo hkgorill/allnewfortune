@@ -1,12 +1,65 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Activity, HelpCircle, ArrowRight } from "lucide-react";
+import {
+  Activity,
+  HelpCircle,
+  ArrowRight,
+  TreePine,
+  Ship,
+  Heart,
+} from "lucide-react";
 import { useState } from "react";
 
+export type PsychologyTestType = "forest" | "island" | "love";
+
 interface PsychologyIntroProps {
-  onStart: () => void;
+  onStart: (testType: PsychologyTestType) => void;
 }
+
+const PSYCHOLOGY_TESTS: {
+  id: PsychologyTestType;
+  name: string;
+  subtitle: string;
+  emoji: string;
+  icon: typeof Activity;
+  color: string;
+  shadowColor: string;
+  description: string;
+}[] = [
+  {
+    id: "forest",
+    name: "숲속 심리테스트",
+    subtitle: "투사적 심리테스트",
+    emoji: "🌲",
+    icon: TreePine,
+    color: "from-green-500 to-emerald-600",
+    shadowColor: "rgba(34,197,94,0.4)",
+    description: "상상 속의 숲을 거닐며 나의 무의식을 확인해보세요.",
+  },
+  {
+    id: "island",
+    name: "무인도 심리테스트",
+    subtitle: "상황/선택 심리테스트",
+    emoji: "🏝️",
+    icon: Ship,
+    color: "from-blue-500 to-cyan-600",
+    shadowColor: "rgba(59,130,246,0.4)",
+    description:
+      "무인도에 가져갈 물건 3가지를 선택하여 나의 우선순위와 가치관을 확인합니다.",
+  },
+  {
+    id: "love",
+    name: "연애 MBTI 심리테스트",
+    subtitle: "상황/선택 심리테스트",
+    emoji: "💌",
+    icon: Heart,
+    color: "from-pink-500 to-rose-600",
+    shadowColor: "rgba(236,72,153,0.4)",
+    description:
+      "데이트 중 예상치 못한 상황에 대한 반응을 통해 연애 스타일을 분석합니다.",
+  },
+];
 
 const PSYCHOLOGY_FAQ = [
   {
@@ -46,22 +99,54 @@ export default function PsychologyIntro({ onStart }: PsychologyIntroProps) {
           </div>
 
           <h2 className="text-3xl font-bold text-white mb-2 drop-shadow-sm">
-            숲속 심리테스트
+            심리테스트
           </h2>
-          <p className="text-green-100 mb-8 font-light">
-            상상 속의 숲을 거닐며
+          <p className="text-green-100 mb-6 font-light text-center">
+            나를 더 깊이 알아보는
             <br />
-            나의 무의식을 확인해보세요.
+            3가지 심리테스트
           </p>
 
-          <motion.button
-            onClick={onStart}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="w-full py-4 bg-gradient-to-r from-green-500 to-emerald-600 text-white rounded-2xl font-bold text-lg shadow-[0_0_20px_rgba(16,185,129,0.4)] hover:shadow-[0_0_30px_rgba(16,185,129,0.6)] transition-all"
-          >
-            숲으로 떠나기 🌲
-          </motion.button>
+          <div className="w-full space-y-3 mb-4">
+            {PSYCHOLOGY_TESTS.map((test, index) => {
+              const Icon = test.icon;
+              return (
+                <motion.button
+                  key={test.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.1 + index * 0.1 }}
+                  onClick={() => onStart(test.id)}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className={`w-full py-4 px-5 bg-gradient-to-r ${test.color} text-white rounded-2xl font-bold text-lg transition-all flex items-center justify-between group`}
+                  style={{
+                    boxShadow: `0 0 20px ${test.shadowColor}`,
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.boxShadow = `0 0 30px ${test.shadowColor.replace(
+                      "0.4",
+                      "0.6"
+                    )}`;
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.boxShadow = `0 0 20px ${test.shadowColor}`;
+                  }}
+                >
+                  <div className="flex items-center gap-3">
+                    <span className="text-2xl">{test.emoji}</span>
+                    <div className="text-left">
+                      <div className="text-xs opacity-90 mb-0.5">
+                        {test.subtitle}
+                      </div>
+                      <div className="text-base">{test.name}</div>
+                    </div>
+                  </div>
+                  <Icon className="w-5 h-5 opacity-0 group-hover:opacity-100 transition-opacity" />
+                </motion.button>
+              );
+            })}
+          </div>
         </div>
       </div>
 

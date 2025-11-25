@@ -4,7 +4,7 @@ import { useState, useEffect, Suspense } from "react";
 import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
 import { ChevronLeft } from "lucide-react";
-import PsychologyIntro from "../ui/psychology/PsychologyIntro";
+import PsychologyIntro, { PsychologyTestType } from "../ui/psychology/PsychologyIntro";
 import PsychologyTest from "../ui/psychology/PsychologyTest";
 import PsychologyResult from "../ui/psychology/PsychologyResult";
 import PsychologyDescription from "../ui/psychology/PsychologyDescription";
@@ -18,6 +18,7 @@ function PsychologyContent() {
   const router = useRouter();
   const [psychologyStep, setPsychologyStep] = useState<PsychologyStep>("intro");
   const [psychologyResult, setPsychologyResult] = useState<PsychResultType | null>(null);
+  const [selectedTestType, setSelectedTestType] = useState<PsychologyTestType>("forest");
   const { sharedData, isLoaded, shareData, clearShareUrl } = useUrlShare<PsychResultType>();
 
   useEffect(() => {
@@ -27,7 +28,8 @@ function PsychologyContent() {
     }
   }, [isLoaded, sharedData]);
 
-  const handlePsychologyStart = () => {
+  const handlePsychologyStart = (testType: PsychologyTestType) => {
+    setSelectedTestType(testType);
     setPsychologyStep("test");
   };
 
@@ -65,7 +67,7 @@ function PsychologyContent() {
         <div className="flex-1 overflow-y-auto pb-20 px-4 pt-6">
           <div className="w-full transition-all duration-500">
             {psychologyStep === "intro" && <PsychologyIntro onStart={handlePsychologyStart} />}
-            {psychologyStep === "test" && <PsychologyTest onComplete={handlePsychologyComplete} />}
+            {psychologyStep === "test" && <PsychologyTest testType={selectedTestType} onComplete={handlePsychologyComplete} />}
             {psychologyStep === "loading" && <FortuneLoading type="psychology" />}
             {psychologyStep === "result" && psychologyResult && <PsychologyResult result={psychologyResult} onReset={handlePsychologyReset} />}
             

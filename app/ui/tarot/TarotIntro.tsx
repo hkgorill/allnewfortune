@@ -20,36 +20,42 @@ const TAROT_CATEGORIES: {
   name: string;
   emoji: string;
   color: string;
+  shadowColor: string;
 }[] = [
   {
     id: "business",
     name: "사업운",
     emoji: "💼",
     color: "from-green-500 to-emerald-500",
+    shadowColor: "rgba(34,197,94,0.4)",
   },
   {
     id: "love",
     name: "애정운",
     emoji: "💕",
     color: "from-pink-500 to-rose-500",
+    shadowColor: "rgba(236,72,153,0.4)",
   },
   {
     id: "study",
     name: "학업운",
     emoji: "📚",
     color: "from-blue-500 to-cyan-500",
+    shadowColor: "rgba(59,130,246,0.4)",
   },
   {
     id: "career",
     name: "취업운",
     emoji: "🎯",
     color: "from-purple-500 to-indigo-500",
+    shadowColor: "rgba(168,85,247,0.4)",
   },
   {
     id: "relationship",
     name: "인간관계운",
     emoji: "🤝",
     color: "from-orange-500 to-amber-500",
+    shadowColor: "rgba(249,115,22,0.4)",
   },
 ];
 
@@ -115,9 +121,21 @@ export default function TarotIntro({ onStart }: TarotIntroProps) {
               <motion.button
                 key={category.id}
                 onClick={() => onStart(category.id)}
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                className={`w-full py-3 px-4 bg-gradient-to-r ${category.color} text-white rounded-xl font-bold text-sm shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-2`}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className={`w-full py-4 bg-gradient-to-r ${category.color} text-white rounded-2xl font-bold text-lg transition-all flex items-center justify-center gap-2`}
+                style={{
+                  boxShadow: `0 0 20px ${category.shadowColor}`,
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.boxShadow = `0 0 30px ${category.shadowColor.replace(
+                    "0.4",
+                    "0.6"
+                  )}`;
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.boxShadow = `0 0 20px ${category.shadowColor}`;
+                }}
               >
                 <span className="text-lg">{category.emoji}</span>
                 <span>{category.name}</span>
