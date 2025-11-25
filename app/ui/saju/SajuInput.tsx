@@ -18,10 +18,37 @@ export default function SajuInput({
   const [birthdate, setBirthdate] = useState("");
   const [gender, setGender] = useState<"male" | "female" | "none">("none");
   
+  // 생년월일 드롭다운 상태
+  const [year, setYear] = useState("");
+  const [month, setMonth] = useState("");
+  const [day, setDay] = useState("");
+  
   // 시간 관련 상태
   const [ampm, setAmpm] = useState("AM");
   const [hour, setHour] = useState("");
   const [minute, setMinute] = useState("");
+
+  // 생년월일 드롭다운에서 날짜 문자열 생성
+  useEffect(() => {
+    if (year && month && day) {
+      const formattedDate = `${year}-${month.padStart(2, "0")}-${day.padStart(2, "0")}`;
+      setBirthdate(formattedDate);
+    } else {
+      setBirthdate("");
+    }
+  }, [year, month, day]);
+
+  // 기존 birthdate에서 드롭다운 값 추출
+  useEffect(() => {
+    if (birthdate && !year && !month && !day) {
+      const [y, m, d] = birthdate.split("-");
+      if (y && m && d) {
+        setYear(y);
+        setMonth(m);
+        setDay(d);
+      }
+    }
+  }, [birthdate]);
 
   // 로컬 스토리지에서 사용자 정보 불러오기
   useEffect(() => {
@@ -30,7 +57,15 @@ export default function SajuInput({
       try {
         const parsed = JSON.parse(saved);
         if (parsed.username) setName(parsed.username);
-        if (parsed.birthdate) setBirthdate(parsed.birthdate);
+        if (parsed.birthdate) {
+          const [y, m, d] = parsed.birthdate.split("-");
+          if (y && m && d) {
+            setYear(y);
+            setMonth(m);
+            setDay(d);
+          }
+          setBirthdate(parsed.birthdate);
+        }
         if (parsed.gender) setGender(parsed.gender);
         if (parsed.birthtime) {
           const [pAmpm, pTime] = parsed.birthtime.split(" ");
@@ -96,18 +131,74 @@ export default function SajuInput({
           </div>
         </div>
 
-        {/* Birthdate Input (Required) */}
+        {/* Birthdate Input (Required) - 드롭다운 3단 */}
         <div className="space-y-2 group">
           <label className="flex items-center gap-2 text-sm font-medium text-emerald-200/80 transition-colors group-focus-within:text-emerald-200">
             <Calendar size={16} /> 생년월일 (양력/필수)
           </label>
-          <input
-            type="date"
-            required
-            value={birthdate}
-            onChange={(e) => setBirthdate(e.target.value)}
-            className="w-full p-4 rounded-2xl bg-black/20 border border-white/10 text-white focus:ring-2 focus:ring-emerald-400/50 focus:bg-white/10 focus:border-white/30 outline-none transition-all duration-300 calendar-invert"
-          />
+          <div className="flex gap-2">
+            {/* 연도 드롭다운 */}
+            <div className="relative flex-1">
+              <select
+                required
+                value={year}
+                onChange={(e) => setYear(e.target.value)}
+                className="w-full p-4 rounded-2xl bg-black/20 border border-white/10 text-white appearance-none focus:ring-2 focus:ring-emerald-400/50 focus:bg-white/10 focus:border-white/30 outline-none transition-all text-center cursor-pointer"
+              >
+                <option value="" className="bg-gray-800">연도</option>
+                {Array.from({ length: 2025 - 1950 + 1 }, (_, i) => 2025 - i).map((y) => (
+                  <option key={y} value={y} className="bg-gray-800">
+                    {y}년
+                  </option>
+                ))}
+              </select>
+              <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-white/50 pointer-events-none" />
+            </div>
+            
+            {/* 월 드롭다운 */}
+            <div className="relative flex-1">
+              <select
+                required
+                value={month}
+                onChange={(e) => {
+                  setMonth(e.target.value);
+                  setDay(""); // 월이 변경되면 일 초기화
+                }}
+                className="w-full p-4 rounded-2xl bg-black/20 border border-white/10 text-white appearance-none focus:ring-2 focus:ring-emerald-400/50 focus:bg-white/10 focus:border-white/30 outline-none transition-all text-center cursor-pointer"
+              >
+                <option value="" className="bg-gray-800">월</option>
+                {Array.from({ length: 12 }, (_, i) => i + 1).map((m) => (
+                  <option key={m} value={m} className="bg-gray-800">
+                    {m}월
+                  </option>
+                ))}
+              </select>
+              <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-white/50 pointer-events-none" />
+            </div>
+            
+            {/* 일 드롭다운 */}
+            <div className="relative flex-1">
+              <select
+                required
+                value={day}
+                onChange={(e) => setDay(e.target.value)}
+                disabled={!month || !year}
+                className="w-full p-4 rounded-2xl bg-black/20 border border-white/10 text-white appearance-none focus:ring-2 focus:ring-emerald-400/50 focus:bg-white/10 focus:border-white/30 outline-none transition-all text-center cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                <option value="" className="bg-gray-800">일</option>
+                {(() => {
+                  if (!month || !year) return [];
+                  const daysInMonth = new Date(parseInt(year), parseInt(month), 0).getDate();
+                  return Array.from({ length: daysInMonth }, (_, i) => i + 1).map((d) => (
+                    <option key={d} value={d} className="bg-gray-800">
+                      {d}일
+                    </option>
+                  ));
+                })()}
+              </select>
+              <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-white/50 pointer-events-none" />
+            </div>
+          </div>
         </div>
 
         {/* Time Input */}
