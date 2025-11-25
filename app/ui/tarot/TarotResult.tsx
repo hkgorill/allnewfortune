@@ -7,21 +7,59 @@ import { TarotCard } from "../../data/tarotData";
 import KakaoAdFit from "../KakaoAdFit";
 import GoogleAdSense from "../GoogleAdSense";
 
+import { TarotCategory } from "./TarotIntro";
+
 interface TarotResultProps {
-  card: TarotCard;
+  cards: TarotCard[];
+  category: TarotCategory;
   onReset: () => void;
 }
 
-export default function TarotResult({ card, onReset }: TarotResultProps) {
+export default function TarotResult({ cards, category, onReset }: TarotResultProps) {
   const [isSharing, setIsSharing] = useState(false);
+
+  const getCategoryName = (cat: TarotCategory): string => {
+    const names: Record<TarotCategory, string> = {
+      business: "사업운",
+      love: "애정운",
+      study: "학업운",
+      career: "취업운",
+      relationship: "인간관계운",
+    };
+    return names[cat];
+  };
+
+  // 3장 카드 조합 점괘 생성
+  const getCombinedReading = (): { description: string; advice: string } => {
+    const descriptions = cards.map(c => c.description);
+    const advices = cards.map(c => c.advice);
+    const keywords = cards.flatMap(c => c.keywords);
+    
+    // 카테고리별 맞춤 해석
+    const categoryContext: Record<TarotCategory, string> = {
+      business: "사업과 재물에 관한",
+      love: "사랑과 연애에 관한",
+      study: "학업과 공부에 관한",
+      career: "취업과 진로에 관한",
+      relationship: "인간관계에 관한",
+    };
+
+    return {
+      description: `${categoryContext[category]} 운명의 흐름을 보면, ${descriptions[0]} ${descriptions[1]} 그리고 ${descriptions[2]}`,
+      advice: `세 카드가 전하는 조언은 다음과 같습니다. 첫째, ${advices[0]} 둘째, ${advices[1]} 셋째, ${advices[2]} 이 세 가지를 종합하면, ${getCategoryName(category)}에 있어 균형과 조화가 중요합니다.`,
+    };
+  };
+
+  const combinedReading = getCombinedReading();
 
   const handleShare = async () => {
     if (isSharing) return;
     setIsSharing(true);
 
+    const cardsText = cards.map((c, i) => `${i + 1}. ${c.name_ko} (${c.name})`).join('\n');
     const shareData = {
-      title: '나의 타로 카드 결과 - ALL NEW FORTUNE',
-      text: `[타로 카드 결과]\n\n🔮 ${card.name_ko} (${card.name})\n\n"${card.advice}"\n\n당신의 운명도 확인해보세요!`,
+      title: `나의 ${getCategoryName(category)} 타로 결과 - ALL NEW FORTUNE`,
+      text: `[${getCategoryName(category)} 타로 카드 결과]\n\n${cardsText}\n\n"${combinedReading.advice}"\n\n당신의 운명도 확인해보세요!`,
       url: window.location.href,
     };
 
@@ -59,68 +97,98 @@ export default function TarotResult({ card, onReset }: TarotResultProps) {
         animate={{ opacity: 1, y: 0 }}
         className="text-center mb-6"
       >
-        <p className="text-blue-200 text-sm font-bold mb-2">당신이 뽑은 카드는</p>
-        <h2 className={`text-3xl font-bold ${card.color} drop-shadow-md`}>
-          {card.name_ko}
+        <p className="text-blue-200 text-sm font-bold mb-2">{getCategoryName(category)}</p>
+        <h2 className="text-2xl font-bold text-white drop-shadow-md mb-1">
+          당신이 뽑은 3장의 카드
         </h2>
-        <p className="text-white/50 text-xs uppercase tracking-widest mt-1">
-          {card.name}
-        </p>
+        <p className="text-white/50 text-xs">메이저 아르카나 22장 중 선택</p>
       </motion.div>
 
-      {/* Card Display */}
+      {/* 3 Cards Display */}
       <motion.div 
         initial={{ scale: 0.5, rotateY: 180, opacity: 0 }}
         animate={{ scale: 1, rotateY: 0, opacity: 1 }}
         transition={{ duration: 0.8, type: "spring" }}
-        className="flex justify-center mb-8 perspective-1000"
+        className="flex justify-center gap-3 mb-8 perspective-1000 px-4"
       >
-         <div className="relative w-48 h-72 bg-gradient-to-br from-gray-900 to-black rounded-2xl border-2 border-white/20 shadow-[0_0_50px_rgba(255,255,255,0.1)] flex flex-col items-center justify-center overflow-hidden group">
-            {/* Background Glow */}
-            <div className="absolute inset-0 bg-gradient-to-t from-indigo-900/50 to-transparent" />
-            
-            {/* Card Image (Emoji) */}
-            <span className="text-8xl drop-shadow-2xl filter group-hover:scale-110 transition-transform duration-500">
+        {cards.map((card, index) => (
+          <motion.div
+            key={card.id}
+            initial={{ scale: 0.5, rotateY: 180, opacity: 0 }}
+            animate={{ scale: 1, rotateY: 0, opacity: 1 }}
+            transition={{ delay: index * 0.2, duration: 0.6, type: "spring" }}
+            className="flex flex-col items-center"
+          >
+            <div className={`relative w-32 h-48 bg-gradient-to-br from-gray-900 to-black rounded-xl border-2 border-white/20 shadow-[0_0_30px_rgba(255,255,255,0.1)] flex flex-col items-center justify-center overflow-hidden group ${card.color.replace('text-', '')}`}>
+              {/* Background Glow */}
+              <div className="absolute inset-0 bg-gradient-to-t from-indigo-900/50 to-transparent" />
+              
+              {/* Card Image (Emoji) */}
+              <span className="text-5xl drop-shadow-2xl filter group-hover:scale-110 transition-transform duration-500">
                 {card.image_emoji}
-            </span>
-            
-            {/* Decoration */}
-            <div className="absolute bottom-4 left-0 w-full text-center">
-                <Sparkles className="w-4 h-4 text-yellow-200 mx-auto opacity-50" />
+              </span>
+              
+              {/* Decoration */}
+              <div className="absolute bottom-2 left-0 w-full text-center">
+                <Sparkles className="w-3 h-3 text-yellow-200 mx-auto opacity-50" />
+              </div>
             </div>
-         </div>
+            <p className={`text-xs font-bold mt-2 ${card.color} text-center`}>
+              {card.name_ko}
+            </p>
+            <p className="text-white/40 text-[10px] uppercase tracking-wider text-center">
+              {card.name}
+            </p>
+          </motion.div>
+        ))}
       </motion.div>
 
-      {/* Interpretation Card */}
+      {/* Individual Cards Interpretation */}
       <motion.div 
         initial={{ y: 50, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ delay: 0.4 }}
+        className="mx-4 mb-6 space-y-4"
+      >
+        {cards.map((card, index) => (
+          <div key={card.id} className="p-4 bg-white/5 backdrop-blur-xl rounded-xl border border-white/10">
+            <div className="flex items-center gap-2 mb-2">
+              <span className="text-blue-400 font-bold text-sm">{index + 1}번째 카드</span>
+              <span className={`text-sm font-bold ${card.color}`}>{card.name_ko}</span>
+            </div>
+            <div className="flex flex-wrap gap-1 mb-2">
+              {card.keywords.slice(0, 3).map((keyword, idx) => (
+                <span key={idx} className="px-2 py-0.5 rounded-full bg-white/10 text-[10px] text-white/70 border border-white/10">
+                  #{keyword}
+                </span>
+              ))}
+            </div>
+            <p className="text-white/70 text-xs leading-relaxed">{card.description}</p>
+          </div>
+        ))}
+      </motion.div>
+
+      {/* Combined Interpretation Card */}
+      <motion.div 
+        initial={{ y: 50, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ delay: 0.6 }}
         className="mx-4 mb-8 p-6 bg-white/10 backdrop-blur-xl rounded-[2rem] border border-white/20 shadow-xl"
       >
-         {/* Keywords */}
-         <div className="flex flex-wrap justify-center gap-2 mb-6">
-            {card.keywords.map((keyword, idx) => (
-                <span key={idx} className="px-3 py-1 rounded-full bg-white/10 text-xs text-white border border-white/10">
-                    #{keyword}
-                </span>
-            ))}
-         </div>
-
-         {/* Description */}
+         {/* Combined Description */}
          <div className="mb-6 text-center">
-             <h3 className="text-lg font-bold text-white mb-2">카드의 의미</h3>
+             <h3 className="text-lg font-bold text-white mb-3">세 카드의 종합 해석</h3>
              <p className="text-white/80 text-sm leading-relaxed">
-                 {card.description}
+                 {combinedReading.description}
              </p>
          </div>
 
-         {/* Advice (Highlighted) */}
+         {/* Combined Advice (Highlighted) */}
          <div className="relative p-6 bg-gradient-to-br from-indigo-500/20 to-purple-500/20 rounded-2xl border border-white/10 text-center">
             <Quote className="absolute top-2 left-2 w-4 h-4 text-white/30 rotate-180" />
              <h3 className="text-sm font-bold text-indigo-300 mb-2 uppercase tracking-wider">Oracle's Advice</h3>
-             <p className="text-lg font-bold text-white leading-snug">
-                 "{card.advice}"
+             <p className="text-base font-bold text-white leading-relaxed">
+                 "{combinedReading.advice}"
              </p>
             <Quote className="absolute bottom-2 right-2 w-4 h-4 text-white/30" />
          </div>

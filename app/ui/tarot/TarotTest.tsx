@@ -2,34 +2,59 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { getRandomCard, TarotCard } from "../../data/tarotData";
+import { TAROT_CARDS, TarotCard } from "../../data/tarotData";
+import { TarotCategory } from "./TarotIntro";
 
 interface TarotTestProps {
-  onComplete: (card: TarotCard) => void;
+  category: TarotCategory;
+  onComplete: (cards: TarotCard[]) => void;
 }
 
-export default function TarotTest({ onComplete }: TarotTestProps) {
+export default function TarotTest({ category, onComplete }: TarotTestProps) {
   const [step, setStep] = useState<"shuffle" | "spread" | "picking">("shuffle");
   const [isShuffling, setIsShuffling] = useState(false);
+  const [selectedCards, setSelectedCards] = useState<TarotCard[]>([]);
+  const [shuffledCards, setShuffledCards] = useState<TarotCard[]>([]);
   
-  // Shuffle Animation Effect
+  // 카드 섞기 및 22장 준비
   useEffect(() => {
     if (step === "shuffle") {
       setIsShuffling(true);
+      // 22장 카드를 랜덤하게 섞기
+      const shuffled = [...TAROT_CARDS].sort(() => Math.random() - 0.5);
+      setShuffledCards(shuffled);
+      
       const timer = setTimeout(() => {
         setIsShuffling(false);
         setStep("spread");
-      }, 2500); // 2.5초 동안 셔플
+      }, 2500);
       return () => clearTimeout(timer);
     }
   }, [step]);
 
-  const handleCardPick = () => {
-    const selectedCard = getRandomCard();
-    setStep("picking");
-    setTimeout(() => {
-        onComplete(selectedCard);
-    }, 800);
+  const handleCardPick = (card: TarotCard) => {
+    if (selectedCards.find(c => c.id === card.id)) return; // 이미 선택된 카드는 무시
+    
+    const newSelected = [...selectedCards, card];
+    setSelectedCards(newSelected);
+    
+    if (newSelected.length === 3) {
+      setStep("picking");
+      setTimeout(() => {
+        onComplete(newSelected);
+      }, 800);
+    }
+  };
+  
+  const getCategoryName = (cat: TarotCategory): string => {
+    const names: Record<TarotCategory, string> = {
+      business: "사업운",
+      love: "애정운",
+      study: "학업운",
+      career: "취업운",
+      relationship: "인간관계운",
+    };
+    return names[cat];
   };
 
   return (
@@ -86,33 +111,57 @@ export default function TarotTest({ onComplete }: TarotTestProps) {
             animate={{ opacity: 1, scale: 1 }}
             className="w-full"
           >
-            <h3 className="text-xl font-bold text-center text-white mb-6">
-              운명의 카드를 선택하세요
+            <h3 className="text-xl font-bold text-center text-white mb-2">
+              {getCategoryName(category)} 운명의 카드
             </h3>
+            <p className="text-white/60 text-center text-sm mb-6">
+              직관적으로 끌리는 카드를 3장 선택하세요 ({selectedCards.length}/3)
+            </p>
 
-            <div className="grid grid-cols-4 gap-2 perspective-1000 px-2">
-              {[...Array(12)].map((_, i) => (
-                <motion.button
-                  key={i}
-                  onClick={handleCardPick}
-                  initial={{ rotateY: 180, opacity: 0, y: 50 }}
-                  animate={{ rotateY: 0, opacity: 1, y: 0 }}
-                  transition={{ delay: i * 0.05, type: "spring" }}
-                  whileHover={{ y: -20, scale: 1.1, zIndex: 10 }}
-                  whileTap={{ scale: 0.9 }}
-                  className="aspect-[2/3] bg-gradient-to-br from-indigo-800 to-purple-900 rounded-lg border border-white/30 shadow-lg relative overflow-hidden group"
-                >
-                   <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] opacity-30" />
-                   <div className="w-full h-full flex items-center justify-center">
-                     <span className="text-2xl opacity-50 group-hover:opacity-100 transition-opacity">✴️</span>
-                   </div>
-                </motion.button>
-              ))}
+            <div className="grid grid-cols-4 gap-2 perspective-1000 px-2 mb-4">
+              {shuffledCards.map((card, i) => {
+                const isSelected = selectedCards.find(c => c.id === card.id) !== undefined;
+                return (
+                  <motion.button
+                    key={card.id}
+                    onClick={() => handleCardPick(card)}
+                    initial={{ rotateY: 180, opacity: 0, y: 50 }}
+                    animate={{ 
+                      rotateY: 0, 
+                      opacity: 1, 
+                      y: 0,
+                      scale: isSelected ? 0.9 : 1,
+                      borderColor: isSelected ? "rgba(59, 130, 246, 0.8)" : "rgba(255, 255, 255, 0.3)"
+                    }}
+                    transition={{ delay: i * 0.02, type: "spring" }}
+                    whileHover={!isSelected ? { y: -20, scale: 1.1, zIndex: 10 } : {}}
+                    whileTap={{ scale: 0.9 }}
+                    disabled={isSelected || selectedCards.length >= 3}
+                    className={`aspect-[2/3] bg-gradient-to-br from-indigo-800 to-purple-900 rounded-lg border-2 shadow-lg relative overflow-hidden group ${
+                      isSelected ? "ring-2 ring-blue-400" : ""
+                    } ${selectedCards.length >= 3 && !isSelected ? "opacity-50 cursor-not-allowed" : ""}`}
+                  >
+                    <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] opacity-30" />
+                    {isSelected && (
+                      <div className="absolute inset-0 bg-blue-500/30 flex items-center justify-center z-10">
+                        <span className="text-3xl">✓</span>
+                      </div>
+                    )}
+                    <div className="w-full h-full flex items-center justify-center">
+                      <span className="text-2xl opacity-50 group-hover:opacity-100 transition-opacity">✴️</span>
+                    </div>
+                  </motion.button>
+                );
+              })}
             </div>
             
-             <p className="text-white/40 text-center mt-8 text-xs">
-               직관적으로 끌리는 카드를 한 장 터치하세요
-             </p>
+            {selectedCards.length > 0 && (
+              <div className="text-center mb-4">
+                <p className="text-blue-300 text-sm font-medium">
+                  선택된 카드: {selectedCards.length}/3
+                </p>
+              </div>
+            )}
           </motion.div>
         )}
       </AnimatePresence>

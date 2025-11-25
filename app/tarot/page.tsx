@@ -4,7 +4,7 @@ import { useState, useEffect, Suspense } from "react";
 import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
 import { ChevronLeft } from "lucide-react";
-import TarotIntro from "../ui/tarot/TarotIntro";
+import TarotIntro, { TarotCategory } from "../ui/tarot/TarotIntro";
 import TarotTest from "../ui/tarot/TarotTest";
 import TarotResult from "../ui/tarot/TarotResult";
 import TarotDescription from "../ui/tarot/TarotDescription";
@@ -14,11 +14,17 @@ import { useUrlShare } from "../hooks/useUrlShare";
 
 type TarotStep = "intro" | "test" | "loading" | "result";
 
+interface TarotResultData {
+  cards: TarotCard[];
+  category: TarotCategory;
+}
+
 function TarotContent() {
   const router = useRouter();
   const [tarotStep, setTarotStep] = useState<TarotStep>("intro");
-  const [tarotResult, setTarotResult] = useState<TarotCard | null>(null);
-  const { sharedData, isLoaded, shareData, clearShareUrl } = useUrlShare<TarotCard>();
+  const [tarotResult, setTarotResult] = useState<TarotResultData | null>(null);
+  const [selectedCategory, setSelectedCategory] = useState<TarotCategory>("business");
+  const { sharedData, isLoaded, shareData, clearShareUrl } = useUrlShare<TarotResultData>();
 
   useEffect(() => {
     if (isLoaded && sharedData) {
@@ -27,16 +33,18 @@ function TarotContent() {
     }
   }, [isLoaded, sharedData]);
 
-  const handleTarotStart = () => {
+  const handleTarotStart = (category: TarotCategory) => {
+    setSelectedCategory(category);
     setTarotStep("test");
   };
 
-  const handleTarotComplete = (card: TarotCard) => {
+  const handleTarotComplete = (cards: TarotCard[]) => {
     setTarotStep("loading");
     setTimeout(() => {
-      setTarotResult(card);
+      const result: TarotResultData = { cards, category: selectedCategory };
+      setTarotResult(result);
       setTarotStep("result");
-      shareData(card);
+      shareData(result);
     }, 2000);
   };
 
@@ -65,9 +73,9 @@ function TarotContent() {
         <div className="flex-1 overflow-y-auto pb-20 px-4 pt-6">
           <div className="w-full transition-all duration-500">
             {tarotStep === "intro" && <TarotIntro onStart={handleTarotStart} />}
-            {tarotStep === "test" && <TarotTest onComplete={handleTarotComplete} />}
+            {tarotStep === "test" && <TarotTest category={selectedCategory} onComplete={handleTarotComplete} />}
             {tarotStep === "loading" && <FortuneLoading type="tarot" />}
-            {tarotStep === "result" && tarotResult && <TarotResult card={tarotResult} onReset={handleTarotReset} />}
+            {tarotStep === "result" && tarotResult && <TarotResult cards={tarotResult.cards} category={tarotResult.category} onReset={handleTarotReset} />}
             
             <TarotDescription />
           </div>

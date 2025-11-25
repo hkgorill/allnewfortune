@@ -30,38 +30,39 @@ export default function PsychologyIntro({ onStart }: PsychologyIntroProps) {
     setOpenFaqIndex(openFaqIndex === index ? null : index);
   };
   return (
-    <motion.div 
+    <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       className="w-full max-w-md mx-auto flex flex-col"
     >
       {/* Intro Card */}
       <div className="p-8 bg-white/10 backdrop-blur-xl rounded-[2rem] shadow-2xl border border-white/20 relative overflow-hidden mb-8 text-center">
-         <div className="absolute -top-20 -right-20 w-60 h-60 bg-green-500/30 rounded-full blur-3xl pointer-events-none" />
-         <div className="absolute -bottom-20 -left-20 w-60 h-60 bg-emerald-500/20 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute -top-20 -right-20 w-60 h-60 bg-green-500/30 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute -bottom-20 -left-20 w-60 h-60 bg-emerald-500/20 rounded-full blur-3xl pointer-events-none" />
 
-         <div className="relative z-10 flex flex-col items-center">
-            <div className="w-20 h-20 bg-white/10 rounded-full flex items-center justify-center mb-6 animate-float border border-white/10">
-                <Activity size={40} className="text-green-300" />
-            </div>
+        <div className="relative z-10 flex flex-col items-center">
+          <div className="w-20 h-20 bg-white/10 rounded-full flex items-center justify-center mb-6 animate-float border border-white/10">
+            <Activity size={40} className="text-green-300" />
+          </div>
 
-            <h2 className="text-3xl font-bold text-white mb-2 drop-shadow-sm">
-              숲속 심리테스트
-            </h2>
-            <p className="text-green-100 mb-8 font-light">
-              상상 속의 숲을 거닐며<br/>
-              나의 무의식을 확인해보세요.
-            </p>
+          <h2 className="text-3xl font-bold text-white mb-2 drop-shadow-sm">
+            숲속 심리테스트
+          </h2>
+          <p className="text-green-100 mb-8 font-light">
+            상상 속의 숲을 거닐며
+            <br />
+            나의 무의식을 확인해보세요.
+          </p>
 
-            <motion.button
-              onClick={onStart}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="w-full py-4 bg-gradient-to-r from-green-500 to-emerald-600 text-white rounded-2xl font-bold text-lg shadow-[0_0_20px_rgba(16,185,129,0.4)] hover:shadow-[0_0_30px_rgba(16,185,129,0.6)] transition-all"
-            >
-              숲으로 떠나기 🌲
-            </motion.button>
-         </div>
+          <motion.button
+            onClick={onStart}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="w-full py-4 bg-gradient-to-r from-green-500 to-emerald-600 text-white rounded-2xl font-bold text-lg shadow-[0_0_20px_rgba(16,185,129,0.4)] hover:shadow-[0_0_30px_rgba(16,185,129,0.6)] transition-all"
+          >
+            숲으로 떠나기 🌲
+          </motion.button>
+        </div>
       </div>
 
       {/* FAQ Section */}
@@ -108,4 +109,3 @@ export default function PsychologyIntro({ onStart }: PsychologyIntroProps) {
     </motion.div>
   );
 }
-

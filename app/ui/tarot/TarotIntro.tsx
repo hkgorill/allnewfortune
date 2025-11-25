@@ -4,22 +4,75 @@ import { motion } from "framer-motion";
 import { Eye, HelpCircle, Sparkles, ArrowRight } from "lucide-react";
 import { useState } from "react";
 
+export type TarotCategory =
+  | "business"
+  | "love"
+  | "study"
+  | "career"
+  | "relationship";
+
 interface TarotIntroProps {
-  onStart: () => void;
+  onStart: (category: TarotCategory) => void;
 }
+
+const TAROT_CATEGORIES: {
+  id: TarotCategory;
+  name: string;
+  emoji: string;
+  color: string;
+}[] = [
+  {
+    id: "business",
+    name: "사업운",
+    emoji: "💼",
+    color: "from-green-500 to-emerald-500",
+  },
+  {
+    id: "love",
+    name: "애정운",
+    emoji: "💕",
+    color: "from-pink-500 to-rose-500",
+  },
+  {
+    id: "study",
+    name: "학업운",
+    emoji: "📚",
+    color: "from-blue-500 to-cyan-500",
+  },
+  {
+    id: "career",
+    name: "취업운",
+    emoji: "🎯",
+    color: "from-purple-500 to-indigo-500",
+  },
+  {
+    id: "relationship",
+    name: "인간관계운",
+    emoji: "🤝",
+    color: "from-orange-500 to-amber-500",
+  },
+];
 
 const TAROT_FAQ = [
   {
-    q: "어떤 질문을 해야 하나요?",
-    a: '"오늘의 운세는?" 같은 가벼운 질문부터 "이 선택이 맞을까?" 같은 구체적인 고민까지 무엇이든 좋습니다. 마음속으로 질문을 집중해서 떠올려주세요.',
+    q: "왜 3장을 뽑나요?",
+    a: "메이저 아르카나 22장 중 3장을 선택하면, 각 카드가 과거의 영향, 현재의 상황, 미래의 가능성을 보여줍니다. 3장을 종합하여 더욱 깊이 있고 정확한 해석을 제공할 수 있습니다.",
+  },
+  {
+    q: "카테고리별로 다른 점괘가 나오나요?",
+    a: "네, 사업운, 애정운, 학업운, 취업운, 인간관계운 각 카테고리에 맞춰 카드의 의미를 해석합니다. 같은 카드라도 선택한 운세 카테고리에 따라 조언이 달라집니다.",
+  },
+  {
+    q: "메이저 아르카나만 사용하나요?",
+    a: "네, ALL NEW FORTUNE의 타로 서비스는 메이저 아르카나 22장만 사용합니다. 메이저 아르카나는 인생의 큰 흐름과 중요한 전환점을 상징하므로, 운세 점괘에 가장 적합합니다.",
   },
   {
     q: "결과가 나쁘게 나오면 어떡하죠?",
-    a: "타로는 미래를 확정 짓는 것이 아니라 조언을 주는 도구입니다. 카드의 메시지를 참고하여 더 좋은 방향으로 나아가세요.",
+    a: "타로는 미래를 확정 짓는 것이 아니라 조언을 주는 도구입니다. 나쁜 카드가 나왔다면 그것은 경고나 주의사항일 수 있습니다. 카드의 메시지를 참고하여 더 좋은 방향으로 나아가세요.",
   },
   {
     q: "하루에 여러 번 봐도 되나요?",
-    a: "같은 질문으로 여러 번 보는 것은 추천하지 않습니다. 하지만 다른 고민이 있다면 언제든 다시 확인해보셔도 좋습니다.",
+    a: "같은 카테고리로 여러 번 보는 것은 추천하지 않습니다. 하지만 다른 운세 카테고리(예: 사업운과 애정운)를 선택한다면 언제든 다시 확인해보셔도 좋습니다.",
   },
 ];
 
@@ -30,38 +83,48 @@ export default function TarotIntro({ onStart }: TarotIntroProps) {
     setOpenFaqIndex(openFaqIndex === index ? null : index);
   };
   return (
-    <motion.div 
+    <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       className="w-full max-w-md mx-auto flex flex-col"
     >
       {/* Intro Card */}
       <div className="p-8 bg-white/10 backdrop-blur-xl rounded-[2rem] shadow-2xl border border-white/20 relative overflow-hidden mb-8 text-center">
-         <div className="absolute -top-20 -right-20 w-60 h-60 bg-blue-500/30 rounded-full blur-3xl pointer-events-none" />
-         <div className="absolute -bottom-20 -left-20 w-60 h-60 bg-indigo-500/20 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute -top-20 -right-20 w-60 h-60 bg-blue-500/30 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute -bottom-20 -left-20 w-60 h-60 bg-indigo-500/20 rounded-full blur-3xl pointer-events-none" />
 
-         <div className="relative z-10 flex flex-col items-center">
-            <div className="w-20 h-20 bg-white/10 rounded-full flex items-center justify-center mb-6 animate-float">
-                <Eye size={40} className="text-blue-300" />
-            </div>
+        <div className="relative z-10 flex flex-col items-center">
+          <div className="w-20 h-20 bg-white/10 rounded-full flex items-center justify-center mb-6 animate-float">
+            <Eye size={40} className="text-blue-300" />
+          </div>
 
-            <h2 className="text-3xl font-bold text-white mb-2 drop-shadow-sm">
-              오늘의 타로
-            </h2>
-            <p className="text-blue-200 mb-8">
-              당신의 고민을 생각하며<br/>
-              운명의 카드를 한 장 뽑아보세요
-            </p>
+          <h2 className="text-3xl font-bold text-white mb-2 drop-shadow-sm">
+            오늘의 타로
+          </h2>
+          <p className="text-white/60 text-xs mb-4">
+            메이저 아르카나 22장 중 3장을 뽑아보세요
+          </p>
+          <p className="text-blue-200 mb-6">
+            알고 싶은 운세를 선택하고
+            <br />
+            운명의 카드를 뽑아보세요
+          </p>
 
-            <motion.button
-              onClick={onStart}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="w-full py-4 bg-gradient-to-r from-blue-500 to-indigo-500 text-white rounded-2xl font-bold text-lg shadow-[0_0_20px_rgba(59,130,246,0.4)] hover:shadow-[0_0_30px_rgba(59,130,246,0.6)] transition-all"
-            >
-              카드 섞기 🔮
-            </motion.button>
-         </div>
+          <div className="w-full space-y-2 mb-4">
+            {TAROT_CATEGORIES.map((category) => (
+              <motion.button
+                key={category.id}
+                onClick={() => onStart(category.id)}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className={`w-full py-3 px-4 bg-gradient-to-r ${category.color} text-white rounded-xl font-bold text-sm shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-2`}
+              >
+                <span className="text-lg">{category.emoji}</span>
+                <span>{category.name}</span>
+              </motion.button>
+            ))}
+          </div>
+        </div>
       </div>
 
       {/* FAQ Section */}
@@ -108,4 +171,3 @@ export default function TarotIntro({ onStart }: TarotIntroProps) {
     </motion.div>
   );
 }
-
