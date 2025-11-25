@@ -59,7 +59,7 @@ function HoroscopeContent() {
           <button onClick={() => router.push('/')} className="p-2 rounded-full hover:bg-white/10 transition-colors active:scale-95">
             <ChevronLeft className="w-6 h-6 text-white" />
           </button>
-          <h2 className="text-lg font-bold">별자리 운세</h2>
+          <h2 className="text-lg font-bold">오늘의 운세 (별자리)</h2>
           <div className="w-10" />
         </header>
 

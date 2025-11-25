@@ -25,7 +25,7 @@ export default function HoroscopeIntro({ onStart }: HoroscopeIntroProps) {
             </div>
 
             <h2 className="text-3xl font-bold text-white mb-2 drop-shadow-sm">
-              별자리 운세
+              오늘의 운세 (별자리)
             </h2>
             <p className="text-violet-200 mb-8">
               오늘 밤 별들이 당신에게<br/>

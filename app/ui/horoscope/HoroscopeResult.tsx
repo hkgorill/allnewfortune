@@ -20,8 +20,8 @@ export default function HoroscopeResult({ result, onReset }: HoroscopeResultProp
     setIsSharing(true);
 
     const shareData = {
-      title: '나의 별자리 운세 - ALL NEW FORTUNE',
-      text: `[${result.sign.name} 오늘의 운세]\n\n"${result.overall}"\n\n🍀 행운의 색: ${result.lucky_color}\n🔢 행운의 숫자: ${result.lucky_number}\n\n당신의 별자리 운세도 확인해보세요!`,
+      title: '나의 오늘의 운세 (별자리) - ALL NEW FORTUNE',
+      text: `[${result.sign.name} 오늘의 운세]\n\n"${result.overall}"\n\n🍀 행운의 색: ${result.lucky_color}\n🔢 행운의 숫자: ${result.lucky_number}\n\n당신의 오늘의 운세 (별자리)도 확인해보세요!`,
       url: window.location.href,
     };
 

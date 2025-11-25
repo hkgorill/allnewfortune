@@ -339,7 +339,7 @@ export default function MenuScreen() {
           <div className="absolute top-0 right-0 w-32 h-32 bg-purple-500/20 rounded-full blur-2xl -translate-y-1/2 translate-x-1/2" />
 
           <div className="z-10 flex-1 mr-6 w-full">
-            <h4 className="font-bold text-xl mb-2">별자리 운세</h4>
+            <h4 className="font-bold text-xl mb-2">오늘의 운세 (별자리)</h4>
             <FadeText
               text={
                 MENU_TEXTS.horoscope[textIndex % MENU_TEXTS.horoscope.length]

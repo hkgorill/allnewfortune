@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     default: "2026년 신년운세 & AI 종합 운세 | 사주·타로·MBTI - ALL NEW FORTUNE",
     template: "%s | ALL NEW FORTUNE",
   },
-  description: "2026년 병오년 신년운세부터 사주, 타로, MBTI, 심리테스트, 별자리 운세까지! AI가 정밀 분석해주는 나만의 운명 가이드. 생년월일만으로 알아보는 무료 종합 운세 서비스.",
+  description: "2026년 병오년 신년운세부터 사주, 타로, MBTI, 심리테스트, 오늘의 운세 (별자리)까지! AI가 정밀 분석해주는 나만의 운명 가이드. 생년월일만으로 알아보는 무료 종합 운세 서비스.",
   keywords: [
     "2026년 운세",
     "신년운세",
@@ -45,7 +45,7 @@ export const metadata: Metadata = {
     "타로점",
     "심리테스트",
     "성격 유형 검사",
-    "별자리 운세",
+    "오늘의 운세 (별자리)",
     "정통 사주"
   ],
   authors: [{ name: "ALL NEW FORTUNE" }],
