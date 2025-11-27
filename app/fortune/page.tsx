@@ -11,6 +11,7 @@ import FortuneResult, { FortuneResultData } from "../ui/fortune/FortuneResult";
 import KakaoAdFit from "../ui/KakaoAdFit";
 import FortuneDescription from "../ui/fortune/FortuneDescription";
 import { useUrlShare } from "../hooks/useUrlShare";
+import LunarCalendar from "korean-lunar-calendar";
 
 type FortuneStep = "intro" | "input" | "loading" | "result";
 
@@ -33,11 +34,24 @@ function FortuneContent() {
 
   const handleInputSubmit = async (data: FortuneInputData) => {
     setFortuneStep("loading");
+    
+    // 음력 -> 양력 변환
+    let submitData = { ...data };
+    if (data.calendarType && data.calendarType !== 'solar') {
+        const [year, month, day] = data.birthdate.split("-").map(Number);
+        const calendar = new LunarCalendar();
+        calendar.setLunarDate(year, month, day, data.calendarType === 'leap');
+        
+        const solar = calendar.getSolarCalendar();
+        // 변환된 양력 날짜로 교체
+        submitData.birthdate = `${solar.year}-${String(solar.month).padStart(2, '0')}-${String(solar.day).padStart(2, '0')}`;
+    }
+
     try {
       const response = await fetch("/api/fortune", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
+        body: JSON.stringify(submitData),
       });
       if (!response.ok) throw new Error("Failed to fetch fortune");
       const result = await response.json();

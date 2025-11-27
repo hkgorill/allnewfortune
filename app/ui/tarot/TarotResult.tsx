@@ -129,7 +129,7 @@ export default function TarotResult({
         initial={{ scale: 0.5, rotateY: 180, opacity: 0 }}
         animate={{ scale: 1, rotateY: 0, opacity: 1 }}
         transition={{ duration: 0.8, type: "spring" }}
-        className="flex justify-center gap-3 mb-8 perspective-1000 px-4"
+        className="flex justify-center gap-2 md:gap-3 mb-8 perspective-1000 px-1 md:px-4"
       >
         {cards.map((card, index) => (
           <motion.div
@@ -140,7 +140,7 @@ export default function TarotResult({
             className="flex flex-col items-center"
           >
             <div
-              className={`relative w-32 h-48 bg-gradient-to-br from-gray-900 to-black rounded-xl border-2 border-white/20 shadow-[0_0_30px_rgba(255,255,255,0.1)] flex flex-col items-center justify-center overflow-hidden group ${card.color.replace(
+              className={`relative w-28 h-40 md:w-32 md:h-48 bg-gradient-to-br from-gray-900 to-black rounded-xl border-2 border-white/20 shadow-[0_0_30px_rgba(255,255,255,0.1)] flex flex-col items-center justify-center overflow-hidden group ${card.color.replace(
                 "text-",
                 ""
               )}`}
@@ -149,7 +149,7 @@ export default function TarotResult({
               <div className="absolute inset-0 bg-gradient-to-t from-indigo-900/50 to-transparent" />
 
               {/* Card Image (Emoji) */}
-              <span className="text-5xl drop-shadow-2xl filter group-hover:scale-110 transition-transform duration-500">
+              <span className="text-4xl md:text-5xl drop-shadow-2xl filter group-hover:scale-110 transition-transform duration-500">
                 {card.image_emoji}
               </span>
 
@@ -158,7 +158,7 @@ export default function TarotResult({
                 <Sparkles className="w-3 h-3 text-yellow-200 mx-auto opacity-50" />
               </div>
             </div>
-            <p className={`text-xs font-bold mt-2 ${card.color} text-center`}>
+            <p className={`text-[11px] md:text-xs font-bold mt-2 ${card.color} text-center`}>
               {card.name_ko}
             </p>
             <p className="text-white/40 text-[10px] uppercase tracking-wider text-center">

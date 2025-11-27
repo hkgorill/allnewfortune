@@ -11,6 +11,7 @@ import ChemistryDescription from "../ui/chemistry/ChemistryDescription";
 import FortuneLoading from "../ui/fortune/FortuneLoading";
 import { ChemistryResultType, calculateChemistry } from "../data/chemistryData";
 import { useUrlShare } from "../hooks/useUrlShare";
+import LunarCalendar from "korean-lunar-calendar";
 
 type ChemistryStep = "intro" | "input" | "loading" | "result";
 
@@ -32,19 +33,30 @@ function ChemistryContent() {
   };
 
   const handleChemistrySubmit = (data: {
-    me: { name: string; birthdate: string; gender: "M" | "F" };
-    partner: { name: string; birthdate: string; gender: "M" | "F" };
+    me: { name: string; birthdate: string; gender: "M" | "F"; calendarType?: string };
+    partner: { name: string; birthdate: string; gender: "M" | "F"; calendarType?: string };
   }) => {
     setChemistryStep("loading");
     
     setTimeout(() => {
-      // 생년월일 문자열을 분해하여 계산 함수에 전달
-      const [myYear, myMonth, myDay] = data.me.birthdate.split("-").map(Number);
-      const [partnerYear, partnerMonth, partnerDay] = data.partner.birthdate.split("-").map(Number);
+      // 변환 헬퍼 함수
+      const getSolarDate = (birthdate: string, type?: string) => {
+         let [year, month, day] = birthdate.split("-").map(Number);
+         if (type && type !== 'solar') {
+             const calendar = new LunarCalendar();
+             calendar.setLunarDate(year, month, day, type === 'leap');
+             const solar = calendar.getSolarCalendar();
+             return { year: solar.year, month: solar.month, day: solar.day };
+         }
+         return { year, month, day };
+      };
+
+      const meDate = getSolarDate(data.me.birthdate, data.me.calendarType);
+      const partnerDate = getSolarDate(data.partner.birthdate, data.partner.calendarType);
 
       const result = calculateChemistry(
-        { year: myYear, month: myMonth, day: myDay, name: data.me.name },
-        { year: partnerYear, month: partnerMonth, day: partnerDay, name: data.partner.name }
+        { year: meDate.year, month: meDate.month, day: meDate.day, name: data.me.name },
+        { year: partnerDate.year, month: partnerDate.month, day: partnerDate.day, name: data.partner.name }
       );
       
       setChemistryResult(result);

@@ -6,16 +6,16 @@ import { User, Heart, ChevronDown } from "lucide-react";
 
 interface ChemistryInputProps {
   onSubmit: (data: {
-    me: { name: string; birthdate: string; gender: "M" | "F" };
-    partner: { name: string; birthdate: string; gender: "M" | "F" };
+    me: { name: string; birthdate: string; gender: "M" | "F"; calendarType: "solar" | "lunar" | "leap" };
+    partner: { name: string; birthdate: string; gender: "M" | "F"; calendarType: "solar" | "lunar" | "leap" };
   }) => void;
 }
 
 export default function ChemistryInput({ onSubmit }: ChemistryInputProps) {
   const [step, setStep] = useState<"me" | "partner">("me");
   const [formData, setFormData] = useState({
-    me: { name: "", birthdate: "", gender: "M" as "M" | "F" },
-    partner: { name: "", birthdate: "", gender: "F" as "M" | "F" },
+    me: { name: "", birthdate: "", gender: "M" as "M" | "F", calendarType: "solar" as const },
+    partner: { name: "", birthdate: "", gender: "F" as "M" | "F", calendarType: "solar" as const },
   });
   
   // 생년월일 드롭다운 상태 (본인/상대방 각각)
@@ -175,7 +175,27 @@ export default function ChemistryInput({ onSubmit }: ChemistryInputProps) {
 
           {/* Birthdate Input - 드롭다운 3단 */}
           <div className="space-y-2">
-            <label className="text-sm font-bold text-white/80 ml-1">생년월일</label>
+            <div className="flex items-center justify-between mb-1">
+                <label className="text-sm font-bold text-white/80 ml-1">생년월일</label>
+                
+                {/* 양력/음력 선택 버튼 */}
+                <div className="flex bg-black/40 rounded-lg p-1 gap-1">
+                    {(["solar", "lunar", "leap"] as const).map((type) => (
+                        <button
+                            key={type}
+                            onClick={() => updateCurrent("calendarType", type)}
+                            className={`px-3 py-1 rounded-md text-xs font-medium transition-all ${
+                            currentData.calendarType === type
+                                ? "bg-pink-500 text-white shadow-sm"
+                                : "text-pink-200/50 hover:text-white hover:bg-white/10"
+                            }`}
+                        >
+                            {type === "solar" ? "양력" : type === "lunar" ? "음력" : "윤달"}
+                        </button>
+                    ))}
+                </div>
+            </div>
+
             <div className="flex gap-2">
               {/* 연도 드롭다운 */}
               <div className="relative flex-1">

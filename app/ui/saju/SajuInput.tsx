@@ -25,10 +25,13 @@ export default function SajuInput({
   
   // 시간 관련 상태
   const [ampm, setAmpm] = useState("AM");
-  const [hour, setHour] = useState("");
-  const [minute, setMinute] = useState("");
-
-  // 생년월일 드롭다운에서 날짜 문자열 생성
+    const [hour, setHour] = useState("");
+    const [minute, setMinute] = useState("");
+  
+    // 양력/음력 선택 상태
+    const [calendarType, setCalendarType] = useState<"solar" | "lunar" | "leap">("solar");
+    
+    // 생년월일 드롭다운에서 날짜 문자열 생성
   useEffect(() => {
     if (year && month && day) {
       const formattedDate = `${year}-${month.padStart(2, "0")}-${day.padStart(2, "0")}`;
@@ -92,7 +95,14 @@ export default function SajuInput({
       formattedTime = `${ampm} ${hour}:${minute}`;
     }
 
-    const submitData = { username: name, birthdate, gender, birthtime: formattedTime };
+    // calendarType 포함 전송
+    const submitData: FortuneInputData = { 
+      username: name, 
+      birthdate, 
+      gender, 
+      birthtime: formattedTime,
+      calendarType 
+    };
     
     // 로컬 스토리지에 저장
     localStorage.setItem("fortuneUser", JSON.stringify(submitData));
@@ -133,9 +143,30 @@ export default function SajuInput({
 
         {/* Birthdate Input (Required) - 드롭다운 3단 */}
         <div className="space-y-2 group">
-          <label className="flex items-center gap-2 text-sm font-medium text-emerald-200/80 transition-colors group-focus-within:text-emerald-200">
-            <Calendar size={16} /> 생년월일 (양력/필수)
-          </label>
+          <div className="flex items-center justify-between">
+            <label className="flex items-center gap-2 text-sm font-medium text-emerald-200/80 transition-colors group-focus-within:text-emerald-200">
+              <Calendar size={16} /> 생년월일 (필수)
+            </label>
+
+             {/* 양력/음력 선택 버튼 (사주 테마 색상 적용) */}
+             <div className="flex bg-black/40 rounded-lg p-1 gap-1">
+                {(["solar", "lunar", "leap"] as const).map((type) => (
+                  <button
+                    key={type}
+                    type="button"
+                    onClick={() => setCalendarType(type)}
+                    className={`px-3 py-1 rounded-md text-xs font-medium transition-all ${
+                      calendarType === type
+                        ? "bg-emerald-500 text-white shadow-sm"
+                        : "text-emerald-200/50 hover:text-white hover:bg-white/10"
+                    }`}
+                  >
+                    {type === "solar" ? "양력" : type === "lunar" ? "음력" : "윤달"}
+                  </button>
+                ))}
+             </div>
+          </div>
+          
           <div className="flex gap-2">
             {/* 연도 드롭다운 */}
             <div className="relative flex-1">

@@ -12,6 +12,7 @@ import FortuneLoading from "../ui/fortune/FortuneLoading";
 import { calculateSaju, SajuResultType } from "../data/sajuData";
 import { FortuneInputData } from "../ui/fortune/FortuneInput";
 import { useUrlShare } from "../hooks/useUrlShare";
+import LunarCalendar from "korean-lunar-calendar";
 
 type SajuStep = "intro" | "input" | "loading" | "result";
 
@@ -35,7 +36,20 @@ function SajuContent() {
   const handleSajuSubmit = (data: FortuneInputData) => {
     setSajuStep("loading");
     
-    const [year, month, day] = data.birthdate.split("-").map(Number);
+    let [year, month, day] = data.birthdate.split("-").map(Number);
+    
+    // 음력 -> 양력 변환 로직
+    if (data.calendarType && data.calendarType !== 'solar') {
+        const calendar = new LunarCalendar();
+        // setLunarDate(year, month, day, isLeapMonth)
+        calendar.setLunarDate(year, month, day, data.calendarType === 'leap');
+        
+        const solar = calendar.getSolarCalendar();
+        year = solar.year;
+        month = solar.month;
+        day = solar.day;
+    }
+
     let hour = 12;
     if (data.birthtime) {
       const [ampm, timeStr] = data.birthtime.split(" ");

@@ -9,6 +9,7 @@ export interface FortuneInputData {
   birthdate: string;
   gender: "male" | "female" | "none";
   birthtime: string;
+  calendarType: "solar" | "lunar" | "leap";
 }
 
 interface FortuneInputProps {
@@ -23,6 +24,9 @@ export default function FortuneInput({
   const [name, setName] = useState("");
   const [birthdate, setBirthdate] = useState("");
   const [gender, setGender] = useState<"male" | "female" | "none">("none");
+  
+  // 양력/음력 선택 상태
+  const [calendarType, setCalendarType] = useState<"solar" | "lunar" | "leap">("solar");
   
   // 생년월일 드롭다운 상태
   const [year, setYear] = useState("");
@@ -98,7 +102,7 @@ export default function FortuneInput({
       formattedTime = `${ampm} ${hour}:${minute}`;
     }
 
-    const submitData = { username: name, birthdate, gender, birthtime: formattedTime };
+    const submitData = { username: name, birthdate, gender, birthtime: formattedTime, calendarType };
     
     // 로컬 스토리지에 저장
     localStorage.setItem("fortuneUser", JSON.stringify(submitData));
@@ -140,9 +144,30 @@ export default function FortuneInput({
 
         {/* Birthdate Input (Required) - 드롭다운 3단 */}
         <div className="space-y-2 group">
-          <label className="flex items-center gap-2 text-sm font-medium text-purple-200/80 transition-colors group-focus-within:text-purple-200">
-            <Calendar size={16} /> 생년월일 (필수)
-          </label>
+          <div className="flex items-center justify-between mb-2">
+            <label className="flex items-center gap-2 text-sm font-medium text-purple-200/80 transition-colors group-focus-within:text-purple-200">
+              <Calendar size={16} /> 생년월일 (필수)
+            </label>
+            
+             {/* 양력/음력 선택 버튼 */}
+             <div className="flex bg-black/40 rounded-lg p-1 gap-1">
+                {(["solar", "lunar", "leap"] as const).map((type) => (
+                  <button
+                    key={type}
+                    type="button"
+                    onClick={() => setCalendarType(type)}
+                    className={`px-3 py-1 rounded-md text-xs font-medium transition-all ${
+                      calendarType === type
+                        ? "bg-purple-500 text-white shadow-sm"
+                        : "text-purple-200/50 hover:text-white hover:bg-white/10"
+                    }`}
+                  >
+                    {type === "solar" ? "양력" : type === "lunar" ? "음력" : "윤달"}
+                  </button>
+                ))}
+             </div>
+          </div>
+
           <div className="flex gap-2">
             {/* 연도 드롭다운 */}
             <div className="relative flex-1">
