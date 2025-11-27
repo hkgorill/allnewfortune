@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Share2, RefreshCw, Sparkles, Star, Heart, Coins, Briefcase, Home } from "lucide-react";
+import { Share2, RefreshCw, Sparkles, Star, Heart, Coins, Briefcase, Home, BookOpen } from "lucide-react";
 import { HoroscopeResultType } from "../../data/horoscopeData";
 import KakaoAdFit from "../KakaoAdFit";
 import GoogleAdSense from "../GoogleAdSense";
@@ -142,6 +142,23 @@ export default function HoroscopeResult({ result, onReset }: HoroscopeResultProp
           colorClass="text-blue-400" delay={0.6} 
         />
       </div>
+
+      {/* Methodology Section (Strategy B) */}
+      <motion.div 
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.7 }}
+        className="mx-4 mb-8 p-5 bg-white/5 rounded-2xl border border-white/10 text-left"
+      >
+        <h3 className="text-sm font-bold text-white/90 mb-2 flex items-center gap-2">
+          <BookOpen size={16} className="text-violet-400"/> 
+          별자리 운세 원리
+        </h3>
+        <p className="text-xs text-white/60 leading-relaxed">
+          서양 점성술(Astrology)은 태양이 황도 12궁(Zodiac) 중 어디에 위치했는지를 기준으로 사람의 기질과 운세를 분석합니다. 
+          오늘의 운세는 현재 행성들의 위치(Transit)가 당신의 태양 별자리에 미치는 영향력을 해석하여 산출됩니다.
+        </p>
+      </motion.div>
 
       {/* AdFit */}
       <div className="w-full mb-8 flex justify-center items-center min-h-[250px] px-4">

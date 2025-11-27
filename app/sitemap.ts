@@ -12,6 +12,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/psychology',
     '/finger',
     '/chemistry',
+    '/blog',
   ];
 
   return routes.map((route) => ({

@@ -11,6 +11,7 @@ import {
   Heart,
   Coins,
   Home,
+  BookOpen
 } from "lucide-react";
 import { SajuResultType, SajuPillar } from "../../data/sajuData";
 import KakaoAdFit from "../KakaoAdFit";
@@ -234,6 +235,27 @@ export default function SajuResult({ result, onReset }: SajuResultProps) {
           delay={0.8}
         />
       </div>
+
+      {/* Methodology Section (Strategy B) */}
+      <motion.div 
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.85 }}
+        className="mx-4 mb-8 p-5 bg-white/5 rounded-2xl border border-white/10 text-left"
+      >
+        <h3 className="text-sm font-bold text-white/90 mb-2 flex items-center gap-2">
+          <BookOpen size={16} className="text-emerald-400"/> 
+          사주팔자 분석 알고리즘
+        </h3>
+        <p className="text-xs text-white/60 leading-relaxed">
+          사주팔자(四柱八字)는 사람이 태어난 연, 월, 일, 시를 네 개의 기둥으로 세우고, 
+          각 기둥마다 천간(天干)과 지지(地支) 두 글자씩 배정하여 총 여덟 글자로 운명을 점치는 학문입니다. 
+          <br/><br/>
+          본 서비스는 만세력 데이터를 바탕으로 정확한 사주 명식을 추출하고, 
+          음양오행(목, 화, 토, 금, 수)의 상생상극 원리를 적용하여 
+          타고난 기질과 후천적인 운의 흐름을 분석합니다.
+        </p>
+      </motion.div>
 
       {/* AdFit */}
       <div className="w-full mb-8 flex justify-center items-center min-h-[250px] px-4">

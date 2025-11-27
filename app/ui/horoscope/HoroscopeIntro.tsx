@@ -62,6 +62,15 @@ export default function HoroscopeIntro({ onStart }: HoroscopeIntroProps) {
           >
             별자리 선택하기 ✨
           </motion.button>
+
+          {/* Description Text (Strategy C) */}
+          <div className="mt-6 p-4 bg-white/5 rounded-xl text-left border border-white/10">
+            <p className="text-xs text-violet-200/80 leading-relaxed break-keep">
+              서양 점성술은 천체의 움직임이 인간사에 영향을 미친다는 전제를 바탕으로 합니다. 
+              본 오늘의 운세는 태양의 황도 위치를 기준으로 한 <strong>12별자리(Zodiac Sign)</strong> 점성술을 따르며, 
+              매일 변화하는 천체의 기운을 해석하여 당신에게 필요한 조언과 행운의 요소를 알려드립니다.
+            </p>
+          </div>
         </div>
       </div>
 

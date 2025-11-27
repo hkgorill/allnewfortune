@@ -3,7 +3,7 @@
 import Link from "next/link";
 import Modal from "./Modal";
 import { useState, useEffect } from "react";
-import { ShieldCheck, Sparkles, UserX, Zap, Send, Mail, Loader2 } from "lucide-react";
+import { ShieldCheck, Sparkles, UserX, Zap, Send, Mail, Loader2, AlertCircle } from "lucide-react";
 
 export default function Footer() {
   const [modalContent, setModalContent] = useState<"about" | "privacy" | "contact" | null>(null);
@@ -109,6 +109,17 @@ export default function Footer() {
                 정통 사주 명리학 데이터를 학습한 AI가 당신의 생년월일을 분석하여 개인화된 운명을 알려드립니다.
               </p>
             </div>
+          </div>
+
+          <div className="mt-6 p-4 bg-red-500/5 border border-red-500/10 rounded-xl text-left">
+            <h3 className="text-xs font-bold text-red-200/70 mb-1 flex items-center gap-1">
+              <AlertCircle className="w-3 h-3" /> 면책 조항 (Disclaimer)
+            </h3>
+            <p className="text-[11px] text-red-200/50 leading-relaxed">
+              본 서비스에서 제공하는 모든 운세 결과는 재미와 참고 목적으로만 제공됩니다. 
+              이는 과학적 근거가 있는 확정적 사실이 아니며, 법적 효력을 갖거나 전문적인 조언(의학, 법률, 금융 등)을 대체할 수 없습니다. 
+              결과에 대한 맹신보다는 더 나은 하루를 위한 가벼운 조언으로 즐겨주시길 바랍니다.
+            </p>
           </div>
         </div>
       </Modal>

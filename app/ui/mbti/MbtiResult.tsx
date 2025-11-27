@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Share2, RefreshCw, Sparkles, Quote, Home } from "lucide-react";
+import { Share2, RefreshCw, Sparkles, Quote, Home, BookOpen } from "lucide-react";
 import { MbtiResultType } from "../../data/mbtiData";
 import KakaoAdFit from "../KakaoAdFit";
 import GoogleAdSense from "../GoogleAdSense";
@@ -116,6 +116,24 @@ export default function MbtiResult({ result, onReset }: MbtiResultProps) {
              </div>
            </div>
         </div>
+      </motion.div>
+
+      {/* Methodology Section (Strategy B) */}
+      <motion.div 
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.3 }}
+        className="mx-4 mb-8 p-5 bg-white/5 rounded-2xl border border-white/10 text-left"
+      >
+        <h3 className="text-sm font-bold text-white/90 mb-2 flex items-center gap-2">
+          <BookOpen size={16} className="text-pink-400"/> 
+          성격 유형 분석 원리
+        </h3>
+        <p className="text-xs text-white/60 leading-relaxed">
+          본 검사는 카를 융(Carl Jung)의 심리 유형론을 바탕으로 개발된 MBTI(Myers-Briggs Type Indicator) 이론을 기반으로 합니다. 
+          에너지의 방향(E/I), 인식 방식(S/N), 판단 근거(T/F), 생활 양식(J/P)의 4가지 지표를 조합하여 
+          총 16가지 성격 유형 중 당신에게 가장 가까운 유형을 도출합니다.
+        </p>
       </motion.div>
 
       {/* AdFit */}

@@ -66,6 +66,15 @@ export default function FortuneIntro({ onStart }: FortuneIntroProps) {
           >
             운세 보기 🔮
           </motion.button>
+
+          {/* Description Text (Strategy C) */}
+          <div className="mt-6 p-4 bg-white/5 rounded-xl text-left border border-white/10">
+            <p className="text-xs text-purple-200/80 leading-relaxed break-keep">
+              본 신년운세 서비스는 <strong>자평명리학(子平命理學)</strong>을 기반으로 2026년 병오년(丙午年)의 기운과 귀하의 사주 명식을 대조하여 분석합니다. 
+              단순한 재미를 넘어, 한 해의 흐름을 미리 읽고 대비할 수 있도록 
+              재물, 연애, 건강 등 각 분야별 상세한 조언을 제공합니다.
+            </p>
+          </div>
         </div>
       </div>
 

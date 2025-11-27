@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Share2, RefreshCw, Quote, Home } from "lucide-react";
+import { Share2, RefreshCw, Quote, Home, BookOpen } from "lucide-react";
 import { PsychResultType } from "../../data/psychologyData";
 import KakaoAdFit from "../KakaoAdFit";
 import GoogleAdSense from "../GoogleAdSense";
@@ -107,6 +107,24 @@ export default function PsychologyResult({ result, onReset }: PsychologyResultPr
              </div>
            </div>
         </div>
+      </motion.div>
+
+      {/* Methodology Section (Strategy B) */}
+      <motion.div 
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.3 }}
+        className="mx-4 mb-8 p-5 bg-white/5 rounded-2xl border border-white/10 text-left"
+      >
+        <h3 className="text-sm font-bold text-white/90 mb-2 flex items-center gap-2">
+          <BookOpen size={16} className="text-green-400"/> 
+          심리 테스트 원리
+        </h3>
+        <p className="text-xs text-white/60 leading-relaxed">
+          이 테스트는 투사적 심리 검사(Projective Test) 기법을 응용하여 제작되었습니다. 
+          특정 상황(숲속)에서의 선택은 당신의 무의식적 욕구와 방어 기제를 반영합니다. 
+          동물이나 상황에 대한 당신의 직관적인 반응을 통해 평소 인지하지 못했던 내면의 심리를 탐색합니다.
+        </p>
       </motion.div>
 
       {/* AdFit */}

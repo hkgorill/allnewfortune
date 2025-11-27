@@ -147,6 +147,15 @@ export default function PsychologyIntro({ onStart }: PsychologyIntroProps) {
               );
             })}
           </div>
+
+          {/* Description Text (Strategy C) */}
+          <div className="mt-4 p-4 bg-white/5 rounded-xl text-left border border-white/10">
+            <p className="text-xs text-green-200/80 leading-relaxed break-keep">
+              심리테스트는 특정 자극이나 상황에 대한 반응을 통해 개인의 성격적 특성과 심리 상태를 추론하는 도구입니다. 
+              본 테스트들은 <strong>투사법(Projective Method)</strong>과 <strong>상황 판단 검사</strong>의 원리를 응용하여, 
+              당신이 평소에 인지하지 못했던 무의식적 욕구와 행동 패턴을 발견하도록 돕습니다.
+            </p>
+          </div>
         </div>
       </div>
 

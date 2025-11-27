@@ -58,6 +58,15 @@ export default function ChemistryIntro({ onStart }: ChemistryIntroProps) {
             <span>상대방의 생일 정보가 필요합니다.</span>
           </li>
         </ul>
+
+        {/* Description Text (Strategy C) */}
+        <div className="mt-6 pt-4 border-t border-white/10">
+            <p className="text-xs text-pink-200/70 leading-relaxed break-keep">
+              궁합(宮合)은 두 사람의 사주가 서로 상생(相生)하는지 상극(相剋)하는지를 판단하는 전통적인 방법입니다. 
+              서로 부족한 오행을 채워주는 관계인지, 혹은 부딪히는 기운이 강한지를 미리 파악하여 
+              더욱 조화로운 관계를 만들어가는 지혜를 얻으세요.
+            </p>
+        </div>
       </motion.div>
 
       {/* FAQ Section */}

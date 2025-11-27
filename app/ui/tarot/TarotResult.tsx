@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Share2, RefreshCw, Sparkles, Quote, Home } from "lucide-react";
+import { Share2, RefreshCw, Sparkles, Quote, Home, BookOpen } from "lucide-react";
 import { TarotCard } from "../../data/tarotData";
 import KakaoAdFit from "../KakaoAdFit";
 import GoogleAdSense from "../GoogleAdSense";
@@ -233,6 +233,25 @@ export default function TarotResult({
           </p>
           <Quote className="absolute bottom-2 right-2 w-4 h-4 text-white/30" />
         </div>
+      </motion.div>
+
+      {/* Methodology Section (Strategy B) */}
+      <motion.div 
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.7 }}
+        className="mx-4 mb-8 p-5 bg-white/5 rounded-2xl border border-white/10 text-left"
+      >
+        <h3 className="text-sm font-bold text-white/90 mb-2 flex items-center gap-2">
+          <BookOpen size={16} className="text-blue-400"/> 
+          타로 리딩 방식
+        </h3>
+        <p className="text-xs text-white/60 leading-relaxed">
+          본 타로점은 '3 카드 스프레드(Three Card Spread)' 방식을 변형하여 사용합니다. 
+          과거-현재-미래의 흐름 대신, 질문에 대한 핵심적인 세 가지 관점(상황, 조언, 결과)을 
+          메이저 아르카나 22장의 상징을 통해 직관적으로 해석합니다. 
+          무작위로 뽑힌 카드는 단순한 우연이 아닌, 당신의 무의식이 투영된 필연적 메시지일 수 있습니다.
+        </p>
       </motion.div>
 
       {/* AdFit */}

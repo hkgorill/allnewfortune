@@ -63,6 +63,16 @@ export default function SajuIntro({ onStart }: SajuIntroProps) {
           >
             내 사주 확인하기 📜
           </motion.button>
+
+          {/* Description Text (Strategy C) */}
+          <div className="mt-6 p-4 bg-white/5 rounded-xl text-left border border-white/10">
+            <p className="text-xs text-emerald-200/80 leading-relaxed break-keep">
+              사주팔자는 태어난 연, 월, 일, 시의 간지(干支) 여덟 글자를 통해 
+              선천적인 기질과 후천적인 운명을 탐구하는 통계학적 학문입니다. 
+              본 서비스는 <strong>정통 만세력 알고리즘</strong>을 통해 정확한 사주를 추출하고, 
+              현대적인 관점에서 알기 쉽게 풀이해 드립니다.
+            </p>
+          </div>
         </div>
       </div>
 

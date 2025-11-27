@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { RotateCcw, Share2, Home, Heart, Star, Flame } from "lucide-react";
+import { RotateCcw, Share2, Home, Heart, Star, Flame, BookOpen } from "lucide-react";
 import KakaoAdFit from "../KakaoAdFit";
 import GoogleAdSense from "../GoogleAdSense";
 import { ChemistryResultType } from "../../data/chemistryData";
@@ -157,6 +157,24 @@ export default function ChemistryResult({ resultData, onReset }: ChemistryResult
           <p className="text-sm text-white/60 mb-1">오행 궁합 코멘트</p>
           <p className="text-white/90 font-medium">{resultData.elementMatch.description}</p>
         </div>
+      </motion.div>
+
+      {/* Methodology Section (Strategy B) */}
+      <motion.div 
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.35 }}
+        className="w-full bg-white/5 border border-white/10 rounded-2xl p-5 mb-8 text-left"
+      >
+        <h3 className="text-sm font-bold text-white/90 mb-2 flex items-center gap-2">
+          <BookOpen size={16} className="text-pink-400"/> 
+          궁합 분석 원리
+        </h3>
+        <p className="text-xs text-white/60 leading-relaxed">
+          이 궁합 분석은 두 가지 차원에서 이루어집니다. <br/>
+          첫째, <strong>띠 궁합(Zodiac Harmony)</strong>은 태어난 해의 12지신 관계(합/충/원진 등)를 통해 사회적 관계와 성격의 조화를 봅니다. <br/>
+          둘째, <strong>오행 궁합(Five Elements)</strong>은 각자의 생년 천간(天干)이 가진 에너지(목, 화, 토, 금, 수)의 상생상극을 분석하여 내면적 에너지의 흐름을 파악합니다.
+        </p>
       </motion.div>
 
       {/* Ad */}

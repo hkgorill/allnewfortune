@@ -62,6 +62,15 @@ export default function MbtiIntro({ onStart }: MbtiIntroProps) {
           >
             테스트 시작하기 ✨
           </motion.button>
+
+          {/* Description Text (Strategy C) */}
+          <div className="mt-6 p-4 bg-white/5 rounded-xl text-left border border-white/10">
+            <p className="text-xs text-purple-200/80 leading-relaxed break-keep">
+              본 성격 유형 검사는 <strong>마이어스-브릭스 유형 지표(MBTI)</strong>의 이론적 배경을 바탕으로 재구성되었습니다. 
+              에너지의 방향, 인식 기능, 판단 기능, 생활 양식의 4가지 척도를 통해 
+              당신의 선호 경향을 파악하고, 이를 통해 자신을 더 깊이 이해하는 기회를 제공합니다.
+            </p>
+          </div>
         </div>
       </div>
 

@@ -142,6 +142,15 @@ export default function TarotIntro({ onStart }: TarotIntroProps) {
               </motion.button>
             ))}
           </div>
+
+          {/* Description Text (Strategy C) */}
+          <div className="mt-4 p-4 bg-white/5 rounded-xl text-left border border-white/10">
+            <p className="text-xs text-blue-200/80 leading-relaxed break-keep">
+              타로(Tarot)는 무의식의 언어를 시각적 상징으로 표현하는 도구입니다. 
+              당신이 무작위로 선택한 카드는 단순한 우연이 아니라, <strong>동시성(Synchronicity)</strong>의 원리에 의해 
+              현재 당신의 내면 상태와 상황을 반영합니다. 카드가 들려주는 직관적인 메시지에 귀 기울여보세요.
+            </p>
+          </div>
         </div>
       </div>
 

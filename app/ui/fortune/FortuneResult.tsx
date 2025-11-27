@@ -12,7 +12,8 @@ import {
   Activity,
   ExternalLink,
   Gift,
-  Home
+  Home,
+  BookOpen
 } from "lucide-react";
 import GoogleAdSense from "../GoogleAdSense";
 
@@ -201,6 +202,25 @@ export default function FortuneResult({ data, onReset }: FortuneResultProps) {
           delay={0.6}
         />
       </div>
+
+      {/* Methodology Section (Strategy B) */}
+      <motion.div 
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.65 }}
+        className="mx-4 mb-4 p-5 bg-white/5 rounded-2xl border border-white/10 text-left"
+      >
+        <h3 className="text-sm font-bold text-white/90 mb-2 flex items-center gap-2">
+          <BookOpen size={16} className="text-purple-400"/> 
+          운세 분석 원리
+        </h3>
+        <p className="text-xs text-white/60 leading-relaxed">
+          본 신년운세는 자평명리학(子平命理學)의 원리를 기반으로 합니다. 
+          태어난 연월일시의 천간과 지지를 분석하여, 2026년 병오년(丙午年)의 
+          화(火) 기운이 귀하의 사주와 어떻게 상호작용하는지를 풀이하였습니다. 
+          특히 일간(日干)을 중심으로 한 신강/신약 판단과 오행의 조화를 중점적으로 봅니다.
+        </p>
+      </motion.div>
 
       {/* Lucky Item Recommendation */}
       <motion.div 
