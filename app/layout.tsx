@@ -26,10 +26,12 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   title: {
-    default: "2026년 신년운세 & AI 종합 운세 | 사주·타로·MBTI - ALL NEW FORTUNE",
+    default:
+      "2026년 신년운세 & AI 종합 운세 | 사주·타로·MBTI - ALL NEW FORTUNE",
     template: "%s | ALL NEW FORTUNE",
   },
-  description: "2026년 병오년 신년운세부터 사주, 타로, MBTI, 심리테스트, 오늘의 운세 (별자리)까지! AI가 정밀 분석해주는 나만의 운명 가이드. 생년월일만으로 알아보는 무료 종합 운세 서비스.",
+  description:
+    "2026년 병오년 신년운세부터 사주, 타로, MBTI, 심리테스트, 오늘의 운세 (별자리)까지! AI가 정밀 분석해주는 나만의 운명 가이드. 생년월일만으로 알아보는 무료 종합 운세 서비스.",
   keywords: [
     "2026년 운세",
     "신년운세",
@@ -46,7 +48,7 @@ export const metadata: Metadata = {
     "심리테스트",
     "성격 유형 검사",
     "오늘의 운세 (별자리)",
-    "정통 사주"
+    "정통 사주",
   ],
   authors: [{ name: "ALL NEW FORTUNE" }],
   creator: "ALL NEW FORTUNE",
@@ -62,7 +64,8 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "2026년 신년운세 & AI 종합 운세 | 사주·타로·MBTI",
-    description: "2026년 병오년 나의 운세는? AI가 분석하는 정밀 사주풀이와 신년 운세. MBTI, 타로, 심리테스트까지 지금 바로 무료로 확인해보세요.",
+    description:
+      "2026년 병오년 나의 운세는? AI가 분석하는 정밀 사주풀이와 신년 운세. MBTI, 타로, 심리테스트까지 지금 바로 무료로 확인해보세요.",
     url: "https://fortune.jungpyung.com",
     siteName: "ALL NEW FORTUNE",
     images: [
@@ -79,7 +82,8 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "2026년 신년운세 & AI 종합 운세",
-    description: "AI가 알려주는 2026년 병오년 당신의 운세. 재물운, 연애운, MBTI, 타로까지 한 번에 확인하세요.",
+    description:
+      "AI가 알려주는 2026년 병오년 당신의 운세. 재물운, 연애운, MBTI, 타로까지 한 번에 확인하세요.",
     images: ["/opengraph-image"],
   },
   robots: {
@@ -99,7 +103,8 @@ export const metadata: Metadata = {
       process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION_FORTUNE!,
     ],
     other: {
-      "naver-site-verification": process.env.NEXT_PUBLIC_NAVER_SITE_VERIFICATION!,
+      "naver-site-verification":
+        process.env.NEXT_PUBLIC_NAVER_SITE_VERIFICATION!,
     },
   },
   appleWebApp: {
@@ -117,19 +122,21 @@ export default function RootLayout({
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    "name": "ALL NEW FORTUNE",
-    "url": "https://fortune.jungpyung.com",
-    "description": "AI 기반 2026년 신년운세, 사주, 타로, MBTI, 심리테스트 무료 서비스",
-    "potentialAction": {
+    name: "ALL NEW FORTUNE",
+    url: "https://fortune.jungpyung.com",
+    description:
+      "AI 기반 2026년 신년운세, 사주, 타로, MBTI, 심리테스트 무료 서비스",
+    potentialAction: {
       "@type": "SearchAction",
-      "target": "https://fortune.jungpyung.com/?q={search_term_string}",
-      "query-input": "required name=search_term_string"
-    }
+      target: "https://fortune.jungpyung.com/?q={search_term_string}",
+      "query-input": "required name=search_term_string",
+    },
   };
 
   return (
     <html lang="ko" suppressHydrationWarning>
       <head>
+        <meta name="google-adsense-account" content="ca-pub-8290671660952374" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -144,9 +151,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-col min-h-screen`}
       >
-        <div className="flex-grow">
-          {children}
-        </div>
+        <div className="flex-grow">{children}</div>
         <Footer />
         <Analytics />
       </body>
