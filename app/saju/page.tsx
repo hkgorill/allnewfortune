@@ -52,9 +52,11 @@ function SajuContent() {
 
     let hour = 12;
     if (data.birthtime) {
-      const [ampm, timeStr] = data.birthtime.split(" ");
-      const [h, m] = timeStr.split(":").map(Number);
-      hour = ampm === "PM" && h !== 12 ? h + 12 : (ampm === "AM" && h === 12 ? 0 : h);
+      // HH:mm 형식 (24시간제)
+      if (data.birthtime.includes(":")) {
+          const [hStr] = data.birthtime.split(":");
+          hour = parseInt(hStr, 10);
+      }
     }
 
     setTimeout(() => {

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ReactMarkdown from "react-markdown";
 import { motion } from "framer-motion";
 import {
@@ -40,6 +40,10 @@ interface FortuneResultProps {
 
 export default function FortuneResult({ data, onReset }: FortuneResultProps) {
   const [isSharing, setIsSharing] = useState(false);
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, []);
 
   const handleShare = async () => {
     if (isSharing) return;

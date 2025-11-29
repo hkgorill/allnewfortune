@@ -23,10 +23,9 @@ export default function SajuInput({
   const [month, setMonth] = useState("");
   const [day, setDay] = useState("");
   
-  // 시간 관련 상태
-  const [ampm, setAmpm] = useState("AM");
-    const [hour, setHour] = useState("");
-    const [minute, setMinute] = useState("");
+  // 시간 관련 상태 (드롭다운용)
+  const [hour, setHour] = useState(""); // "" = 모름, "0" ~ "23"
+  const [minute, setMinute] = useState("00");
   
     // 양력/음력 선택 상태
     const [calendarType, setCalendarType] = useState<"solar" | "lunar" | "leap">("solar");
@@ -70,13 +69,23 @@ export default function SajuInput({
           setBirthdate(parsed.birthdate);
         }
         if (parsed.gender) setGender(parsed.gender);
+        
+        // 시간 파싱 (AM/PM 포맷과 24시간제 포맷 모두 지원)
         if (parsed.birthtime) {
-          const [pAmpm, pTime] = parsed.birthtime.split(" ");
-          if (pAmpm && pTime) {
-            setAmpm(pAmpm);
-            const [pH, pM] = pTime.split(":");
-            setHour(pH);
-            setMinute(pM);
+          if (parsed.birthtime.includes("M")) { // "AM 10:30" or "PM 02:00"
+            const [pAmpm, pTime] = parsed.birthtime.split(" ");
+            if (pAmpm && pTime) {
+               const [pH, pM] = pTime.split(":");
+               let h = parseInt(pH);
+               if (pAmpm === "PM" && h < 12) h += 12;
+               if (pAmpm === "AM" && h === 12) h = 0;
+               setHour(h.toString());
+               setMinute(pM);
+            }
+          } else if (parsed.birthtime.includes(":")) { // "14:30"
+             const [pH, pM] = parsed.birthtime.split(":");
+             setHour(parseInt(pH).toString());
+             setMinute(pM);
           }
         }
       } catch (e) {
@@ -89,10 +98,10 @@ export default function SajuInput({
     e.preventDefault();
     if (!birthdate) return;
 
-    // 입력된 시간 조합
+    // 입력된 시간 조합 (24시간제 HH:mm)
     let formattedTime = "";
-    if (hour && minute) {
-      formattedTime = `${ampm} ${hour}:${minute}`;
+    if (hour !== "") {
+      formattedTime = `${hour.padStart(2, "0")}:${minute.padStart(2, "0")}`;
     }
 
     // calendarType 포함 전송
@@ -232,48 +241,45 @@ export default function SajuInput({
           </div>
         </div>
 
-        {/* Time Input */}
+        {/* Time Input (Dropdown) */}
         <div className="space-y-2 group">
           <label className="flex items-center gap-2 text-sm font-medium text-emerald-200/80 transition-colors group-focus-within:text-emerald-200">
             <Clock size={16} /> 태어난 시간 (정확도 향상)
           </label>
           <div className="flex gap-2">
+            {/* 시 선택 */}
             <div className="relative flex-1">
               <select
-                value={ampm}
-                onChange={(e) => setAmpm(e.target.value)}
-                className="w-full p-4 rounded-2xl bg-black/20 border border-white/10 text-white appearance-none focus:ring-2 focus:ring-emerald-400/50 focus:bg-white/10 outline-none transition-all text-center cursor-pointer"
+                value={hour}
+                onChange={(e) => setHour(e.target.value)}
+                className="w-full p-4 rounded-2xl bg-black/20 border border-white/10 text-white appearance-none focus:ring-2 focus:ring-emerald-400/50 focus:bg-white/10 focus:border-white/30 outline-none transition-all text-center cursor-pointer"
               >
-                <option value="AM" className="bg-gray-800">오전</option>
-                <option value="PM" className="bg-gray-800">오후</option>
+                <option value="" className="bg-gray-800">시간 모름</option>
+                {Array.from({ length: 24 }, (_, i) => (
+                  <option key={i} value={i} className="bg-gray-800">
+                    {i}시
+                  </option>
+                ))}
               </select>
               <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-white/50 pointer-events-none" />
             </div>
-            <input
-              type="number"
-              min="1"
-              max="12"
-              placeholder="시"
-              value={hour}
-              onChange={(e) => {
-                const val = parseInt(e.target.value);
-                if (!e.target.value || (val >= 1 && val <= 12)) setHour(e.target.value);
-              }}
-              className="flex-1 p-4 rounded-2xl bg-black/20 border border-white/10 text-white text-center placeholder-white/30 focus:ring-2 focus:ring-emerald-400/50 focus:bg-white/10 outline-none transition-all"
-            />
-            <span className="self-center font-bold text-white/50">:</span>
-            <input
-              type="number"
-              min="0"
-              max="59"
-              placeholder="분"
-              value={minute}
-              onChange={(e) => {
-                const val = parseInt(e.target.value);
-                if (!e.target.value || (val >= 0 && val <= 59)) setMinute(e.target.value);
-              }}
-              className="flex-1 p-4 rounded-2xl bg-black/20 border border-white/10 text-white text-center placeholder-white/30 focus:ring-2 focus:ring-emerald-400/50 focus:bg-white/10 outline-none transition-all"
-            />
+
+            {/* 분 선택 */}
+            <div className="relative flex-1">
+              <select
+                value={minute}
+                onChange={(e) => setMinute(e.target.value)}
+                disabled={hour === ""}
+                className="w-full p-4 rounded-2xl bg-black/20 border border-white/10 text-white appearance-none focus:ring-2 focus:ring-emerald-400/50 focus:bg-white/10 focus:border-white/30 outline-none transition-all text-center cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                {Array.from({ length: 60 }, (_, i) => (
+                  <option key={i} value={i.toString().padStart(2, "0")} className="bg-gray-800">
+                    {i}분
+                  </option>
+                ))}
+              </select>
+              <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-white/50 pointer-events-none" />
+            </div>
           </div>
         </div>
 

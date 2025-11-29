@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect } from "react";
 import { motion } from "framer-motion";
 import { RotateCcw, Share2, Home } from "lucide-react";
 import { FINGER_RESULTS } from "../../data/fingerData";
@@ -17,6 +18,10 @@ interface FingerResultProps {
 }
 
 export default function FingerResult({ resultData, onReset }: FingerResultProps) {
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, []);
+
   let finalE = resultData.scoreE;
   let finalT = resultData.scoreT;
 
@@ -107,11 +112,11 @@ export default function FingerResult({ resultData, onReset }: FingerResultProps)
       </motion.div>
 
       {/* Ad */}
-      <div className="w-full mb-8 flex justify-center items-center min-h-[250px] px-4">
+      {/* <div className="w-full mb-8 flex justify-center items-center min-h-[250px] px-4">
         <div className="w-full max-w-[300px] flex justify-center rounded-xl bg-white/5 p-2">
           <KakaoAdFit unit="DAN-oEqhVJwNYljTA78D" width="300" height="250" />
         </div>
-      </div>
+      </div> */}
 
       <div className="w-full mb-8">
         <GoogleAdSense slot="1234567890" />

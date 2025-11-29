@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Share2, RefreshCw, Sparkles, Star, Heart, Coins, Briefcase, Home, BookOpen } from "lucide-react";
 import { HoroscopeResultType } from "../../data/horoscopeData";
@@ -14,6 +14,10 @@ interface HoroscopeResultProps {
 
 export default function HoroscopeResult({ result, onReset }: HoroscopeResultProps) {
   const [isSharing, setIsSharing] = useState(false);
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, []);
 
   const handleShare = async () => {
     if (isSharing) return;
@@ -161,11 +165,11 @@ export default function HoroscopeResult({ result, onReset }: HoroscopeResultProp
       </motion.div>
 
       {/* AdFit */}
-      <div className="w-full mb-8 flex justify-center items-center min-h-[250px] px-4">
+      {/* <div className="w-full mb-8 flex justify-center items-center min-h-[250px] px-4">
         <div className="w-full max-w-[250px] flex justify-center">
           <KakaoAdFit unit="DAN-oEqhVJwNYljTA78D" width="250" height="250" />
         </div>
-      </div>
+      </div> */}
 
       <div className="mx-4 mb-8">
         <GoogleAdSense slot="1234567890" />

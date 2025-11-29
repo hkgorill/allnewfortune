@@ -1,4 +1,3 @@
-import GoogleAdSense from "../GoogleAdSense";
 
 export default function ChemistryDescription() {
   return (
@@ -11,8 +10,6 @@ export default function ChemistryDescription() {
           궁합은 두 사람의 사주 오행이 서로 상생(도움)하는지, 상극(충돌)하는지를 분석하여 관계의 조화를 알아보는 방법입니다. 단순히 "좋다, 나쁘다"를 넘어, <strong>두 사람이 함께할 때 어떤 시너지가 나고 어떤 점을 조심해야 하는지</strong>를 알려줍니다.
         </p>
       </article>
-
-      <GoogleAdSense slot="1234567890" />
 
       <article>
         <h2 className="text-xl font-bold text-white mb-4">

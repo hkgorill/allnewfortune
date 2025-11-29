@@ -1,4 +1,3 @@
-import GoogleAdSense from "../GoogleAdSense";
 
 export default function FingerDescription() {
   return (
@@ -11,8 +10,6 @@ export default function FingerDescription() {
           검지(둘째 손가락)와 약지(넷째 손가락)의 길이 비율은 태아 시절 엄마 뱃속에서 <strong>테스토스테론(남성 호르몬)</strong>에 얼마나 노출되었는지를 나타내는 지표라는 연구 결과가 있습니다. 이를 통해 타고난 성향과 뇌 구조를 유추해볼 수 있습니다.
         </p>
       </article>
-
-      <GoogleAdSense slot="1234567890" />
 
       <article>
         <h2 className="text-xl font-bold text-white mb-4">

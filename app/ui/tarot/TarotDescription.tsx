@@ -1,4 +1,3 @@
-import GoogleAdSense from "../GoogleAdSense";
 
 export default function TarotDescription() {
   return (
@@ -11,8 +10,6 @@ export default function TarotDescription() {
           타로(Tarot)는 메이저 아르카나 22장의 카드를 통해 현재의 상황과 미래의 가능성을 점치는 도구입니다. 무작위로 뽑은 것 같지만, 심리학자 칼 융(Carl Jung)이 말한 <strong>'동시성 원리'</strong>에 의해 당신의 무의식이 현재 가장 필요한 메시지를 선택하게 됩니다. ALL NEW FORTUNE에서는 <strong>22장 중 3장을 선택</strong>하여 더욱 깊이 있는 해석을 제공합니다.
         </p>
       </article>
-
-      <GoogleAdSense slot="1234567890" />
 
       <article>
         <h2 className="text-xl font-bold text-white mb-4">

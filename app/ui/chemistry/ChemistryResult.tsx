@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { RotateCcw, Share2, Home, Heart, Star, Flame, BookOpen } from "lucide-react";
 import KakaoAdFit from "../KakaoAdFit";
@@ -14,6 +14,10 @@ interface ChemistryResultProps {
 
 export default function ChemistryResult({ resultData, onReset }: ChemistryResultProps) {
   const [isSharing, setIsSharing] = useState(false);
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, []);
 
   const handleShare = async () => {
     if (isSharing) return;
@@ -178,11 +182,11 @@ export default function ChemistryResult({ resultData, onReset }: ChemistryResult
       </motion.div>
 
       {/* Ad */}
-      <div className="w-full mb-8 flex justify-center items-center min-h-[250px] px-4">
+      {/* <div className="w-full mb-8 flex justify-center items-center min-h-[250px] px-4">
         <div className="w-full max-w-[300px] flex justify-center rounded-xl bg-white/5 p-2">
           <KakaoAdFit unit="DAN-oEqhVJwNYljTA78D" width="300" height="250" />
         </div>
-      </div>
+      </div> */}
 
       <div className="w-full mb-8">
         <GoogleAdSense slot="1234567890" />

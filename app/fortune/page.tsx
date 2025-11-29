@@ -97,13 +97,13 @@ function FortuneContent() {
                 {fortuneStep === "result" && resultData && <FortuneResult data={resultData} onReset={handleResetFortune} />}
             </div>
 
-            {fortuneStep === "result" && (
+            {/* {fortuneStep === "result" && (
                 <div className="w-full mt-8 mb-4 flex justify-center items-center min-h-[250px] px-4">
                   <div className="w-full max-w-[250px] flex justify-center">
                     <KakaoAdFit unit="DAN-oEqhVJwNYljTA78D" width="250" height="250" />
                   </div>
                 </div>
-            )}
+            )} */}
 
             <FortuneDescription />
         </div>
