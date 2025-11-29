@@ -206,6 +206,13 @@ export default function SajuResult({ result, onReset }: SajuResultProps) {
             </div>
           </div>
         </div>
+
+        {/* Total Interpretation (Added) */}
+        <div className="mt-6 pt-4 border-t border-white/10 text-center">
+          <p className="text-white/80 text-sm leading-relaxed break-keep px-2 font-medium">
+            "{result.interpretation.total}"
+          </p>
+        </div>
       </div>
 
       {/* Detailed Interpretations */}

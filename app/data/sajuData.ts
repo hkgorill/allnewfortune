@@ -30,6 +30,7 @@ export interface SajuResultType {
     wealth: string;
     career: string;
     love: string;
+    total: string; // 전체적인 사주 내용 추가
   };
 }
 
@@ -88,6 +89,12 @@ const INTERPRETATIONS = {
     "신뢰와 안정을 중요시하며, 친구 같은 편안한 연애를 선호합니다.",
     "상대방을 배려하고 헌신하는 스타일로, 결혼 운이 매우 좋습니다.",
     "자신의 매력을 잘 알고 있으며, 이성에게 인기가 많은 도화살이 있습니다.",
+  ],
+  total: [
+    "전반적으로 오행이 골고루 분포하여 삶의 균형이 잘 잡혀 있습니다. 타고난 기운이 강해 어려움이 닥쳐도 스스로 극복하는 힘이 있으며, 중년 이후에는 그동안 쌓아온 노력이 결실을 맺어 안정을 찾게 될 것입니다.",
+    "특정 오행의 기운이 강하여 한 분야에서 전문가로 성장할 잠재력이 큽니다. 초년에는 다소 불안정할 수 있으나, 자신의 강점을 잘 살린다면 사회적으로 큰 성공을 거둘 수 있는 운명입니다.",
+    "흐르는 물처럼 유연한 사고와 적응력을 지니고 있어, 변화하는 환경에서도 빠르게 자리를 잡습니다. 인복이 많아 주변 사람들의 도움으로 위기를 기회로 바꾸는 지혜를 발휘하게 될 것입니다.",
+    "불처럼 뜨거운 열정과 흙처럼 단단한 기반을 동시에 가지고 있습니다. 목표를 향해 묵묵히 나아가는 끈기가 있으며, 대기만성형으로 인생의 후반부로 갈수록 더욱 빛을 발하는 사주입니다."
   ],
 };
 
@@ -169,6 +176,7 @@ export const calculateSaju = (year: number, month: number, day: number, hour: nu
       wealth: getInterpretation(INTERPRETATIONS.wealth, daySeed + 1),
       career: getInterpretation(INTERPRETATIONS.career, daySeed + 2),
       love: getInterpretation(INTERPRETATIONS.love, daySeed + 3),
+      total: getInterpretation(INTERPRETATIONS.total, daySeed + 4),
     }
   };
 };
