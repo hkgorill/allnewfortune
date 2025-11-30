@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import {
@@ -360,44 +361,49 @@ export default function MenuScreen() {
         <div className="flex items-center gap-2 mb-6">
           <BookOpen className="w-6 h-6 text-purple-400" />
           <h3 className="text-xl font-bold text-white">알아두면 쓸모있는 운세 지식</h3>
+          <Link href="/blog" className="text-sm text-purple-400 flex items-center gap-1 hover:underline">
+            전체보기 <ArrowRight className="w-4 h-4" />
+          </Link>
         </div>
 
-        <article className="bg-white/5 p-6 rounded-2xl border border-white/10">
-          <h4 className="text-lg font-bold text-white mb-3">🔥 2026년 병오년(丙午年), 붉은 말의 해</h4>
-          <p className="leading-relaxed text-sm mb-4">
-            2026년은 육십갑자 중 43번째 해인 병오년입니다. 천간인 '병(丙)'은 붉은색(불)을 의미하고, 
-            지지인 '오(午)'는 말(동물)을 의미하여 '적토마' 또는 '붉은 말'의 해라고 불립니다. 
-            붉은 말은 강인한 생명력과 뜨거운 열정을 상징하며, 역사적으로 병오년에는 강력한 변화와 혁신의 기운이 감돌았습니다.
-          </p>
-          <p className="leading-relaxed text-sm">
-            이 해에 태어난 사람들은 활동적이고 사교적이며, 목표를 향해 거침없이 달려가는 추진력을 가지고 있다고 알려져 있습니다.
-            새로운 도전을 시작하거나 리더십을 발휘하기에 더할 나위 없이 좋은 시기가 될 것입니다.
-          </p>
-        </article>
+        <Link href="/blog/2026-red-horse" className="block group">
+          <article className="bg-white/5 p-6 rounded-2xl border border-white/10 group-hover:bg-white/10 transition-colors">
+            <h4 className="text-lg font-bold text-white mb-3 group-hover:text-purple-300 transition-colors">
+              🔥 2026년 병오년(丙午年), 붉은 말의 해
+            </h4>
+            <p className="leading-relaxed text-sm text-white/70 line-clamp-2">
+              2026년은 육십갑자 중 43번째 해인 병오년입니다. 천간인 '병(丙)'은 붉은색(불)을 의미하고, 
+              지지인 '오(午)'는 말(동물)을 의미하여 '적토마' 또는 '붉은 말'의 해라고 불립니다. 
+              붉은 말은 강인한 생명력과 뜨거운 열정을 상징하며, 역사적으로 병오년에는 강력한 변화와 혁신의 기운이 감돌았습니다.
+            </p>
+          </article>
+        </Link>
 
-        <article className="bg-white/5 p-6 rounded-2xl border border-white/10">
-          <h4 className="text-lg font-bold text-white mb-3">⚖️ 사주와 MBTI, 무엇이 다를까?</h4>
-          <p className="leading-relaxed text-sm mb-4">
-            사주팔자(Four Pillars of Destiny)는 동양의 통계학적 명리학을 기반으로 태어난 시점의 우주적 기운을 분석합니다. 
-            반면 MBTI는 카를 융의 심리 유형론을 바탕으로 개인의 선호 경향을 파악하는 심리 검사입니다.
-          </p>
-          <p className="leading-relaxed text-sm">
-            사주는 '타고난 운명과 기질'을, MBTI는 '현재의 심리 상태와 성격 유형'을 보여줍니다. 
-            두 가지를 함께 참고하면 나 자신을 입체적으로 이해하는 데 큰 도움이 됩니다.
-          </p>
-        </article>
+        <Link href="/blog/saju-vs-mbti" className="block group">
+          <article className="bg-white/5 p-6 rounded-2xl border border-white/10 group-hover:bg-white/10 transition-colors">
+            <h4 className="text-lg font-bold text-white mb-3 group-hover:text-purple-300 transition-colors">
+              ⚖️ 사주와 MBTI, 무엇이 다를까?
+            </h4>
+            <p className="leading-relaxed text-sm text-white/70 line-clamp-2">
+              사주팔자(Four Pillars of Destiny)는 동양의 통계학적 명리학을 기반으로 태어난 시점의 우주적 기운을 분석합니다. 
+              반면 MBTI는 카를 융의 심리 유형론을 바탕으로 개인의 선호 경향을 파악하는 심리 검사입니다.
+              사주는 '타고난 운명과 기질'을, MBTI는 '현재의 심리 상태와 성격 유형'을 보여줍니다.
+            </p>
+          </article>
+        </Link>
 
-        <article className="bg-white/5 p-6 rounded-2xl border border-white/10">
-          <h4 className="text-lg font-bold text-white mb-3">🃏 타로 카드의 신비로운 기원</h4>
-          <p className="leading-relaxed text-sm mb-4">
-            타로 카드는 15세기 이탈리아에서 시작된 것으로 알려져 있습니다. 
-            총 78장의 카드로 구성되며, 인간의 중대사를 다루는 22장의 '메이저 아르카나'와 세부적인 사건을 묘사하는 56장의 '마이너 아르카나'로 나뉩니다.
-          </p>
-          <p className="leading-relaxed text-sm">
-            단순한 점술 도구를 넘어, 무의식을 투영하고 내면의 목소리를 듣는 심리 상담 도구로도 널리 활용되고 있습니다. 
-            우연히 뽑은 카드가 현재의 상황과 놀랍도록 맞아떨어지는 경험, 이것이 바로 타로의 묘미입니다.
-          </p>
-        </article>
+        <Link href="/blog/tarot-history" className="block group">
+          <article className="bg-white/5 p-6 rounded-2xl border border-white/10 group-hover:bg-white/10 transition-colors">
+            <h4 className="text-lg font-bold text-white mb-3 group-hover:text-purple-300 transition-colors">
+              🃏 타로 카드의 신비로운 기원
+            </h4>
+            <p className="leading-relaxed text-sm text-white/70 line-clamp-2">
+              타로 카드는 15세기 이탈리아에서 시작된 것으로 알려져 있습니다. 
+              총 78장의 카드로 구성되며, 인간의 중대사를 다루는 22장의 '메이저 아르카나'와 세부적인 사건을 묘사하는 56장의 '마이너 아르카나'로 나뉩니다.
+              단순한 점술 도구를 넘어, 무의식을 투영하고 내면의 목소리를 듣는 심리 상담 도구로도 널리 활용되고 있습니다.
+            </p>
+          </article>
+        </Link>
       </section>
       </div>
 
