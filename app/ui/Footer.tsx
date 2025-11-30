@@ -59,6 +59,10 @@ export default function Footer() {
             블로그
           </Link>
           <span className="w-[1px] h-3 bg-white/20 self-center"></span>
+          <Link href="/glossary" className="hover:text-white transition-colors">
+            용어사전
+          </Link>
+          <span className="w-[1px] h-3 bg-white/20 self-center"></span>
           <button onClick={() => setModalContent("privacy")} className="hover:text-white transition-colors">
             개인정보처리방침
           </button>

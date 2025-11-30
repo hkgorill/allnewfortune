@@ -16,6 +16,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/finger',
     '/chemistry',
     '/blog',
+    '/glossary',
   ];
 
   const staticPages = routes.map((route) => ({
