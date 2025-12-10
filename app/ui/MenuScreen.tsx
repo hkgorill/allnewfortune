@@ -407,7 +407,18 @@ export default function MenuScreen() {
       </section>
       </div>
 
-      {/* <div className="mt-6 flex justify-center w-full">
+      {/* Bottom Kakao Ad */}
+      <div className="mt-6 flex justify-center w-full">
+        {/* Mobile Ad (320x50) */}
+        <div className="block md:hidden">
+          <KakaoAdFit unit="DAN-MSEM8ye2XnTJRB4u" width="320" height="50" />
+        </div>
+        {/* PC Ad (728x90) */}
+        <div className="hidden md:block">
+          <KakaoAdFit unit="DAN-HSHMP9erAHFO6IQx" width="728" height="90" />
+        </div>
+      </div>
+     {/* <div className="mt-6 flex justify-center w-full">
         {/* Mobile Ad (320x50) *}
         <div className="block md:hidden">
           <KakaoAdFit unit="DAN-MSEM8ye2XnTJRB4u" width="320" height="50" />
